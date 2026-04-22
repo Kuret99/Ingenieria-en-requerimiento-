@@ -89,13 +89,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BE\BE.csproj">
+    <ProjectReference Include="..\BE\BE_43BO.csproj">
       <Project>{17831b8c-a419-4ccf-87a8-e917d3bd22be}</Project>
-      <Name>BE</Name>
+      <Name>BE_43BO</Name>
     </ProjectReference>
-    <ProjectReference Include="..\BLL\BLL.csproj">
+    <ProjectReference Include="..\BLL\BLL_43BO.csproj">
       <Project>{d0d05733-7006-4d0a-a2d0-e36e9f68b089}</Project>
-      <Name>BLL</Name>
+      <Name>BLL_43BO</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

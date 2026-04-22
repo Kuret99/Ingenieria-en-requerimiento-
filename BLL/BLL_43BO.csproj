@@ -45,17 +45,17 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BE\BE.csproj">
+    <ProjectReference Include="..\BE\BE_43BO.csproj">
       <Project>{17831b8c-a419-4ccf-87a8-e917d3bd22be}</Project>
-      <Name>BE</Name>
+      <Name>BE_43BO</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DAL\DAL.csproj">
+    <ProjectReference Include="..\DAL\DAL_43BO.csproj">
       <Project>{6f931184-cdc0-4195-be83-fd9d6427d832}</Project>
-      <Name>DAL</Name>
+      <Name>DAL_43BO</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Servicios\Servicios.csproj">
+    <ProjectReference Include="..\Servicios\Servicios_43BO.csproj">
       <Project>{679653a6-c4a3-4bbd-9eb2-7f7f85ce8742}</Project>
-      <Name>Servicios</Name>
+      <Name>Servicios_43BO</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

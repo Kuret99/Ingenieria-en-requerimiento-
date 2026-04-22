@@ -11,7 +11,7 @@ namespace Servicios
     {
         //generar un hash SHA256 de una cadena de texto
         public static string GenerarHash(string texto)
-        {
+        {           
 
 
             using (SHA256 sha256 = SHA256.Create())
