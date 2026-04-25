@@ -12,9 +12,20 @@ namespace Proyecto_IngSoftware
 {
     public partial class Login : Form
     {
+        private Menu menu;
         public Login()
         {
             InitializeComponent();
+        }
+
+        private void btn1_Click(object sender, EventArgs e)
+        {
+            menu = new Menu();
+
+            menu.Show();
+
+               this.Hide();
+
         }
     }
 }

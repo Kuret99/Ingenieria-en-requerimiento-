@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BE
+namespace Servicios
 {
     public enum Modulo_43BO { Usuario, Ventas, Compras, Maestro, Perfiles } //
-    public enum Evento_43BO { Login, Logout, Crear_Usuario}
+    public enum Evento_43BO { Login, Logout, Crear_Usuario, Desbloquear}
     public  class Bitacora_43BO
     {
 		private User_43BO _user;

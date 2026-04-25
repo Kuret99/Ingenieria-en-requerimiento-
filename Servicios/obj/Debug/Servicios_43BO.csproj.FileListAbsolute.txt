@@ -1,0 +1,9 @@
+C:\Users\Juanpy\Documents\Ing. Software\Ingenieria-en-requerimiento-\Servicios\bin\Debug\Servicios.dll
+C:\Users\Juanpy\Documents\Ing. Software\Ingenieria-en-requerimiento-\Servicios\bin\Debug\Servicios.pdb
+C:\Users\Juanpy\Documents\Ing. Software\Ingenieria-en-requerimiento-\Servicios\bin\Debug\BE.dll
+C:\Users\Juanpy\Documents\Ing. Software\Ingenieria-en-requerimiento-\Servicios\bin\Debug\BE.pdb
+C:\Users\Juanpy\Documents\Ing. Software\Ingenieria-en-requerimiento-\Servicios\obj\Debug\Servicios_43BO.csproj.AssemblyReference.cache
+C:\Users\Juanpy\Documents\Ing. Software\Ingenieria-en-requerimiento-\Servicios\obj\Debug\Servicios_43BO.csproj.CoreCompileInputs.cache
+C:\Users\Juanpy\Documents\Ing. Software\Ingenieria-en-requerimiento-\Servicios\obj\Debug\Servicio.5C534A4C.Up2Date
+C:\Users\Juanpy\Documents\Ing. Software\Ingenieria-en-requerimiento-\Servicios\obj\Debug\Servicios.dll
+C:\Users\Juanpy\Documents\Ing. Software\Ingenieria-en-requerimiento-\Servicios\obj\Debug\Servicios.pdb

@@ -1,0 +1,6 @@
+C:\Users\Juanpy\Documents\Ing. Software\Ingenieria-en-requerimiento-\BE\bin\Debug\BE.dll
+C:\Users\Juanpy\Documents\Ing. Software\Ingenieria-en-requerimiento-\BE\bin\Debug\BE.pdb
+C:\Users\Juanpy\Documents\Ing. Software\Ingenieria-en-requerimiento-\BE\obj\Debug\BE_43BO.csproj.AssemblyReference.cache
+C:\Users\Juanpy\Documents\Ing. Software\Ingenieria-en-requerimiento-\BE\obj\Debug\BE_43BO.csproj.CoreCompileInputs.cache
+C:\Users\Juanpy\Documents\Ing. Software\Ingenieria-en-requerimiento-\BE\obj\Debug\BE.dll
+C:\Users\Juanpy\Documents\Ing. Software\Ingenieria-en-requerimiento-\BE\obj\Debug\BE.pdb

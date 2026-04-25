@@ -10,7 +10,7 @@ namespace Servicios
     public class CriptoManager_43BO
     {
         //generar un hash SHA256 de una cadena de texto
-        public static string GenerarHash(string texto)
+        public static string GenerarHash_43BO(string texto)
         {           
 
 

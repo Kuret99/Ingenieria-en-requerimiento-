@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using BE;
+
 namespace Servicios
 {
                 public class SessionManager_43BO
@@ -38,7 +38,7 @@ namespace Servicios
                         }
                     }
 
-                    public static void IniciarSesion(User_43BO usuario)
+                    public static void IniciarSesion_43BO(User_43BO usuario)
                     {
                         lock (_lock)
                         {
@@ -52,7 +52,7 @@ namespace Servicios
                         }
                     }
 
-                    public static void CerrarSesion()
+                    public static void CerrarSesion_43BO()
                     {
                         //la palabra lock asegura que solo un hilo pueda acceder a este bloque de código a la vez
                         lock (_lock)

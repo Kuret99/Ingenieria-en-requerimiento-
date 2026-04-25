@@ -1,0 +1,22 @@
+C:\Users\Juanpy\Documents\Ing. Software\Ingenieria-en-requerimiento-\Proyecto IngSoftware\bin\Debug\Proyecto IngSoftware.exe.config
+C:\Users\Juanpy\Documents\Ing. Software\Ingenieria-en-requerimiento-\Proyecto IngSoftware\bin\Debug\Proyecto IngSoftware.exe
+C:\Users\Juanpy\Documents\Ing. Software\Ingenieria-en-requerimiento-\Proyecto IngSoftware\bin\Debug\Proyecto IngSoftware.pdb
+C:\Users\Juanpy\Documents\Ing. Software\Ingenieria-en-requerimiento-\Proyecto IngSoftware\bin\Debug\BE.dll
+C:\Users\Juanpy\Documents\Ing. Software\Ingenieria-en-requerimiento-\Proyecto IngSoftware\bin\Debug\BLL.dll
+C:\Users\Juanpy\Documents\Ing. Software\Ingenieria-en-requerimiento-\Proyecto IngSoftware\bin\Debug\BE.pdb
+C:\Users\Juanpy\Documents\Ing. Software\Ingenieria-en-requerimiento-\Proyecto IngSoftware\bin\Debug\BLL.pdb
+C:\Users\Juanpy\Documents\Ing. Software\Ingenieria-en-requerimiento-\Proyecto IngSoftware\obj\Debug\GUI_43BO.csproj.AssemblyReference.cache
+C:\Users\Juanpy\Documents\Ing. Software\Ingenieria-en-requerimiento-\Proyecto IngSoftware\obj\Debug\Proyecto_IngSoftware.GestionUs.resources
+C:\Users\Juanpy\Documents\Ing. Software\Ingenieria-en-requerimiento-\Proyecto IngSoftware\obj\Debug\Proyecto_IngSoftware.Login.resources
+C:\Users\Juanpy\Documents\Ing. Software\Ingenieria-en-requerimiento-\Proyecto IngSoftware\obj\Debug\Proyecto_IngSoftware.Properties.Resources.resources
+C:\Users\Juanpy\Documents\Ing. Software\Ingenieria-en-requerimiento-\Proyecto IngSoftware\obj\Debug\GUI_43BO.csproj.GenerateResource.cache
+C:\Users\Juanpy\Documents\Ing. Software\Ingenieria-en-requerimiento-\Proyecto IngSoftware\obj\Debug\GUI_43BO.csproj.CoreCompileInputs.cache
+C:\Users\Juanpy\Documents\Ing. Software\Ingenieria-en-requerimiento-\Proyecto IngSoftware\obj\Debug\GUI_43BO.csproj.Up2Date
+C:\Users\Juanpy\Documents\Ing. Software\Ingenieria-en-requerimiento-\Proyecto IngSoftware\obj\Debug\Proyecto IngSoftware.exe
+C:\Users\Juanpy\Documents\Ing. Software\Ingenieria-en-requerimiento-\Proyecto IngSoftware\obj\Debug\Proyecto IngSoftware.pdb
+C:\Users\Juanpy\Documents\Ing. Software\Ingenieria-en-requerimiento-\Proyecto IngSoftware\obj\Debug\Proyecto IngSoftware.exe.config
+C:\Users\Juanpy\Documents\Ing. Software\Ingenieria-en-requerimiento-\Proyecto IngSoftware\obj\Debug\Proyecto_IngSoftware.Menu.resources
+C:\Users\Juanpy\Documents\Ing. Software\Ingenieria-en-requerimiento-\Proyecto IngSoftware\bin\Debug\DAL.dll
+C:\Users\Juanpy\Documents\Ing. Software\Ingenieria-en-requerimiento-\Proyecto IngSoftware\bin\Debug\Servicios.dll
+C:\Users\Juanpy\Documents\Ing. Software\Ingenieria-en-requerimiento-\Proyecto IngSoftware\bin\Debug\DAL.pdb
+C:\Users\Juanpy\Documents\Ing. Software\Ingenieria-en-requerimiento-\Proyecto IngSoftware\bin\Debug\Servicios.pdb

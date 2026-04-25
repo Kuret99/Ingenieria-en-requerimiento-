@@ -1,0 +1,11 @@
+C:\Users\Juanpy\Documents\Ing. Software\Ingenieria-en-requerimiento-\DAL\bin\Debug\DAL.dll
+C:\Users\Juanpy\Documents\Ing. Software\Ingenieria-en-requerimiento-\DAL\bin\Debug\DAL.pdb
+C:\Users\Juanpy\Documents\Ing. Software\Ingenieria-en-requerimiento-\DAL\bin\Debug\BE.dll
+C:\Users\Juanpy\Documents\Ing. Software\Ingenieria-en-requerimiento-\DAL\bin\Debug\BE.pdb
+C:\Users\Juanpy\Documents\Ing. Software\Ingenieria-en-requerimiento-\DAL\obj\Debug\DAL_43BO.csproj.AssemblyReference.cache
+C:\Users\Juanpy\Documents\Ing. Software\Ingenieria-en-requerimiento-\DAL\obj\Debug\DAL_43BO.csproj.CoreCompileInputs.cache
+C:\Users\Juanpy\Documents\Ing. Software\Ingenieria-en-requerimiento-\DAL\obj\Debug\DAL_43BO.csproj.Up2Date
+C:\Users\Juanpy\Documents\Ing. Software\Ingenieria-en-requerimiento-\DAL\obj\Debug\DAL.dll
+C:\Users\Juanpy\Documents\Ing. Software\Ingenieria-en-requerimiento-\DAL\obj\Debug\DAL.pdb
+C:\Users\Juanpy\Documents\Ing. Software\Ingenieria-en-requerimiento-\DAL\bin\Debug\Servicios.dll
+C:\Users\Juanpy\Documents\Ing. Software\Ingenieria-en-requerimiento-\DAL\bin\Debug\Servicios.pdb

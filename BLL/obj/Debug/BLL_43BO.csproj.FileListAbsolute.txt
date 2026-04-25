@@ -1,0 +1,13 @@
+C:\Users\Juanpy\Documents\Ing. Software\Ingenieria-en-requerimiento-\BLL\bin\Debug\BLL.dll
+C:\Users\Juanpy\Documents\Ing. Software\Ingenieria-en-requerimiento-\BLL\bin\Debug\BLL.pdb
+C:\Users\Juanpy\Documents\Ing. Software\Ingenieria-en-requerimiento-\BLL\bin\Debug\BE.dll
+C:\Users\Juanpy\Documents\Ing. Software\Ingenieria-en-requerimiento-\BLL\bin\Debug\DAL.dll
+C:\Users\Juanpy\Documents\Ing. Software\Ingenieria-en-requerimiento-\BLL\bin\Debug\Servicios.dll
+C:\Users\Juanpy\Documents\Ing. Software\Ingenieria-en-requerimiento-\BLL\bin\Debug\BE.pdb
+C:\Users\Juanpy\Documents\Ing. Software\Ingenieria-en-requerimiento-\BLL\bin\Debug\DAL.pdb
+C:\Users\Juanpy\Documents\Ing. Software\Ingenieria-en-requerimiento-\BLL\bin\Debug\Servicios.pdb
+C:\Users\Juanpy\Documents\Ing. Software\Ingenieria-en-requerimiento-\BLL\obj\Debug\BLL_43BO.csproj.AssemblyReference.cache
+C:\Users\Juanpy\Documents\Ing. Software\Ingenieria-en-requerimiento-\BLL\obj\Debug\BLL_43BO.csproj.CoreCompileInputs.cache
+C:\Users\Juanpy\Documents\Ing. Software\Ingenieria-en-requerimiento-\BLL\obj\Debug\BLL_43BO.csproj.Up2Date
+C:\Users\Juanpy\Documents\Ing. Software\Ingenieria-en-requerimiento-\BLL\obj\Debug\BLL.dll
+C:\Users\Juanpy\Documents\Ing. Software\Ingenieria-en-requerimiento-\BLL\obj\Debug\BLL.pdb
