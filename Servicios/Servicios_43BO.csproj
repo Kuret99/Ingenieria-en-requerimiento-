@@ -41,9 +41,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bitacora_43BO.cs" />
     <Compile Include="CriptoManager_43BO.cs" />
     <Compile Include="SessionManager_43BO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="User_43BO.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BE\BE_43BO.csproj">

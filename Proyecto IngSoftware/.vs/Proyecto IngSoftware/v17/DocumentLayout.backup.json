@@ -3,7 +3,7 @@
   "WorkspaceRootPath": "C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\Proyecto IngSoftware\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{17831B8C-A419-4CCF-87A8-E917D3BD22BE}|..\\BE\\BE.csproj|c:\\users\\juanpy\\documents\\ing. software\\ingenieria-en-requerimiento-\\be\\bitacora_43bo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{17831B8C-A419-4CCF-87A8-E917D3BD22BE}|..\\BE\\BE_43BO.csproj|c:\\users\\juanpy\\documents\\ing. software\\ingenieria-en-requerimiento-\\be\\bitacora_43bo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{679653A6-C4A3-4BBD-9EB2-7F7F85CE8742}|..\\Servicios\\Servicios.csproj|c:\\users\\juanpy\\documents\\ing. software\\ingenieria-en-requerimiento-\\servicios\\criptomanager_43bo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
@@ -54,7 +54,7 @@
               "RelativeDocumentMoniker": "..\\BE\\Bitacora_43BO.cs",
               "ToolTip": "C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\BE\\Bitacora_43BO.cs",
               "RelativeToolTip": "..\\BE\\Bitacora_43BO.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAADAAAAAAAAAA==",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAswBsAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-04-21T20:48:44.03Z",
               "EditorCaption": ""
@@ -69,8 +69,7 @@
               "RelativeToolTip": "GestionUs.cs",
               "ViewState": "AgIAAAsAAAAAAAAAAAAkwBIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-21T17:02:11.106Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-21T17:02:11.106Z"
             },
             {
               "$type": "Document",
@@ -82,8 +81,7 @@
               "RelativeToolTip": "Program.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-21T16:39:13.228Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-21T16:39:13.228Z"
             },
             {
               "$type": "Document",
@@ -95,8 +93,7 @@
               "RelativeToolTip": "..\\BE\\User_43BO.cs",
               "ViewState": "AgIAACMAAAAAAAAAAAAwwDsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-21T16:05:05.52Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-21T16:05:05.52Z"
             },
             {
               "$type": "Document",
@@ -107,8 +104,7 @@
               "ToolTip": "C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\Proyecto IngSoftware\\GestionUs.cs [Dise\u00F1o]",
               "RelativeToolTip": "GestionUs.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-21T15:50:33.232Z",
-              "EditorCaption": " [Dise\u00F1o]"
+              "WhenOpened": "2026-04-21T15:50:33.232Z"
             },
             {
               "$type": "Document",
@@ -120,8 +116,7 @@
               "RelativeToolTip": "..\\Servicios\\CriptoManager_43BO.cs",
               "ViewState": "AgIAAAMAAAAAAAAAAAAAAAwAAAAOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-21T15:41:38.746Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-21T15:41:38.746Z"
             },
             {
               "$type": "Document",
@@ -133,8 +128,7 @@
               "RelativeToolTip": "..\\Servicios\\SessionManager_43BO.cs",
               "ViewState": "AgIAABAAAAAAAAAAAAAowCUAAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-21T15:39:49.843Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-21T15:39:49.843Z"
             },
             {
               "$type": "Document",
@@ -146,8 +140,7 @@
               "RelativeToolTip": "..\\DAL\\Class1.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-21T15:38:24.731Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-21T15:38:24.731Z"
             },
             {
               "$type": "Document",
@@ -159,8 +152,7 @@
               "RelativeToolTip": "..\\BLL\\Class1.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-21T15:38:09.652Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-21T15:38:09.652Z"
             },
             {
               "$type": "Document",
@@ -171,8 +163,7 @@
               "ToolTip": "C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\Proyecto IngSoftware\\Login.cs [Dise\u00F1o]",
               "RelativeToolTip": "Login.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-21T15:21:08.579Z",
-              "EditorCaption": " [Dise\u00F1o]"
+              "WhenOpened": "2026-04-21T15:21:08.579Z"
             }
           ]
         }
