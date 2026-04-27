@@ -29,21 +29,21 @@ namespace Servicios
 		}
 
 
-		public DateTime Fecha
-		{
+		public DateTime Fecha_43BO
+        {
 			get { return _fecha; }
 			set { _fecha = value; }
 		}
 
-		public User_43BO log 
-		{
+		public User_43BO log_43BO
+        {
 			get { return _user; }
 			set { _user = value; }
 		}
 
 	
-		public int Criticidad
-		{
+		public int Criticidad_43BO
+        {
 			get { return _criticidad; }
 			set { _criticidad = value; }
 		}

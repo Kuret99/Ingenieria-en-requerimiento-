@@ -10,56 +10,55 @@ namespace Servicios
     {
 		private string _nombre;
 
-		public string Nombre
-		{
+		public string Nombre_43BO
+        {
 			get { return _nombre; }
 			set {	_nombre = value; }
 		}
 
 		private int _dni;
 
-		public int DNI
-		{
+		public int DNI_43BO
+        {
 			get { return _dni; }
 			set { _dni = value; }
 		}
 
 		private string  _apellido;
 
-		public string  Apellido
-		{
+		public string Apellido_43BO
+        {
 			get { return _apellido; }
 			set { _apellido = value; }
 		}
 
 		private string _email;
 
-		public string  Email 
-		{
+		public string Email_43BO
+        {
 			get { return _email; }
 			set { _email = value; }
 		}
 
 		private string _rol;
 
-		public string  Rol
-		{
+		public string Rol_43BO
+        {
 			get { return _rol; }
 			set { _rol = value; }
 		}
+        private string _hash;
 
-		private string _contraseña;
+        public string Hash_43BO
+        {
+            get { return _hash; }
+            set { _hash = value; }
+        }
 
-		public string Contraseña 
-		{
-			get { return _contraseña; }
-			set { _contraseña = value; }
-		}
+        private bool  _bloqueado;
 
-		private bool  _bloqueado;
-
-		public bool  Bloqueado
-		{
+		public bool Bloqueado_43BO
+        {
 			get { return _bloqueado; }
 			set { _bloqueado = value; }
 		}
@@ -67,8 +66,8 @@ namespace Servicios
 
 		private bool _activo;
 
-		public bool Activo
-		{
+		public bool Activo_43BO
+        {
 			get { return _activo; }
 			set { _activo = value; }
 		}

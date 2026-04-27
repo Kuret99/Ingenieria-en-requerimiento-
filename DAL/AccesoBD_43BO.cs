@@ -15,21 +15,21 @@ namespace DAL
         {
             _cadenaConexion = ConfigurationManager.ConnectionStrings["Ing.Software"].ConnectionString;
         }
-        public int Escribir(string query, SqlParameter[] parametros = null)
+        public int Escribir_43BO(string query, SqlParameter[] parametros = null)
         {
-            using (SqlConnection conexion = new SqlConnection(_cadenaConexion))
+            using (SqlConnection con = new SqlConnection(_cadenaConexion))
             {
-                using (SqlCommand comando = new SqlCommand(query, conexion))
+                using (SqlCommand cm = new SqlCommand(query, con))
                 {
-                    if (parametros != null) comando.Parameters.AddRange(parametros);
+                    if (parametros != null) cm.Parameters.AddRange(parametros);
 
-                    conexion.Open();
-                    return comando.ExecuteNonQuery(); // Devuelve filas afectadas
+                    con.Open();
+                    return cm.ExecuteNonQuery(); // Devuelve filas afectadas
                 }
             }
         }
 
-        public DataTable Leer(string query, SqlParameter[] parametros = null)
+        public DataTable Leer_43BO(string query, SqlParameter[] parametros = null)
         {
             DataTable tabla = new DataTable();
 

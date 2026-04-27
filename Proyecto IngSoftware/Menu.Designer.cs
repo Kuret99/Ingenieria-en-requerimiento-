@@ -64,14 +64,14 @@
             // gestionUsuarioToolStripMenuItem
             // 
             this.gestionUsuarioToolStripMenuItem.Name = "gestionUsuarioToolStripMenuItem";
-            this.gestionUsuarioToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.gestionUsuarioToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
             this.gestionUsuarioToolStripMenuItem.Text = "GestionUsuario";
             this.gestionUsuarioToolStripMenuItem.Click += new System.EventHandler(this.gestionUsuarioToolStripMenuItem_Click);
             // 
             // bitacoraToolStripMenuItem
             // 
             this.bitacoraToolStripMenuItem.Name = "bitacoraToolStripMenuItem";
-            this.bitacoraToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.bitacoraToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
             this.bitacoraToolStripMenuItem.Text = "Bitacora";
             // 
             // masterToolStripMenuItem
@@ -118,7 +118,6 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Menu";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Menu";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);

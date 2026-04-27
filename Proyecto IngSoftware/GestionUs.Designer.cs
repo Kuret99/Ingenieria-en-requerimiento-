@@ -79,6 +79,7 @@
             this.btnModi.TabIndex = 2;
             this.btnModi.Text = "Modificar";
             this.btnModi.UseVisualStyleBackColor = true;
+            this.btnModi.Click += new System.EventHandler(this.btnModi_Click);
             // 
             // btnAct
             // 
@@ -88,6 +89,7 @@
             this.btnAct.TabIndex = 3;
             this.btnAct.Text = "Act / Desact";
             this.btnAct.UseVisualStyleBackColor = true;
+            this.btnAct.Click += new System.EventHandler(this.btnAct_Click);
             // 
             // btnApli
             // 
@@ -107,6 +109,7 @@
             this.btnCanc.TabIndex = 5;
             this.btnCanc.Text = "Cancelar";
             this.btnCanc.UseVisualStyleBackColor = true;
+            this.btnCanc.Click += new System.EventHandler(this.btnCanc_Click);
             // 
             // radioButton1
             // 
@@ -137,6 +140,7 @@
             this.dgvUsaurio.Name = "dgvUsaurio";
             this.dgvUsaurio.Size = new System.Drawing.Size(656, 216);
             this.dgvUsaurio.TabIndex = 8;
+            this.dgvUsaurio.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvUsuarios_CellClick_43BO);
             // 
             // radioButton3
             // 
@@ -151,7 +155,7 @@
             // 
             // btnSalir
             // 
-            this.btnSalir.Location = new System.Drawing.Point(675, 379);
+            this.btnSalir.Location = new System.Drawing.Point(667, 348);
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(101, 33);
             this.btnSalir.TabIndex = 10;
@@ -161,7 +165,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(15, 261);
+            this.label1.Location = new System.Drawing.Point(12, 265);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(26, 13);
             this.label1.TabIndex = 11;
@@ -179,7 +183,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(9, 328);
+            this.label3.Location = new System.Drawing.Point(12, 317);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(44, 13);
             this.label3.TabIndex = 13;
@@ -188,7 +192,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(12, 361);
+            this.label4.Location = new System.Drawing.Point(15, 343);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(23, 13);
             this.label4.TabIndex = 14;
@@ -203,28 +207,28 @@
             // 
             // txtNom
             // 
-            this.txtNom.Location = new System.Drawing.Point(62, 290);
+            this.txtNom.Location = new System.Drawing.Point(62, 284);
             this.txtNom.Name = "txtNom";
             this.txtNom.Size = new System.Drawing.Size(100, 20);
             this.txtNom.TabIndex = 16;
             // 
             // txtApe
             // 
-            this.txtApe.Location = new System.Drawing.Point(62, 325);
+            this.txtApe.Location = new System.Drawing.Point(62, 310);
             this.txtApe.Name = "txtApe";
             this.txtApe.Size = new System.Drawing.Size(100, 20);
             this.txtApe.TabIndex = 17;
             // 
             // txtRol
             // 
-            this.txtRol.Location = new System.Drawing.Point(62, 354);
+            this.txtRol.Location = new System.Drawing.Point(62, 336);
             this.txtRol.Name = "txtRol";
             this.txtRol.Size = new System.Drawing.Size(100, 20);
             this.txtRol.TabIndex = 18;
             // 
             // txtEmail
             // 
-            this.txtEmail.Location = new System.Drawing.Point(62, 392);
+            this.txtEmail.Location = new System.Drawing.Point(62, 361);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(100, 20);
             this.txtEmail.TabIndex = 19;
@@ -232,7 +236,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(9, 395);
+            this.label5.Location = new System.Drawing.Point(15, 368);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(32, 13);
             this.label5.TabIndex = 20;
@@ -243,7 +247,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightCoral;
-            this.ClientSize = new System.Drawing.Size(780, 411);
+            this.ClientSize = new System.Drawing.Size(780, 388);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.txtEmail);
             this.Controls.Add(this.txtRol);

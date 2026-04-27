@@ -22,17 +22,42 @@ namespace BLL
             User_43BO usuario = new User_43BO();
 
    
-            usuario.DNI = dni;
-            usuario.Nombre = nom;
-            usuario.Apellido = ape;
-            usuario.Rol = rol;
-            usuario.Email = email;
-            usuario.Contraseña = contraseñaDefault;
-            usuario.Bloqueado= false; // Por defecto no bloqueado
-            usuario.Activo = true; // Por defecto activo
+            usuario.DNI_43BO = dni;
+            usuario.Nombre_43BO = nom;
+            usuario.Apellido_43BO = ape;
+            usuario.Rol_43BO = rol;
+            usuario.Email_43BO = email;
+            usuario.Hash_43BO = contraseñaDefault;
+            usuario.Bloqueado_43BO = false; // Por defecto no bloqueado
+            usuario.Activo_43BO = true; // Por defecto activo
 
             DALuser.InsertarUser_43BO(usuario);
 
+        }
+
+        public int ModificarUser_43BO(int dni, string rol, string email)
+        {
+
+            return DALuser.ModificarUser_43BO(dni, rol, email); 
+        }
+
+
+        public void Eliminar_43BO(int dni, bool activo)
+        {
+            try
+            {
+                // Llamamos al método que ya tenés en tu DAL
+                int filasAfectadas = DALuser.EliminarUser_43BO(dni, activo);
+
+                if (filasAfectadas == 0)
+                {
+                    throw new Exception("No se pudo actualizar el estado en la base de datos.");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public List<User_43BO> ListarUsuarios_43BO()
