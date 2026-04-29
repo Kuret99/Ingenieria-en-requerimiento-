@@ -39,7 +39,7 @@ namespace DAL
             //llamamos a leer en DalAcceso
             DataTable tabla = acceso.Leer_43BO("SELECT * FROM Usuarios_43BO");
 
-            // 2. Recorremos la tabla y creamos un Objeto por cada fila (El mapeo)
+            //  Recorremos la tabla y le llenamos con la info que le llega desde la BD
             foreach (DataRow fila in tabla.Rows)
             {
                 User_43BO u = new User_43BO();
@@ -59,8 +59,8 @@ namespace DAL
 
         public int ModificarUser_43BO(int dni, string rol, string email)
         {
-            // Solo permitimos SET de Rol y Email
-            string consulta = "UPDATE Usuarios_43BO SET Rol_43BO = @rol, Email_43BO = @mail WHERE DNI_43BO = @dni";
+            // Solo permitimos SET de Rol y Email (preguntar si solo era eso por ahora))
+            string query = "UPDATE Usuarios_43BO SET Rol_43BO = @rol, Email_43BO = @mail WHERE DNI_43BO = @dni";
 
             SqlParameter[] parametros = new SqlParameter[]
             {
@@ -70,21 +70,21 @@ namespace DAL
             };
 
             AccesoBD_43BO acceso = new AccesoBD_43BO();
-            return acceso.Escribir_43BO(consulta, parametros);
+            return acceso.Escribir_43BO( query, parametros);
         }
 
-        public int EliminarUser_43BO(int dni, bool activo)
+        public int  EliminarUser_43BO(int dni, bool activo)
         {
 
-            // En lugar de eliminar físicamente, actualizamos el campo Activo_43BO a false
-            string consulta = "UPDATE Usuarios_43BO SET Activo_43BO = @activo WHERE DNI_43BO = @dni";
+            // En lugar de eliminar actualizo el campo Activo_43BO a false
+            string query = "UPDATE Usuarios_43BO SET Activo_43BO = @activo WHERE DNI_43BO = @dni";
             SqlParameter[] parametros = new SqlParameter[]
             {
                new SqlParameter("@dni", dni),
-               new SqlParameter("@activo", activo) // Pasamos el valor del parámetro activo (false para eliminar, true para reactivar)
+               new SqlParameter("@activo", activo) 
             };
 
-            return acceso.Escribir_43BO(consulta, parametros);
+            return acceso.Escribir_43BO(query, parametros);
         }
     } 
 }

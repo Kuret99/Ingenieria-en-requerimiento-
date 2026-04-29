@@ -46,7 +46,7 @@ namespace BLL
         {
             try
             {
-                // Llamamos al método que ya tenés en tu DAL
+                
                 int filasAfectadas = DALuser.EliminarUser_43BO(dni, activo);
 
                 if (filasAfectadas == 0)
@@ -62,7 +62,7 @@ namespace BLL
 
         public List<User_43BO> ListarUsuarios_43BO()
         {
-            // Instanciamos la DAL y le pedimos la lista
+            //de aca retorna la lista de usarios que fue cargado con el .fill del aadapter
           
             return DALuser.ListarUsuarios_43BO();
         }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Servicios; 
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,13 +8,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Servicios; 
 namespace Proyecto_IngSoftware
 {
     public partial class GestionUs : Form
     {
-        BLL.BllUser_43BO bll = new BLL.BllUser_43BO(); // Instancia de la capa de negocio para manejar usuarios
-        private bool Modificar_43BO = false; // Variable para controlar si se está modificando o creando un nuevo usuario   
+        BLL.BllUser_43BO blluser = new BLL.BllUser_43BO();
+        BLL.BLLBitacora_43BO bllBitacora = new BLL.BLLBitacora_43BO();
+
+        private bool Modificar_43BO = false; // <---- con eso controlo si estoy apicando una creacion o una modificiacion   
         public GestionUs()
         {
             InitializeComponent();
@@ -74,7 +76,7 @@ namespace Proyecto_IngSoftware
             try
             {
                 dgvUsaurio.DataSource = null;
-                dgvUsaurio.DataSource = bll.ListarUsuarios_43BO();
+                dgvUsaurio.DataSource = blluser.ListarUsuarios_43BO();
 
                 // no moestramos el hash porque nod eberia apercer en el dgv 
                 if (dgvUsaurio.Columns.Contains("Hash_43BO")) dgvUsaurio.Columns["Hash_43BO"].Visible = false;
@@ -147,7 +149,7 @@ namespace Proyecto_IngSoftware
         {
             try
             {
-                // La BLL se encarga de todo, nosotros solo le pasamos los datos
+                //preguntar si este tipo de validacion que no esta en un metodo concreto se documenta
                 if (!int.TryParse(txtDNI.Text, out int dni))
                 {
                     MessageBox.Show("El DNI debe ser un número válido.");
@@ -163,7 +165,10 @@ namespace Proyecto_IngSoftware
                 {
                     if (Modificar_43BO)
                     {
-                        bll.ModificarUser_43BO(dni, txtRol.Text, txtEmail.Text);
+                        blluser.ModificarUser_43BO(dni, txtRol.Text, txtEmail.Text);
+
+                        //pongo null por ahora porqeu no se cuadno va a esatr el login asi que el sessionmanager esta de adorno
+                        bllBitacora.GuardarLog_43BO(null, Modulo_43BO.Usuario, Evento_43BO.modificar, 2);
 
                         Modificar_43BO = false;
 
@@ -178,9 +183,12 @@ namespace Proyecto_IngSoftware
                     else
                     {
 
-                        bll.InsertarUser_43BO(dni, txtNom.Text, txtApe.Text, txtRol.Text, txtEmail.Text);
+                        blluser.InsertarUser_43BO(dni, txtNom.Text, txtApe.Text, txtRol.Text, txtEmail.Text);
+
+                        //lo mismo
+                        bllBitacora.GuardarLog_43BO(null, Modulo_43BO.Usuario, Evento_43BO.Crear, 3);
                         MessageBox.Show("Usuario creado con éxito.");
-                    }// Para que se vea el cambio en el cuadro gris
+                    }
                 }
             }
 
@@ -205,7 +213,7 @@ namespace Proyecto_IngSoftware
             txtRol.Clear();
             txtEmail.Clear();
 
-            Btns_43BO(); // Tu método que resetea los botones
+            Btns_43BO(); //resetea los botones
         }
 
         private void btnAct_Click(object sender, EventArgs e)
@@ -224,9 +232,14 @@ namespace Proyecto_IngSoftware
 
                     if(respuesta == DialogResult.Yes)
                     {
-                        bll.Eliminar_43BO(dni, !estadoactual);
+                        blluser.Eliminar_43BO(dni, !estadoactual);
+                        bllBitacora.GuardarLog_43BO(null, Modulo_43BO.Usuario, Evento_43BO.Desactivar, 2);
                         ActualizarDGV_43BO();
                         MessageBox.Show($"El usuario ha sido {result.ToLower()} correctamente.");
+                    }
+                    else 
+                    {
+                        MessageBox.Show("Operación cancelada por el usuario.");
                     }
                 }
                 catch (Exception ex)
@@ -240,25 +253,27 @@ namespace Proyecto_IngSoftware
             }
         }
 
-        private void dgvUsaurio_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
-        {
-            // Verificamos que estemos evaluando la columna correcta por su nombre técnico
-            if (dgvUsaurio.Columns[e.ColumnIndex].Name == "Activo_43BO")
-            {
-                // Si el valor es false (usuario inactivo)
-                if (e.Value != null && (bool)e.Value == false)
-                {
-                    // Pintamos el fondo de TODA la fila de un color distintivo
-                    dgvUsaurio.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightCoral;
-                    dgvUsaurio.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.Black;
-                }
-                else
-                {
-                    // Si está activo, volvemos al color normal (blanco o el que tengas por defecto)
-                    dgvUsaurio.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.White;
-                }
-            }
-        }
+
+        //metodo para probar si cambiaab el color de la fila segun el estado del usaurio pero no me convencio seguir creando metodos aprte para esa clase de funcionaldiad
+        //private void dgvUsaurio_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        //{
+        //    // Verificamos que estemos evaluando la columna correcta por su nombre técnico
+        //    if (dgvUsaurio.Columns[e.ColumnIndex].Name == "Activo_43BO")
+        //    {
+        //        // Si el valor es false (usuario inactivo)
+        //        if (e.Value != null && (bool)e.Value == false)
+        //        {
+        //            // Pintamos el fondo de TODA la fila de un color distintivo
+        //            dgvUsaurio.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightCoral;
+        //            dgvUsaurio.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.Black;
+        //        }
+        //        else
+        //        {
+        //            // Si está activo, volvemos al color normal (blanco o el que tengas por defecto)
+        //            dgvUsaurio.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.White;
+        //        }
+        //    }
+        //}
 
     }
     

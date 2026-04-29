@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccesoBD_43BO.cs" />
+    <Compile Include="DALbitacora_43BO.cs" />
     <Compile Include="DALUser_43BO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
