@@ -16,14 +16,9 @@ namespace BLL
             Bitacora_43BO bi = new Bitacora_43BO();
           
             //como todavia no tengo el login tuve que mporvisar un dni de un usaurio para testear
-            if (usaurio == null)
-            {
-                bi.log_43BO = new User_43BO { DNI_43BO = 46498814 }; 
-            }
-            else
-            {
-                bi.log_43BO = usaurio;
-            }
+           
+            
+            bi.log_43BO = SessionManager_43BO.Instancia.Usuario;
 
             bi.Modulo = modulo;
             bi.Evento = evento;

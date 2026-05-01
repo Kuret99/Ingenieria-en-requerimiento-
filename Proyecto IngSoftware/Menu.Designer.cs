@@ -32,11 +32,11 @@
             this.materToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gestionUsuarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bitacoraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.masterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.adminToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cambiarIdiomaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cambiarContraseñaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cerrarSesiobnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.masterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ventaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.stockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
@@ -47,10 +47,10 @@
             this.menuStrip1.BackColor = System.Drawing.SystemColors.Highlight;
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.materToolStripMenuItem,
-            this.adminToolStripMenuItem,
             this.masterToolStripMenuItem,
             this.ventaToolStripMenuItem,
-            this.stockToolStripMenuItem});
+            this.stockToolStripMenuItem,
+            this.adminToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(786, 24);
@@ -80,12 +80,6 @@
             this.bitacoraToolStripMenuItem.Name = "bitacoraToolStripMenuItem";
             this.bitacoraToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.bitacoraToolStripMenuItem.Text = "Bitacora";
-            // 
-            // masterToolStripMenuItem
-            // 
-            this.masterToolStripMenuItem.Name = "masterToolStripMenuItem";
-            this.masterToolStripMenuItem.Size = new System.Drawing.Size(55, 20);
-            this.masterToolStripMenuItem.Text = "Master";
             // 
             // adminToolStripMenuItem
             // 
@@ -117,6 +111,13 @@
             this.cerrarSesiobnToolStripMenuItem.Name = "cerrarSesiobnToolStripMenuItem";
             this.cerrarSesiobnToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.cerrarSesiobnToolStripMenuItem.Text = "CerrarSesiobn";
+            this.cerrarSesiobnToolStripMenuItem.Click += new System.EventHandler(this.cerrarSesiobnToolStripMenuItem_Click);
+            // 
+            // masterToolStripMenuItem
+            // 
+            this.masterToolStripMenuItem.Name = "masterToolStripMenuItem";
+            this.masterToolStripMenuItem.Size = new System.Drawing.Size(55, 20);
+            this.masterToolStripMenuItem.Text = "Master";
             // 
             // ventaToolStripMenuItem
             // 

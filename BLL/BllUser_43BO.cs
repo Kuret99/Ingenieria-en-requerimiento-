@@ -1,19 +1,95 @@
-﻿using System;
+﻿using DAL;
+using Servicios;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Servicios; 
-using DAL;
 
 namespace BLL
 {
     public class BllUser_43BO
     {
-        DALUser_43BO DALuser = new DALUser_43BO();
- 
+        private DALUser_43BO DALuser = new DALUser_43BO();
+        private BLLBitacora_43BO bllBi = new BLLBitacora_43BO();
 
-        public void InsertarUser_43BO(int dni, string nom, string ape, string rol,string email) 
+        // cf de contador de fallos y ultIntentos para poder reiniciar el contador deepues de X contador de tiempo 
+        private static Dictionary<string, int> cf = new Dictionary<string, int>();
+
+        private static Dictionary<string, DateTime> ultIntentos = new Dictionary<string, DateTime>();
+
+
+        public bool ValidarLogin_43BO(string UserName, string ContraDefault)
+        {
+            //traigo esto para poder laburar con los atributos e ir apsando de validacion en validacion 
+            User_43BO usaurio = DALuser.BuscarUserName_43BO(UserName);
+
+            if (usaurio == null)
+            {
+                throw new Exception("Usuario o contraseña incorrectas");
+            }
+
+            if (usaurio.Bloqueado_43BO)
+            {
+                throw new Exception("Usuario bloqueado. Por favor, contacte al administrador.");
+            }
+
+
+            string contra = CriptoManager_43BO.GenerarHash_43BO(ContraDefault);
+
+
+            if (usaurio.Hash_43BO == contra)
+            {
+                ReiniciarIn_43BO(UserName);
+
+
+                SessionManager_43BO.IniciarSesion_43BO(usaurio);
+
+                bllBi.GuardarLog_43BO(usaurio, Modulo_43BO.Usuario, Evento_43BO.Login, 1); // Log de éxito de login
+
+                return true; // Login exitoso
+            }
+            else
+            {
+                ManejarFallos_43BO(usaurio, UserName);
+                return false; 
+            }
+        }
+
+        private void ManejarFallos_43BO(User_43BO us, string username)
+        {
+            DateTime ahora = DateTime.Now;
+
+            if (!cf.ContainsKey(username) || (ahora - ultIntentos[username]).TotalHours >= 2)
+            {
+                cf[username] = 1;
+            }
+            else
+            {
+                cf[username]++;
+
+            }
+
+
+            ultIntentos[username] = ahora;
+
+            if (cf[username] >= 3)
+            {
+                DALuser.BloquearUser_43BO(username);
+
+                bllBi.GuardarLog_43BO(us, Modulo_43BO.Usuario, Evento_43BO.Bloqueo, 3); // Log de bloqueo por intentos fallidos
+
+                ReiniciarIn_43BO(username);// Bloqueamos al usuario después de 2 intentos fallidos
+
+                throw new Exception("Usuario bloqueado por múltiples intentos fallidos, contacte al administrador.");
+            }
+            int intentosRestantes = 3 - cf[username];
+            throw new Exception($"Quedan:{intentosRestantes} intentos restantezs  ");
+        }
+
+        private void ReiniciarIn_43BO(string username)
+        {
+            if (cf  .ContainsKey(username)) cf.Remove(username);
+            if (ultIntentos.ContainsKey(username)) ultIntentos.Remove(username);
+        }
+        public void InsertarUser_43BO(int dni, string nom, string ape, string rol, string email)
         {
             string contraseñaPlana = dni.ToString() + ape.Trim();
 
@@ -21,7 +97,7 @@ namespace BLL
 
             User_43BO usuario = new User_43BO();
 
-   
+
             usuario.DNI_43BO = dni;
             usuario.Nombre_43BO = nom;
             usuario.Apellido_43BO = ape;
@@ -38,7 +114,7 @@ namespace BLL
         public int ModificarUser_43BO(int dni, string rol, string email)
         {
 
-            return DALuser.ModificarUser_43BO(dni, rol, email); 
+            return DALuser.ModificarUser_43BO(dni, rol, email);
         }
 
 
@@ -46,7 +122,7 @@ namespace BLL
         {
             try
             {
-                
+
                 int filasAfectadas = DALuser.EliminarUser_43BO(dni, activo);
 
                 if (filasAfectadas == 0)
@@ -60,10 +136,20 @@ namespace BLL
             }
         }
 
+        public void DesbloquearUser_43BO(int dni)
+        {
+            DALuser.DesbloquearUser_43BO(dni);
+
+            User_43BO admin = SessionManager_43BO.Instancia.Usuario;
+
+            bllBi.GuardarLog_43BO(admin, Modulo_43BO.Usuario, Evento_43BO.Desbloqueo, 2); // Log de desbloqueo de usuario
+
+        }
+
         public List<User_43BO> ListarUsuarios_43BO()
         {
             //de aca retorna la lista de usarios que fue cargado con el .fill del aadapter
-          
+
             return DALuser.ListarUsuarios_43BO();
         }
     }

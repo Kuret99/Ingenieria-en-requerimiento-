@@ -77,6 +77,12 @@ namespace Servicios
 				
         }
 
+		public string UserName_43BO		
+		{
+			get { return _nombre + _dni.ToString();  } 
+
+        }
+
 
 
     }

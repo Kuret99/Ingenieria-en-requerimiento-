@@ -18,7 +18,7 @@ namespace DAL
             string query = "INSERT INTO Usuarios_43BO (DNI_43BO, Nombre_43BO, Apellido_43BO, Email_43BO, Hash_43BO, Bloqueado_43BO, Activo_43BO,Rol_43BO) " +
                            "VALUES (@dni, @nom, @ape, @mail, @hash, @bloq, @act,@Rol)";
 
-          SqlParameter[] parametros = {
+            SqlParameter[] parametros = {
           new SqlParameter("@dni", Usuario.DNI_43BO),
           new SqlParameter("@nom", Usuario.Nombre_43BO),
           new SqlParameter("@ape", Usuario.Apellido_43BO),
@@ -70,10 +70,10 @@ namespace DAL
             };
 
             AccesoBD_43BO acceso = new AccesoBD_43BO();
-            return acceso.Escribir_43BO( query, parametros);
+            return acceso.Escribir_43BO(query, parametros);
         }
 
-        public int  EliminarUser_43BO(int dni, bool activo)
+        public int EliminarUser_43BO(int dni, bool activo)
         {
 
             // En lugar de eliminar actualizo el campo Activo_43BO a false
@@ -81,10 +81,58 @@ namespace DAL
             SqlParameter[] parametros = new SqlParameter[]
             {
                new SqlParameter("@dni", dni),
-               new SqlParameter("@activo", activo) 
+               new SqlParameter("@activo", activo)
             };
 
             return acceso.Escribir_43BO(query, parametros);
         }
-    } 
+
+        public User_43BO BuscarUserName_43BO(string UserName)
+        {
+
+            string query = "Select *  from Usuarios_43BO WHERE (trim(Nombre_43BO) + CAST (DNI_43BO AS VARCHAR)) = @Username";
+
+            SqlParameter[] parametros = new SqlParameter[]
+            {
+               new SqlParameter("@Username", UserName)
+            };
+
+            DataTable tabla = acceso.Leer_43BO(query, parametros);
+
+            if (tabla.Rows.Count > 0)
+            {
+                DataRow fila = tabla.Rows[0];
+                User_43BO u = new User_43BO();
+
+                u.DNI_43BO = Convert.ToInt32(fila["DNI_43BO"]);
+                u.Nombre_43BO = fila["Nombre_43BO"].ToString();
+                u.Apellido_43BO = fila["Apellido_43BO"].ToString();
+                u.Email_43BO = fila["Email_43BO"].ToString();
+                u.Rol_43BO = fila["Rol_43BO"].ToString();
+                u.Hash_43BO = fila["Hash_43BO"].ToString();
+                u.Activo_43BO = Convert.ToBoolean(fila["Activo_43BO"]);
+                u.Bloqueado_43BO = Convert.ToBoolean(fila["Bloqueado_43BO"]);
+                return u;
+
+            }
+            return null; // Si no se encuentra el usuario, retornamos null 
+
+        }
+        public int BloquearUser_43BO(string username)
+        {
+            string query = "UPDATE Usuarios_43BO SET bloqueado_43BO = 1 where (TRIM(Nombre_43BO) +  CAST(DNI_43BO AS VARCHAR)) = @user ";
+
+            SqlParameter[] parametros = { new SqlParameter("@user", username) };
+
+            return acceso.Escribir_43BO(query, parametros);
+        }
+
+        public int DesbloquearUser_43BO(int dni)
+        {
+            string query = "UPDATE Usuarios_43BO SET Bloqueado_43BO = 0 WHERE DNI_43BO = @dni";
+            SqlParameter[] parametros = { new SqlParameter("@dni", dni) };
+            return acceso.Escribir_43BO(query, parametros);
+
+        }
+    }
 }

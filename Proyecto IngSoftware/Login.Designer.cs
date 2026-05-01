@@ -29,41 +29,41 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtUser = new System.Windows.Forms.TextBox();
+            this.txtContra = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.btn1 = new System.Windows.Forms.Button();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.SuspendLayout();
             // 
-            // textBox1
+            // txtUser
             // 
-            this.textBox1.Location = new System.Drawing.Point(157, 52);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(148, 20);
-            this.textBox1.TabIndex = 0;
+            this.txtUser.Location = new System.Drawing.Point(94, 52);
+            this.txtUser.Name = "txtUser";
+            this.txtUser.Size = new System.Drawing.Size(148, 20);
+            this.txtUser.TabIndex = 0;
             // 
-            // textBox2
+            // txtContra
             // 
-            this.textBox2.Location = new System.Drawing.Point(157, 110);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(148, 20);
-            this.textBox2.TabIndex = 1;
+            this.txtContra.Location = new System.Drawing.Point(94, 110);
+            this.txtContra.Name = "txtContra";
+            this.txtContra.Size = new System.Drawing.Size(148, 20);
+            this.txtContra.TabIndex = 1;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(41, 55);
+            this.label1.Location = new System.Drawing.Point(137, 36);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(36, 13);
+            this.label1.Size = new System.Drawing.Size(60, 13);
             this.label1.TabIndex = 2;
-            this.label1.Text = "Login:";
+            this.label1.Text = "UserName:";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(41, 117);
+            this.label2.Location = new System.Drawing.Point(137, 94);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(64, 13);
             this.label2.TabIndex = 3;
@@ -71,7 +71,7 @@
             // 
             // btn1
             // 
-            this.btn1.Location = new System.Drawing.Point(230, 181);
+            this.btn1.Location = new System.Drawing.Point(140, 169);
             this.btn1.Name = "btn1";
             this.btn1.Size = new System.Drawing.Size(75, 23);
             this.btn1.TabIndex = 4;
@@ -92,8 +92,8 @@
             this.Controls.Add(this.btn1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtContra);
+            this.Controls.Add(this.txtUser);
             this.Name = "Login";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = " ";
@@ -104,8 +104,8 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtUser;
+        private System.Windows.Forms.TextBox txtContra;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btn1;

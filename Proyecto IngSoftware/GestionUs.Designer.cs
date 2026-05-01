@@ -70,6 +70,7 @@
             this.btnDes.TabIndex = 1;
             this.btnDes.Text = "Desbloquear";
             this.btnDes.UseVisualStyleBackColor = true;
+            this.btnDes.Click += new System.EventHandler(this.btnDes_Click);
             // 
             // btnModi
             // 

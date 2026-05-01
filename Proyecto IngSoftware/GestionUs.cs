@@ -253,6 +253,47 @@ namespace Proyecto_IngSoftware
             }
         }
 
+        private void btnDes_Click(object sender, EventArgs e)
+        {
+            if (dgvUsaurio.CurrentRow != null)
+            {
+                try
+                {
+                    int dni = int.Parse(txtDNI.Text);
+
+                    bool estaBloqueado = (bool)dgvUsaurio.CurrentRow.Cells["Bloqueado_43BO"].Value;
+
+                    if (!estaBloqueado)
+                    {
+                        MessageBox.Show("El usuario no se encuentra bloqueado.");
+                        return;
+                    }
+
+                    DialogResult res = MessageBox.Show($"¿Desea desbloquear al usuario {dni}?",
+                                       "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                    if (res == DialogResult.Yes)
+                    {
+                        
+                        blluser.DesbloquearUser_43BO(dni);
+
+                        MessageBox.Show("Usuario desbloqueado con éxito.");
+
+                        Btns_43BO();
+                        ActualizarDGV_43BO();
+                        }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al intentar desbloquear: " + ex.Message);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Por favor, seleccione un usuario de la lista.");
+            }
+        }
+
 
         //metodo para probar si cambiaab el color de la fila segun el estado del usaurio pero no me convencio seguir creando metodos aprte para esa clase de funcionaldiad
         //private void dgvUsaurio_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
