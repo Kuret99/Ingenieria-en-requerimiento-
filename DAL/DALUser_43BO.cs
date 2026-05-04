@@ -87,6 +87,34 @@ namespace DAL
             return acceso.Escribir_43BO(query, parametros);
         }
 
+        public void CambiarContraseña_43BO(string username, string Nuevacontra) 
+        {
+            string query = "UPDATE Usuarios_43BO SET Hash_43BO = @nuevaContra WHERE (trim(Nombre_43BO) + CAST (DNI_43BO AS VARCHAR)) = @user";
+
+            SqlParameter[] parametros = new SqlParameter[]
+            {
+               new SqlParameter("@nuevaContra", Nuevacontra),
+            new SqlParameter("@user", username)
+
+            };
+
+            try
+            {
+                int filasAdectadas = acceso.Escribir_43BO(query, parametros);
+
+                if (filasAdectadas == 0)
+                {
+                    throw new Exception("No se encontró el usuario para cambiar la contraseña.");
+                }
+            }
+            catch(Exception ex)
+            {
+                throw new Exception("Error al cambiar la contraseña. Por favor, inténtelo de nuevo.");
+
+            }
+
+        }
+
         public User_43BO BuscarUserName_43BO(string UserName)
         {
 

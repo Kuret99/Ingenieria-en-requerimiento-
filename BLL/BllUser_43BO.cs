@@ -15,6 +15,34 @@ namespace BLL
 
         private static Dictionary<string, DateTime> ultIntentos = new Dictionary<string, DateTime>();
 
+        public void CambiarContraseña_43BO(string usaername, string contraAc, string contraNu, string confi) 
+        {
+            User_43BO usuario = DALuser.BuscarUserName_43BO(usaername);
+
+            if (usuario == null)
+            { 
+                throw new Exception("Usuario no encontrado"); 
+            }
+
+            string contraActual = CriptoManager_43BO.GenerarHash_43BO(contraAc);
+            if (usuario.Hash_43BO != contraActual) 
+            {
+            throw new Exception("Contraseña incorrecta");
+            }
+
+            if (contraNu != confi)
+            {
+                throw new Exception("La nueva contraseña y la confirmación no coinciden");
+            }
+            else 
+            {
+            string contraNueva = CriptoManager_43BO.GenerarHash_43BO(contraNu);
+            DALuser.CambiarContraseña_43BO(usaername, contraNueva);
+            throw new Exception("Contraseña cambiada exitosamente");
+            }
+
+        }
+
 
         public bool ValidarLogin_43BO(string UserName, string ContraDefault)
         {

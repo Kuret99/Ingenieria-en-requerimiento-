@@ -47,10 +47,10 @@
             this.menuStrip1.BackColor = System.Drawing.SystemColors.Highlight;
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.materToolStripMenuItem,
+            this.adminToolStripMenuItem,
             this.masterToolStripMenuItem,
             this.ventaToolStripMenuItem,
-            this.stockToolStripMenuItem,
-            this.adminToolStripMenuItem});
+            this.stockToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(786, 24);
@@ -70,7 +70,7 @@
             // 
             this.gestionUsuarioToolStripMenuItem.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.gestionUsuarioToolStripMenuItem.Name = "gestionUsuarioToolStripMenuItem";
-            this.gestionUsuarioToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.gestionUsuarioToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
             this.gestionUsuarioToolStripMenuItem.Text = "GestionUsuario";
             this.gestionUsuarioToolStripMenuItem.Click += new System.EventHandler(this.gestionUsuarioToolStripMenuItem_Click);
             // 
@@ -78,7 +78,7 @@
             // 
             this.bitacoraToolStripMenuItem.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.bitacoraToolStripMenuItem.Name = "bitacoraToolStripMenuItem";
-            this.bitacoraToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.bitacoraToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
             this.bitacoraToolStripMenuItem.Text = "Bitacora";
             // 
             // masterToolStripMenuItem
@@ -122,6 +122,7 @@
             this.cambiarContraseñaToolStripMenuItem.Name = "cambiarContraseñaToolStripMenuItem";
             this.cambiarContraseñaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.cambiarContraseñaToolStripMenuItem.Text = "CambiarContraseña";
+            this.cambiarContraseñaToolStripMenuItem.Click += new System.EventHandler(this.cambiarContraseñaToolStripMenuItem_Click);
             // 
             // cerrarSesiobnToolStripMenuItem
             // 

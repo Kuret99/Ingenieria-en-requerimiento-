@@ -20,3 +20,4 @@ C:\Users\Juanpy\Documents\Ing. Software\Ingenieria-en-requerimiento-\Proyecto In
 C:\Users\Juanpy\Documents\Ing. Software\Ingenieria-en-requerimiento-\Proyecto IngSoftware\bin\Debug\Servicios.dll
 C:\Users\Juanpy\Documents\Ing. Software\Ingenieria-en-requerimiento-\Proyecto IngSoftware\bin\Debug\DAL.pdb
 C:\Users\Juanpy\Documents\Ing. Software\Ingenieria-en-requerimiento-\Proyecto IngSoftware\bin\Debug\Servicios.pdb
+C:\Users\Juanpy\Documents\Ing. Software\Ingenieria-en-requerimiento-\Proyecto IngSoftware\obj\Debug\Proyecto_IngSoftware.CambioContraseña.resources

@@ -12,7 +12,8 @@ namespace Proyecto_IngSoftware
 {
     public partial class Menu : Form
     {
-        private GestionUs Gu;
+        private GestionUs Gu_43BO;
+        private CambioContraseña CC_43BO;
         private BllUser_43BO bll = new BLL.BllUser_43BO();
         public Menu()
         {
@@ -21,11 +22,11 @@ namespace Proyecto_IngSoftware
 
         private void gestionUsuarioToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Gu = new GestionUs();
+            Gu_43BO = new GestionUs();
 
-            Gu.MdiParent = this;
+            Gu_43BO.MdiParent = this;
 
-            Gu.Show();
+            Gu_43BO.Show();
         }
 
         private void cerrarSesiobnToolStripMenuItem_Click(object sender, EventArgs e)
@@ -52,6 +53,15 @@ namespace Proyecto_IngSoftware
                     MessageBox.Show("Error al cerrar sesión: " + ex.Message);
                 }
             }
+        }
+
+        private void cambiarContraseñaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            CC_43BO = new CambioContraseña();
+            CC_43BO.MdiParent = this;
+
+            CC_43BO.Show();
         }
     }
 }
