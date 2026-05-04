@@ -7,12 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using BLL;
 namespace Proyecto_IngSoftware
 {
     public partial class Menu : Form
     {
         private GestionUs Gu;
+        private BllUser_43BO bll = new BLL.BllUser_43BO();
         public Menu()
         {
             InitializeComponent();
@@ -29,27 +30,21 @@ namespace Proyecto_IngSoftware
 
         private void cerrarSesiobnToolStripMenuItem_Click(object sender, EventArgs e)
         {
-          
-            DialogResult result = MessageBox.Show("¿Está seguro que desea cerrar sesión?","Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            DialogResult result = MessageBox.Show("¿Está seguro que desea cerrar sesión?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (result == DialogResult.Yes)
             {
                 try
                 {
-                   
-                    var usuarioActual = Servicios.SessionManager_43BO.Instancia.Usuario;
-                    BLL.BLLBitacora_43BO bllBitacora = new BLL.BLLBitacora_43BO();
-
-                    bllBitacora.GuardarLog_43BO(usuarioActual, Servicios.Modulo_43BO.Usuario, Servicios.Evento_43BO.Logout, 1);
-
-                   
-                    Servicios.SessionManager_43BO.CerrarSesion_43BO();
-
                   
+                 
+                    bll.CerrarSesion_43BO();
+
+
                     Login frmLogin = new Login();
                     frmLogin.Show();
 
-                   
                     this.Close();
                 }
                 catch (Exception ex)

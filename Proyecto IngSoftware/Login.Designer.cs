@@ -33,7 +33,7 @@
             this.txtContra = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.btn1 = new System.Windows.Forms.Button();
+            this.btnAceptar = new System.Windows.Forms.Button();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.SuspendLayout();
             // 
@@ -69,15 +69,15 @@
             this.label2.TabIndex = 3;
             this.label2.Text = "Contraseña:";
             // 
-            // btn1
+            // btnAceptar
             // 
-            this.btn1.Location = new System.Drawing.Point(140, 169);
-            this.btn1.Name = "btn1";
-            this.btn1.Size = new System.Drawing.Size(75, 23);
-            this.btn1.TabIndex = 4;
-            this.btn1.Text = "Aceptar";
-            this.btn1.UseVisualStyleBackColor = true;
-            this.btn1.Click += new System.EventHandler(this.btn1_Click);
+            this.btnAceptar.Location = new System.Drawing.Point(140, 169);
+            this.btnAceptar.Name = "btnAceptar";
+            this.btnAceptar.Size = new System.Drawing.Size(75, 23);
+            this.btnAceptar.TabIndex = 4;
+            this.btnAceptar.Text = "Aceptar";
+            this.btnAceptar.UseVisualStyleBackColor = true;
+            this.btnAceptar.Click += new System.EventHandler(this.btn1_Click);
             // 
             // contextMenuStrip1
             // 
@@ -89,7 +89,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(335, 204);
-            this.Controls.Add(this.btn1);
+            this.Controls.Add(this.btnAceptar);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtContra);
@@ -108,7 +108,7 @@
         private System.Windows.Forms.TextBox txtContra;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button btn1;
+        private System.Windows.Forms.Button btnAceptar;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
     }
 }

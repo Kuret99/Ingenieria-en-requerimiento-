@@ -18,10 +18,9 @@ namespace Servicios
              public User_43BO Usuario { get; private set; }
 
 
-                    // Constructor privado para evitar la creación de instancias desde fuera de la clase
-            public static bool SesionActiva => _instancia != null;
+        // propiedad para verificar si hay una sesión activa, devuelve true si _instancia no es null, lo que indica que hay un usuario en sesión, y false si _instancia es null
 
-                   private SessionManager_43BO() { }
+        private SessionManager_43BO() { }
                      
 
 

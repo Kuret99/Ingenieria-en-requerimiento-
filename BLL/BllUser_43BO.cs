@@ -48,6 +48,7 @@ namespace BLL
             }
             else
             {
+                // aca usamos usuario y user name porque si llega  fallar se le suma al intento al username que puso ese usuario y no al usuario en base de da
                 ManejarFallos_43BO(usaurio, UserName);
                 return false; 
             }
@@ -89,6 +90,23 @@ namespace BLL
             if (cf  .ContainsKey(username)) cf.Remove(username);
             if (ultIntentos.ContainsKey(username)) ultIntentos.Remove(username);
         }
+
+        public void CerrarSesion_43BO()
+        {
+          
+            var user = SessionManager_43BO.Instancia.Usuario;
+
+            if (user != null)
+            {
+                
+                
+                bllBi.GuardarLog_43BO(user,Modulo_43BO.Usuario,Evento_43BO.Logout, 1);
+            }
+
+          
+            SessionManager_43BO.CerrarSesion_43BO();
+        }
+
         public void InsertarUser_43BO(int dni, string nom, string ape, string rol, string email)
         {
             string contraseñaPlana = dni.ToString() + ape.Trim();
