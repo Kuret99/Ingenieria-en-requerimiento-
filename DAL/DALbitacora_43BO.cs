@@ -14,9 +14,8 @@ public class DALBitacora_43BO
 
     public void RegistrarEvento_43BO(Bitacora_43BO log)
     {
-        string query = "INSERT INTO Bitacora_43BO (IdUsuario_43BO, Fecha_43BO, Modulo_43BO, Evento_43BO, Criticidad_43BO) " +
-                         "VALUES (@dni, @fecha, @modulo, @evento, @crit)";
-
+        string query = "INSERT INTO Bitacora_43BO (DNIuser_43BO, Fecha_43BO, Modulo_43BO, Evento_43BO, Criticidad_43BO) " +
+                  "VALUES (@dni, @fecha, @modulo, @evento, @crit)";
         SqlParameter[] parametros = {
             new SqlParameter("@dni", log.log_43BO.DNI_43BO), 
             new SqlParameter("@fecha", log.Fecha_43BO),
