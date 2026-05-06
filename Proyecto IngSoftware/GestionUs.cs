@@ -14,6 +14,7 @@ namespace Proyecto_IngSoftware
     {
         BLL.BllUser_43BO blluser = new BLL.BllUser_43BO();
         BLL.BLLBitacora_43BO bllBitacora = new BLL.BLLBitacora_43BO();
+        List<User_43BO> todoslosusuarios; 
 
         private bool Modificar_43BO = false; // <---- con eso controlo si estoy apicando una creacion o una modificiacion   
         public GestionUs()
@@ -71,48 +72,94 @@ namespace Proyecto_IngSoftware
 
         }
 
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void FormatoDgv_43BO() 
+        {
+            if (dgvUsaurio.Columns.Count == 0) return;
+
+            // Ocultar Hash
+            if (dgvUsaurio.Columns.Contains("Hash_43BO")) dgvUsaurio.Columns["Hash_43BO"].Visible = false;
+
+            // Cabeceras
+            dgvUsaurio.Columns["DNI_43BO"].HeaderText = "DNI";
+            dgvUsaurio.Columns["Nombre_43BO"].HeaderText = "Nombre";
+            dgvUsaurio.Columns["Apellido_43BO"].HeaderText = "Apellido";
+            dgvUsaurio.Columns["Email_43BO"].HeaderText = "Email";
+            dgvUsaurio.Columns["Rol_43BO"].HeaderText = "Rol";
+            dgvUsaurio.Columns["Activo_43BO"].HeaderText = "Activo";
+            dgvUsaurio.Columns["Bloqueado_43BO"].HeaderText = "Bloqueado";
+
+            // Colores
+            foreach (DataGridViewRow fila in dgvUsaurio.Rows)
+            {
+                // Limpiamos el color por si Joaquín cambió de estado
+                fila.DefaultCellStyle.BackColor = Color.White;
+
+                if (fila.Cells["Activo_43BO"].Value != null && fila.Cells["Bloqueado_43BO"].Value != null)
+                {
+                    bool activo = (bool)fila.Cells["Activo_43BO"].Value;
+                    bool bloqueado = (bool)fila.Cells["Bloqueado_43BO"].Value;
+
+                    if (bloqueado)
+                        fila.DefaultCellStyle.BackColor = Color.Khaki;
+                    else if (!activo)
+                        fila.DefaultCellStyle.BackColor = Color.LightCoral;
+                }
+            }
+
+        }
+
+
+        //private void Filtrar_43BO()
+        //{
+
+        //    if (todoslosusuarios == null) return; // Si la lista no está cargada, no hacemos nada
+
+        //    List<User_43BO> listafiltrada;
+
+        //    if (string.IsNullOrEmpty(txtFiltro.Text))
+        //    {
+        //        listafiltrada = todoslosusuarios; // Sin filtro, mostramos todo
+        //    }
+        //    else
+        //    {
+        //        string filtro = txtFiltro.Text.ToLower();
+        //        listafiltrada = todoslosusuarios.Where(u => u.Nombre_43BO.ToLower().Contains(filtro) || u.Apellido_43BO.ToLower().Contains(filtro)).ToList();
+        //    }
+
+        //}
+
         private void ActualizarDGV_43BO()
         {
             try
             {
-                dgvUsaurio.DataSource = null;
-                dgvUsaurio.DataSource = blluser.ListarUsuarios_43BO();
+                // 1. Cargamos la lista GLOBAL (esto arregla lo de Mónica)
+                todoslosusuarios = blluser.ListarUsuarios_43BO();
 
-                // no moestramos el hash porque nod eberia apercer en el dgv 
-                if (dgvUsaurio.Columns.Contains("Hash_43BO")) dgvUsaurio.Columns["Hash_43BO"].Visible = false;
-
-                dgvUsaurio.Columns["Activo_43BO"].ReadOnly = true;
-                dgvUsaurio.Columns["Bloqueado_43BO"].ReadOnly = true;
-
-                // cambio manualmenre la acbecera para que no lea exacatamente lo que esta en la BD
-                dgvUsaurio.Columns["DNI_43BO"].HeaderText = "DNI";
-                dgvUsaurio.Columns["Nombre_43BO"].HeaderText = "Nombre";
-                dgvUsaurio.Columns["Apellido_43BO"].HeaderText = "Apellido";
-                dgvUsaurio.Columns["Email_43BO"].HeaderText = "Email";
-                dgvUsaurio.Columns["Rol_43BO"].HeaderText = "Rol";
-                dgvUsaurio.Columns["Activo_43BO"].HeaderText = "Activo";
-                dgvUsaurio.Columns["Bloqueado_43BO"].HeaderText = "Bloqueado";
-
-
-                //foreach para cambiar colores de la fla a aquellos con cuentas desactivadas
-                foreach (DataGridViewRow fila in dgvUsaurio.Rows)
+                // 2. Decidimos qué mostrar según el RadioButton marcado
+                if (rbActivos.Checked)
                 {
-                    if (fila.Cells["Activo_43BO"].Value != null)
-                    {
-                        bool activo = (bool)fila.Cells["Activo_43BO"].Value;
-                        if (!activo)
-                        {
-                            fila.DefaultCellStyle.BackColor = Color.LightCoral;
-                        }
-                        else
-                        {
-                            fila.DefaultCellStyle.BackColor = Color.White;
-                        }
-                    }
+                    dgvUsaurio.DataSource = null;
+                    dgvUsaurio.DataSource = todoslosusuarios.Where(u => u.Activo_43BO == true).ToList();
+                }
+                else if (rbBloqueados.Checked)
+                {
+                    dgvUsaurio.DataSource = null;
+                    dgvUsaurio.DataSource = todoslosusuarios.Where(u => u.Bloqueado_43BO == true).ToList();
+                }
+                else
+                {
+                    dgvUsaurio.DataSource = null;
+                    dgvUsaurio.DataSource = todoslosusuarios;
                 }
 
 
-
+                FormatoDgv_43BO();
             }
             catch (Exception ex)
             {
@@ -292,6 +339,27 @@ namespace Proyecto_IngSoftware
             {
                 MessageBox.Show("Por favor, seleccione un usuario de la lista.");
             }
+        }
+
+        private void rbActivos_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbActivos.Checked)
+            {
+                ActualizarDGV_43BO();
+            }
+        }
+
+        private void rbTodos_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbTodos.Checked)
+            {
+                ActualizarDGV_43BO();
+            }
+        }
+
+        private void rbBloqueados_CheckedChanged(object sender, EventArgs e)
+        {
+            ActualizarDGV_43BO();
         }
 
 

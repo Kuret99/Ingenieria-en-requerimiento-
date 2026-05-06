@@ -23,20 +23,29 @@ namespace Proyecto_IngSoftware
         private void button1_Click(object sender, EventArgs e)
         {
 
-            if (string.IsNullOrEmpty(txtUser.Text)|| string.IsNullOrEmpty(txtConAct.Text)|| string.IsNullOrEmpty(txtConNueva.Text)|| string.IsNullOrEmpty(txtConfirmar.Text))
+            if (string.IsNullOrEmpty(txtUser.Text) || string.IsNullOrEmpty(txtConAct.Text) || string.IsNullOrEmpty(txtConNueva.Text) || string.IsNullOrEmpty(txtConfirmar.Text))
             {
                 MessageBox.Show("Por favor, complete todos los campos.");
                 return;
             }
-            try 
-            {
 
+            try
+            {
                 bll.CambiarContraseña_43BO(txtUser.Text, txtConAct.Text, txtConNueva.Text, txtConfirmar.Text);
-            }
-            catch 
-            {
-            }
 
+             
+                MessageBox.Show("Contraseña cambiada exitosamente.");
+
+                
+                txtConAct.Clear();
+                txtConNueva.Clear();
+                txtConfirmar.Clear();
+            }
+            catch (Exception ex)
+            {
+                // Acá mostramos los mensajes de error que vienen de la BLL
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

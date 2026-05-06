@@ -34,11 +34,12 @@ namespace BLL
             {
                 throw new Exception("La nueva contraseña y la confirmación no coinciden");
             }
+
             else 
             {
             string contraNueva = CriptoManager_43BO.GenerarHash_43BO(contraNu);
             DALuser.CambiarContraseña_43BO(usaername, contraNueva);
-            throw new Exception("Contraseña cambiada exitosamente");
+         
             }
 
         }
@@ -57,6 +58,10 @@ namespace BLL
             if (usaurio.Bloqueado_43BO)
             {
                 throw new Exception("Usuario bloqueado. Por favor, contacte al administrador.");
+            }
+            if (!usaurio.Activo_43BO)
+            {
+                throw new Exception("Su cuenta se encuentra desactivada. Contacte al administrador.");
             }
 
 
@@ -184,11 +189,21 @@ namespace BLL
 
         public void DesbloquearUser_43BO(int dni)
         {
-            DALuser.DesbloquearUser_43BO(dni);
+            //cone esto vamos a obtener el dni para asi rearmar la contraseña y resetearla una vez que le desbloqueemos la cuenta
+            User_43BO usaurio = DALuser.ListarUsuarios_43BO().Find(u => u.DNI_43BO == dni);
+            if (usaurio != null) 
+            {
+                string contraDefault = usaurio.DNI_43BO.ToString() + usaurio.Apellido_43BO.Trim();
+                string contraReset = CriptoManager_43BO.GenerarHash_43BO(contraDefault);
 
-            User_43BO admin = SessionManager_43BO.Instancia.Usuario;
+                DALuser.DesbloquearUser_43BO(dni,contraReset);
+                User_43BO admin = SessionManager_43BO.Instancia.Usuario;
 
-            bllBi.GuardarLog_43BO(admin, Modulo_43BO.Usuario, Evento_43BO.Desbloqueo, 2); // Log de desbloqueo de usuario
+                bllBi.GuardarLog_43BO(admin, Modulo_43BO.Usuario, Evento_43BO.Desbloqueo, 2); // Log de desbloqueo de usuario
+            }
+           
+
+           
 
         }
 

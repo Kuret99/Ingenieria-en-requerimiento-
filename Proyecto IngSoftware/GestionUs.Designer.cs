@@ -34,10 +34,10 @@
             this.btnAct = new System.Windows.Forms.Button();
             this.btnApli = new System.Windows.Forms.Button();
             this.btnCanc = new System.Windows.Forms.Button();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.rbActivos = new System.Windows.Forms.RadioButton();
+            this.rbTodos = new System.Windows.Forms.RadioButton();
             this.dgvUsaurio = new System.Windows.Forms.DataGridView();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
+            this.rbBloqueados = new System.Windows.Forms.RadioButton();
             this.btnSalir = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -112,27 +112,29 @@
             this.btnCanc.UseVisualStyleBackColor = true;
             this.btnCanc.Click += new System.EventHandler(this.btnCanc_Click);
             // 
-            // radioButton1
+            // rbActivos
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(25, 13);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(60, 17);
-            this.radioButton1.TabIndex = 6;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Activos";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.rbActivos.AutoSize = true;
+            this.rbActivos.Location = new System.Drawing.Point(25, 13);
+            this.rbActivos.Name = "rbActivos";
+            this.rbActivos.Size = new System.Drawing.Size(60, 17);
+            this.rbActivos.TabIndex = 6;
+            this.rbActivos.TabStop = true;
+            this.rbActivos.Text = "Activos";
+            this.rbActivos.UseVisualStyleBackColor = true;
+            this.rbActivos.CheckedChanged += new System.EventHandler(this.rbActivos_CheckedChanged);
             // 
-            // radioButton2
+            // rbTodos
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(114, 12);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(55, 17);
-            this.radioButton2.TabIndex = 7;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "Todos";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.rbTodos.AutoSize = true;
+            this.rbTodos.Location = new System.Drawing.Point(114, 12);
+            this.rbTodos.Name = "rbTodos";
+            this.rbTodos.Size = new System.Drawing.Size(55, 17);
+            this.rbTodos.TabIndex = 7;
+            this.rbTodos.TabStop = true;
+            this.rbTodos.Text = "Todos";
+            this.rbTodos.UseVisualStyleBackColor = true;
+            this.rbTodos.CheckedChanged += new System.EventHandler(this.rbTodos_CheckedChanged);
             // 
             // dgvUsaurio
             // 
@@ -143,16 +145,17 @@
             this.dgvUsaurio.TabIndex = 8;
             this.dgvUsaurio.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvUsuarios_CellClick_43BO);
             // 
-            // radioButton3
+            // rbBloqueados
             // 
-            this.radioButton3.AutoSize = true;
-            this.radioButton3.Location = new System.Drawing.Point(203, 13);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(81, 17);
-            this.radioButton3.TabIndex = 9;
-            this.radioButton3.TabStop = true;
-            this.radioButton3.Text = "Bloqueados";
-            this.radioButton3.UseVisualStyleBackColor = true;
+            this.rbBloqueados.AutoSize = true;
+            this.rbBloqueados.Location = new System.Drawing.Point(203, 13);
+            this.rbBloqueados.Name = "rbBloqueados";
+            this.rbBloqueados.Size = new System.Drawing.Size(81, 17);
+            this.rbBloqueados.TabIndex = 9;
+            this.rbBloqueados.TabStop = true;
+            this.rbBloqueados.Text = "Bloqueados";
+            this.rbBloqueados.UseVisualStyleBackColor = true;
+            this.rbBloqueados.CheckedChanged += new System.EventHandler(this.rbBloqueados_CheckedChanged);
             // 
             // btnSalir
             // 
@@ -247,7 +250,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.LightCoral;
+            this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.ClientSize = new System.Drawing.Size(780, 388);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.txtEmail);
@@ -260,10 +263,10 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnSalir);
-            this.Controls.Add(this.radioButton3);
+            this.Controls.Add(this.rbBloqueados);
             this.Controls.Add(this.dgvUsaurio);
-            this.Controls.Add(this.radioButton2);
-            this.Controls.Add(this.radioButton1);
+            this.Controls.Add(this.rbTodos);
+            this.Controls.Add(this.rbActivos);
             this.Controls.Add(this.btnCanc);
             this.Controls.Add(this.btnApli);
             this.Controls.Add(this.btnAct);
@@ -287,10 +290,10 @@
         private System.Windows.Forms.Button btnAct;
         private System.Windows.Forms.Button btnApli;
         private System.Windows.Forms.Button btnCanc;
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.RadioButton rbActivos;
+        private System.Windows.Forms.RadioButton rbTodos;
         private System.Windows.Forms.DataGridView dgvUsaurio;
-        private System.Windows.Forms.RadioButton radioButton3;
+        private System.Windows.Forms.RadioButton rbBloqueados;
         private System.Windows.Forms.Button btnSalir;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;

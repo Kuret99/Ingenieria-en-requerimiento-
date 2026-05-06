@@ -89,7 +89,7 @@ namespace DAL
 
         public void CambiarContraseña_43BO(string username, string Nuevacontra) 
         {
-            string query = "UPDATE Usuarios_43BO SET Hash_43BO = @nuevaContra WHERE (trim(Nombre_43BO) + CAST (DNI_43BO AS VARCHAR)) = @user";
+            string query = "UPDATE Usuarios_43BO SET Hash_43BO = @nuevaContra WHERE (CAST (DNI_43BO AS VARCHAR) + trim(Nombre_43BO) ) = @user";
 
             SqlParameter[] parametros = new SqlParameter[]
             {
@@ -118,7 +118,7 @@ namespace DAL
         public User_43BO BuscarUserName_43BO(string UserName)
         {
 
-            string query = "Select *  from Usuarios_43BO WHERE (trim(Nombre_43BO) + CAST (DNI_43BO AS VARCHAR)) = @Username";
+            string query = "Select *  from Usuarios_43BO WHERE ( CAST (DNI_43BO AS VARCHAR) + trim(Nombre_43BO)) = @Username";
 
             SqlParameter[] parametros = new SqlParameter[]
             {
@@ -148,19 +148,24 @@ namespace DAL
         }
         public int BloquearUser_43BO(string username)
         {
-            string query = "UPDATE Usuarios_43BO SET bloqueado_43BO = 1 where (TRIM(Nombre_43BO) +  CAST(DNI_43BO AS VARCHAR)) = @user ";
+            string query = "UPDATE Usuarios_43BO SET bloqueado_43BO = 1 where (CAST(DNI_43BO AS VARCHAR) + TRIM(Nombre_43BO) ) = @user ";
 
             SqlParameter[] parametros = { new SqlParameter("@user", username) };
 
             return acceso.Escribir_43BO(query, parametros);
         }
 
-        public int DesbloquearUser_43BO(int dni)
+        public int DesbloquearUser_43BO(int dni, string contraReset)
         {
-            string query = "UPDATE Usuarios_43BO SET Bloqueado_43BO = 0 WHERE DNI_43BO = @dni";
-            SqlParameter[] parametros = { new SqlParameter("@dni", dni) };
-            return acceso.Escribir_43BO(query, parametros);
+            
+            string query = "UPDATE Usuarios_43BO SET Bloqueado_43BO = 0, Hash_43BO = @hash WHERE DNI_43BO = @dni";
 
+            SqlParameter[] parametros = {
+        new SqlParameter("@dni", dni),
+        new SqlParameter("@hash", contraReset)
+    };
+
+            return acceso.Escribir_43BO(query, parametros);
         }
     }
 }
