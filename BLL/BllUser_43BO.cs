@@ -77,6 +77,7 @@ namespace BLL
 
                 bllBi.GuardarLog_43BO(usaurio, Modulo_43BO.Usuario, Evento_43BO.Login, 1); // Log de éxito de login
 
+
                 return true; // Login exitoso
             }
             else
@@ -140,7 +141,7 @@ namespace BLL
             SessionManager_43BO.CerrarSesion_43BO();
         }
 
-        public void InsertarUser_43BO(int dni, string nom, string ape, string rol, string email)
+        public void InsertarUser_43BO(int dni, string nom, string ape, Rol_43BO  rol, string email)
         {
             string contraseñaPlana = dni.ToString() + ape.Trim();
 
@@ -152,7 +153,7 @@ namespace BLL
             usuario.DNI_43BO = dni;
             usuario.Nombre_43BO = nom;
             usuario.Apellido_43BO = ape;
-            usuario.Rol_43BO = rol;
+            usuario.Rol = rol;
             usuario.Email_43BO = email;
             usuario.Hash_43BO = contraseñaDefault;
             usuario.Bloqueado_43BO = false; // Por defecto no bloqueado
@@ -162,7 +163,7 @@ namespace BLL
 
         }
 
-        public int ModificarUser_43BO(int dni, string rol, string email)
+        public int ModificarUser_43BO(int dni, Rol_43BO rol, string email)
         {
 
             return DALuser.ModificarUser_43BO(dni, rol, email);
@@ -189,21 +190,21 @@ namespace BLL
 
         public void DesbloquearUser_43BO(int dni)
         {
-            //cone esto vamos a obtener el dni para asi rearmar la contraseña y resetearla una vez que le desbloqueemos la cuenta
+            //cone esto obtenengo el dni para asi rearmar la contraseña y resetearla una vez que le desbloqueemos la cuenta
             User_43BO usaurio = DALuser.ListarUsuarios_43BO().Find(u => u.DNI_43BO == dni);
-            if (usaurio != null) 
+            if (usaurio != null)
             {
                 string contraDefault = usaurio.DNI_43BO.ToString() + usaurio.Apellido_43BO.Trim();
                 string contraReset = CriptoManager_43BO.GenerarHash_43BO(contraDefault);
 
-                DALuser.DesbloquearUser_43BO(dni,contraReset);
-                User_43BO admin = SessionManager_43BO.Instancia.Usuario;
+                DALuser.DesbloquearUser_43BO(dni, contraReset);
 
-                bllBi.GuardarLog_43BO(admin, Modulo_43BO.Usuario, Evento_43BO.Desbloqueo, 2); // Log de desbloqueo de usuario
+                // CORREGIDO: Protección anticaídas si el objeto global de sesión está vacío
+                User_43BO admin = SessionManager_43BO.Instancia.Usuario ?? usaurio;
+                bllBi.GuardarLog_43BO(admin, Modulo_43BO.Usuario, Evento_43BO.Desbloqueo, 2);
             }
-           
 
-           
+
 
         }
 

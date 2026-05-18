@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BLL;
+using Servicios;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,13 +9,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using BLL;
 namespace Proyecto_IngSoftware
 {
     public partial class Menu : Form
     {
         private GestionUs Gu_43BO;
         private CambioContraseña CC_43BO;
+        private Auditoria Aud_43BO;
         private BllUser_43BO bll = new BLL.BllUser_43BO();
         public Menu()
         {
@@ -62,6 +64,58 @@ namespace Proyecto_IngSoftware
             CC_43BO.MdiParent = this;
 
             CC_43BO.Show();
+        }
+
+        private void Menu_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                var usuarioLogueado = SessionManager_43BO.Instancia.Usuario;
+
+                if (usuarioLogueado != null)
+                {
+            
+                    string contraFabricaPlana = usuarioLogueado.DNI_43BO.ToString() + usuarioLogueado.Apellido_43BO.Trim();
+                    string contraFabricaHash = CriptoManager_43BO.GenerarHash_43BO(contraFabricaPlana);
+
+                 
+                    if (usuarioLogueado.Hash_43BO == contraFabricaHash)
+                    {
+                        MessageBox.Show("Por motivos de seguridad, debe modificar su contraseña de fábrica antes de operar en el sistema.");
+
+               
+                        CambioContraseña frmCambio = new CambioContraseña();
+
+                     
+                        frmCambio.MdiParent = this;
+                        frmCambio.StartPosition = FormStartPosition.CenterScreen;
+
+                        frmCambio.Show();
+
+                      
+                        AdminToolStripMenuItem.Enabled = false;
+                        masterToolStripMenuItem.Enabled = false;
+                        ventaToolStripMenuItem.Enabled = false;
+                        stockToolStripMenuItem.Enabled = false;
+
+
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al verificar estado de la cuenta: " + ex.Message);
+            }
+        }
+
+        private void bitacoraToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            Aud_43BO = new Auditoria();
+            Aud_43BO.MdiParent = this;
+
+            Aud_43BO.Show();
         }
     }
 }

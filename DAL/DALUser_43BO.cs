@@ -15,8 +15,14 @@ namespace DAL
         public void InsertarUser_43BO(User_43BO Usuario)
         {
             // Agregamos Hash_43BO, Bloqueado_43BO y Activo_43BO a la consulta
-            string query = "INSERT INTO Usuarios_43BO (DNI_43BO, Nombre_43BO, Apellido_43BO, Email_43BO, Hash_43BO, Bloqueado_43BO, Activo_43BO,Rol_43BO) " +
-                           "VALUES (@dni, @nom, @ape, @mail, @hash, @bloq, @act,@Rol)";
+            string query = "INSERT INTO Usuarios_43BO (DNI_43BO, Nombre_43BO, Apellido_43BO, Email_43BO, Hash_43BO, Bloqueado_43BO, Activo_43BO, Rol_43BO) " +
+                           "VALUES (@dni, @nom, @ape, @mail, @hash, @bloq, @act, @rol)";
+
+            int idRol = 0;
+            if (Usuario.Rol != null)
+            {
+                idRol = Usuario.Rol.IdRol_43BO;
+            }
 
             SqlParameter[] parametros = {
           new SqlParameter("@dni", Usuario.DNI_43BO),
@@ -26,7 +32,7 @@ namespace DAL
           new SqlParameter("@hash", Usuario.Hash_43BO),
           new SqlParameter("@bloq", Usuario.Bloqueado_43BO),  // El bool (false)
           new SqlParameter("@act", Usuario.Activo_43BO),       // El bool (true)
-          new SqlParameter("@rol", Usuario.Rol_43BO),
+          new SqlParameter("@rol", idRol),
     };
 
             acceso.Escribir_43BO(query, parametros);
@@ -35,9 +41,14 @@ namespace DAL
         public List<User_43BO> ListarUsuarios_43BO()
         {
             List<User_43BO> lista = new List<User_43BO>();
+            string query = @"SELECT U.DNI_43BO, U.Nombre_43BO, U.Apellido_43BO, U.Email_43BO, 
+                                    U.Activo_43BO, U.Bloqueado_43BO, U.Hash_43BO,
+                                    R.IdRol_43BO, R.NombreRol_43BO AS NombreRol_43BO
+                             FROM Usuarios_43BO U
+                             INNER JOIN Rol_43BO R ON U.Rol_43BO = R.IdRol_43BO";
 
             //llamamos a leer en DalAcceso
-            DataTable tabla = acceso.Leer_43BO("SELECT * FROM Usuarios_43BO");
+            DataTable tabla = acceso.Leer_43BO(query);
 
             //  Recorremos la tabla y le llenamos con la info que le llega desde la BD
             foreach (DataRow fila in tabla.Rows)
@@ -47,9 +58,12 @@ namespace DAL
                 u.Nombre_43BO = fila["Nombre_43BO"].ToString();
                 u.Apellido_43BO = fila["Apellido_43BO"].ToString();
                 u.Email_43BO = fila["Email_43BO"].ToString();
-                u.Rol_43BO = fila["Rol_43BO"].ToString();
+               // lo mismo que arriba  u.Rol_43BO = fila["Rol_43BO"].ToString();
                 u.Activo_43BO = Convert.ToBoolean(fila["Activo_43BO"]);
                 u.Bloqueado_43BO = Convert.ToBoolean(fila["Bloqueado_43BO"]);
+                u.Rol = new Rol_43BO();
+                u.Rol.IdRol_43BO = Convert.ToInt32(fila["IdRol_43BO"]);
+                u.Rol.Nombre_43BO = fila["NombreRol_43BO"].ToString(); // Agarra el nombre real del rol mapeado
 
                 lista.Add(u); // Agregamos el objeto a la lista
             }
@@ -57,7 +71,7 @@ namespace DAL
             return lista;
         }
 
-        public int ModificarUser_43BO(int dni, string rol, string email)
+        public int ModificarUser_43BO(int dni, Rol_43BO rol, string email)
         {
             // Solo permitimos SET de Rol y Email (preguntar si solo era eso por ahora))
             string query = "UPDATE Usuarios_43BO SET Rol_43BO = @rol, Email_43BO = @mail WHERE DNI_43BO = @dni";
@@ -65,7 +79,7 @@ namespace DAL
             SqlParameter[] parametros = new SqlParameter[]
             {
                new SqlParameter("@dni", dni),
-               new SqlParameter("@rol", rol),
+               new SqlParameter("@rol", rol.IdRol_43BO),
                new SqlParameter("@mail", email)
             };
 
@@ -118,7 +132,12 @@ namespace DAL
         public User_43BO BuscarUserName_43BO(string UserName)
         {
 
-            string query = "Select *  from Usuarios_43BO WHERE ( CAST (DNI_43BO AS VARCHAR) + trim(Nombre_43BO)) = @Username";
+            string query = @"SELECT U.DNI_43BO, U.Nombre_43BO, U.Apellido_43BO, U.Email_43BO, 
+                                    U.Activo_43BO, U.Bloqueado_43BO, U.Hash_43BO,
+                                    R.IdRol_43BO, R.NombreRol_43BO AS NombreRol_43BO
+                             FROM Usuarios_43BO U
+                             INNER JOIN Rol_43BO R ON U.Rol_43BO = R.IdRol_43BO
+                             WHERE (CAST(U.DNI_43BO AS VARCHAR) + trim(U.Nombre_43BO)) = @Username";
 
             SqlParameter[] parametros = new SqlParameter[]
             {
@@ -136,10 +155,13 @@ namespace DAL
                 u.Nombre_43BO = fila["Nombre_43BO"].ToString();
                 u.Apellido_43BO = fila["Apellido_43BO"].ToString();
                 u.Email_43BO = fila["Email_43BO"].ToString();
-                u.Rol_43BO = fila["Rol_43BO"].ToString();
+              //  u.Rol_43BO = fila["Rol_43BO"].ToString();
                 u.Hash_43BO = fila["Hash_43BO"].ToString();
                 u.Activo_43BO = Convert.ToBoolean(fila["Activo_43BO"]);
                 u.Bloqueado_43BO = Convert.ToBoolean(fila["Bloqueado_43BO"]);
+                u.Rol = new Rol_43BO();
+                u.Rol.IdRol_43BO = Convert.ToInt32(fila["IdRol_43BO"]);
+                u.Rol.Nombre_43BO = fila["NombreRol_43BO"].ToString();
                 return u;
 
             }

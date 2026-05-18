@@ -15,15 +15,31 @@ namespace Proyecto_IngSoftware
         BLL.BllUser_43BO blluser = new BLL.BllUser_43BO();
         BLL.BLLBitacora_43BO bllBitacora = new BLL.BLLBitacora_43BO();
         List<User_43BO> todoslosusuarios; 
-
         private bool Modificar_43BO = false; // <---- con eso controlo si estoy apicando una creacion o una modificiacion   
         public GestionUs()
         {
             InitializeComponent();
             Btns_43BO();
             ActualizarDGV_43BO();
+            ConfigurarComboBoxRoles_43BO();
+
         }
 
+
+        private void ConfigurarComboBoxRoles_43BO()
+        {
+            // Creamos la lista de objetos Rol para el combo
+            List<Rol_43BO> roles = new List<Rol_43BO>
+            {
+                new Rol_43BO { IdRol_43BO = 1, Nombre_43BO = "Administrador" },
+                new Rol_43BO { IdRol_43BO = 2, Nombre_43BO = "Básico" }
+            };
+
+            cmbRol.DataSource = roles;
+            cmbRol.DisplayMember = "Nombre_43BO"; // Lo que ve el usuario en pantalla
+            cmbRol.ValueMember = "IdRol_43BO";     // El ID real por detrás
+            cmbRol.SelectedIndex = -1;
+        }
         private void Btns_43BO()
         {
             btnModi.Enabled = false;
@@ -49,14 +65,22 @@ namespace Proyecto_IngSoftware
                 txtDNI.Text = dgvUsaurio.CurrentRow.Cells["DNI_43BO"].Value.ToString();
                 txtNom.Text = dgvUsaurio.CurrentRow.Cells["Nombre_43BO"].Value.ToString();
                 txtApe.Text = dgvUsaurio.CurrentRow.Cells["Apellido_43BO"].Value.ToString();
-                txtRol.Text = dgvUsaurio.CurrentRow.Cells["Rol_43BO"].Value.ToString();
+             
                 txtEmail.Text = dgvUsaurio.CurrentRow.Cells["Email_43BO"].Value.ToString();
+
+                int dniSeleccionado = Convert.ToInt32(txtDNI.Text);
+                User_43BO usuarioSeleccionado = todoslosusuarios.FirstOrDefault(u => u.DNI_43BO == dniSeleccionado);
+
+                if (usuarioSeleccionado != null && usuarioSeleccionado.Rol != null)
+                {
+                    cmbRol.SelectedValue = usuarioSeleccionado.Rol.IdRol_43BO;
+                }
 
                 // Los mantenemos deshabilitados hasta que presione "Modificar" o "Crear"
                 txtDNI.Enabled = false;
                 txtNom.Enabled = false;
                 txtApe.Enabled = false;
-                txtRol.Enabled = false;
+                cmbRol.Enabled = false; 
                 txtEmail.Enabled = false;
             }
         }
@@ -66,9 +90,18 @@ namespace Proyecto_IngSoftware
         private void btnCrear_Click_1(object sender, EventArgs e)
         {
             // Activamos botones para crear un nuevo usuario
-            btnApli.Enabled = true; // Solo se activa al querer guardar
+            //btnApli.Enabled = true; // Solo se activa al querer guardar
+            //txtDNI.Enabled = true;
+
+            //Modificar_43BO = false; // Indicamos que se está creando un nuevo usuario
+
+            btnApli.Enabled = true;
             txtDNI.Enabled = true;
-            Modificar_43BO = false; // Indicamos que se está creando un nuevo usuario
+            txtNom.Enabled = true;
+            txtApe.Enabled = true;
+            cmbRol.Enabled = true;
+            txtEmail.Enabled = true;
+            Modificar_43BO = false;
 
         }
 
@@ -78,28 +111,25 @@ namespace Proyecto_IngSoftware
             this.Close();
         }
 
-        private void FormatoDgv_43BO() 
+        private void FormatoDgv_43BO()
         {
             if (dgvUsaurio.Columns.Count == 0) return;
 
-            // Ocultar Hash
-            if (dgvUsaurio.Columns.Contains("Hash_43BO")) dgvUsaurio.Columns["Hash_43BO"].Visible = false;
+            // Nombres de las cabeceras vinculadas a las propiedades del tipo anónimo anterior
+            if (dgvUsaurio.Columns.Contains("DNI_43BO")) dgvUsaurio.Columns["DNI_43BO"].HeaderText = "DNI";
+            if (dgvUsaurio.Columns.Contains("Nombre_43BO")) dgvUsaurio.Columns["Nombre_43BO"].HeaderText = "Nombre";
+            if (dgvUsaurio.Columns.Contains("Apellido_43BO")) dgvUsaurio.Columns["Apellido_43BO"].HeaderText = "Apellido";
+            if (dgvUsaurio.Columns.Contains("Email_43BO")) dgvUsaurio.Columns["Email_43BO"].HeaderText = "Email";
+            if (dgvUsaurio.Columns.Contains("RolNombre")) dgvUsaurio.Columns["RolNombre"].HeaderText = "Rol";
+            if (dgvUsaurio.Columns.Contains("Activo_43BO")) dgvUsaurio.Columns["Activo_43BO"].HeaderText = "Activo";
+            if (dgvUsaurio.Columns.Contains("Bloqueado_43BO")) dgvUsaurio.Columns["Bloqueado_43BO"].HeaderText = "Bloqueado";
 
-            // Cabeceras
-            dgvUsaurio.Columns["DNI_43BO"].HeaderText = "DNI";
-            dgvUsaurio.Columns["Nombre_43BO"].HeaderText = "Nombre";
-            dgvUsaurio.Columns["Apellido_43BO"].HeaderText = "Apellido";
-            dgvUsaurio.Columns["Email_43BO"].HeaderText = "Email";
-            dgvUsaurio.Columns["Rol_43BO"].HeaderText = "Rol";
-            dgvUsaurio.Columns["Activo_43BO"].HeaderText = "Activo";
-            dgvUsaurio.Columns["Bloqueado_43BO"].HeaderText = "Bloqueado";
+            // Reordenamos la columna del nombre del Rol a la posición que quieras 
+            if (dgvUsaurio.Columns.Contains("RolNombre")) dgvUsaurio.Columns["RolNombre"].DisplayIndex = 4;
 
-            // Colores
+            // Pintamos los colores usando las celdas directas de la fila
             foreach (DataGridViewRow fila in dgvUsaurio.Rows)
             {
-                // Limpiamos el color por si Joaquín cambió de estado
-                fila.DefaultCellStyle.BackColor = Color.White;
-
                 if (fila.Cells["Activo_43BO"].Value != null && fila.Cells["Bloqueado_43BO"].Value != null)
                 {
                     bool activo = (bool)fila.Cells["Activo_43BO"].Value;
@@ -109,9 +139,10 @@ namespace Proyecto_IngSoftware
                         fila.DefaultCellStyle.BackColor = Color.Khaki;
                     else if (!activo)
                         fila.DefaultCellStyle.BackColor = Color.LightCoral;
+                    else
+                        fila.DefaultCellStyle.BackColor = Color.White;
                 }
             }
-
         }
 
 
@@ -138,26 +169,39 @@ namespace Proyecto_IngSoftware
         {
             try
             {
-                // 1. Cargamos la lista GLOBAL (esto arregla lo de Mónica)
+                // Cargamos la lista GLOBAL
                 todoslosusuarios = blluser.ListarUsuarios_43BO();
 
-                // 2. Decidimos qué mostrar según el RadioButton marcado
+                List<User_43BO> listaFiltrada = null;
+
+                // Decidimos qué mostrar según el RadioButton marcado
                 if (rbActivos.Checked)
                 {
-                    dgvUsaurio.DataSource = null;
-                    dgvUsaurio.DataSource = todoslosusuarios.Where(u => u.Activo_43BO == true).ToList();
+                    listaFiltrada = todoslosusuarios.Where(u => u.Activo_43BO == true).ToList();
                 }
                 else if (rbBloqueados.Checked)
                 {
-                    dgvUsaurio.DataSource = null;
-                    dgvUsaurio.DataSource = todoslosusuarios.Where(u => u.Bloqueado_43BO == true).ToList();
+                    listaFiltrada = todoslosusuarios.Where(u => u.Bloqueado_43BO == true).ToList();
                 }
                 else
                 {
-                    dgvUsaurio.DataSource = null;
-                    dgvUsaurio.DataSource = todoslosusuarios;
+                    listaFiltrada = todoslosusuarios;
                 }
 
+                if (listaFiltrada == null) listaFiltrada = new List<User_43BO>();
+
+               
+                dgvUsaurio.DataSource = null;
+                dgvUsaurio.DataSource = listaFiltrada.Select(u => new
+                {
+                    u.DNI_43BO,
+                    u.Nombre_43BO,
+                    u.Apellido_43BO,
+                    u.Email_43BO,
+                    RolNombre = u.Rol != null ? u.Rol.Nombre_43BO : "Sin Rol", 
+                    u.Bloqueado_43BO,
+                    u.Activo_43BO
+                }).ToList();
 
                 FormatoDgv_43BO();
             }
@@ -180,7 +224,7 @@ namespace Proyecto_IngSoftware
                 txtDNI.Enabled = false;
                 txtNom.Enabled = false;
 
-                txtRol.Enabled = true;
+                cmbRol.Enabled = true;
                 txtEmail.Enabled = true;
 
 
@@ -203,16 +247,18 @@ namespace Proyecto_IngSoftware
                     return;
                 }
 
-                if (string.IsNullOrEmpty(txtNom.Text) || string.IsNullOrEmpty(txtApe.Text) || string.IsNullOrEmpty(txtRol.Text) || string.IsNullOrEmpty(txtEmail.Text))
+                if (string.IsNullOrEmpty(txtNom.Text) || string.IsNullOrEmpty(txtApe.Text) || cmbRol.SelectedItem == null || string.IsNullOrEmpty(txtEmail.Text))
                 {
                     MessageBox.Show("Todos los campos deben ser completados.");
                     return;
                 }
                 else
                 {
+                    Rol_43BO rolSeleccionado = (Rol_43BO)cmbRol.SelectedItem;
+
                     if (Modificar_43BO)
                     {
-                        blluser.ModificarUser_43BO(dni, txtRol.Text, txtEmail.Text);
+                        blluser.ModificarUser_43BO(dni, rolSeleccionado, txtEmail.Text);
 
                         //pongo null por ahora porqeu no se cuadno va a esatr el login asi que el sessionmanager esta de adorno
                         bllBitacora.GuardarLog_43BO(null, Modulo_43BO.Usuario, Evento_43BO.modificar, 2);
@@ -230,7 +276,7 @@ namespace Proyecto_IngSoftware
                     else
                     {
 
-                        blluser.InsertarUser_43BO(dni, txtNom.Text, txtApe.Text, txtRol.Text, txtEmail.Text);
+                        blluser.InsertarUser_43BO(dni, txtNom.Text, txtApe.Text, rolSeleccionado, txtEmail.Text);
 
                         //lo mismo
                         bllBitacora.GuardarLog_43BO(null, Modulo_43BO.Usuario, Evento_43BO.Crear, 3);
@@ -257,7 +303,7 @@ namespace Proyecto_IngSoftware
             txtDNI.Clear();
             txtNom.Clear();
             txtApe.Clear();
-            txtRol.Clear();
+            cmbRol.SelectedIndex = -1;
             txtEmail.Clear();
 
             Btns_43BO(); //resetea los botones
@@ -383,6 +429,8 @@ namespace Proyecto_IngSoftware
         //        }
         //    }
         //}
+
+   
 
     }
     

@@ -46,9 +46,9 @@
             this.txtDNI = new System.Windows.Forms.TextBox();
             this.txtNom = new System.Windows.Forms.TextBox();
             this.txtApe = new System.Windows.Forms.TextBox();
-            this.txtRol = new System.Windows.Forms.TextBox();
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.cmbRol = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsaurio)).BeginInit();
             this.SuspendLayout();
             // 
@@ -223,13 +223,6 @@
             this.txtApe.Size = new System.Drawing.Size(100, 20);
             this.txtApe.TabIndex = 17;
             // 
-            // txtRol
-            // 
-            this.txtRol.Location = new System.Drawing.Point(62, 336);
-            this.txtRol.Name = "txtRol";
-            this.txtRol.Size = new System.Drawing.Size(100, 20);
-            this.txtRol.TabIndex = 18;
-            // 
             // txtEmail
             // 
             this.txtEmail.Location = new System.Drawing.Point(62, 361);
@@ -246,15 +239,23 @@
             this.label5.TabIndex = 20;
             this.label5.Text = "Email";
             // 
+            // cmbRol
+            // 
+            this.cmbRol.FormattingEnabled = true;
+            this.cmbRol.Location = new System.Drawing.Point(62, 336);
+            this.cmbRol.Name = "cmbRol";
+            this.cmbRol.Size = new System.Drawing.Size(100, 21);
+            this.cmbRol.TabIndex = 21;
+            // 
             // GestionUs
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.ClientSize = new System.Drawing.Size(780, 388);
+            this.Controls.Add(this.cmbRol);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.txtEmail);
-            this.Controls.Add(this.txtRol);
             this.Controls.Add(this.txtApe);
             this.Controls.Add(this.txtNom);
             this.Controls.Add(this.txtDNI);
@@ -302,8 +303,8 @@
         private System.Windows.Forms.TextBox txtDNI;
         private System.Windows.Forms.TextBox txtNom;
         private System.Windows.Forms.TextBox txtApe;
-        private System.Windows.Forms.TextBox txtRol;
         private System.Windows.Forms.TextBox txtEmail;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ComboBox cmbRol;
     }
 }

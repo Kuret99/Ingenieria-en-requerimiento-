@@ -1,6 +1,7 @@
 ﻿using Servicios;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,7 +26,13 @@ namespace BLL
             bi.Fecha_43BO = DateTime.Now;
             bi.Criticidad_43BO = criticidad;
             
-            dal.RegistrarEvento_43BO(bi);
+            dal.GuardarLog_43BO(bi);
+        }
+
+        public DataTable ObtenerAuditoriaPorFecha_43BO(DateTime fInicio, DateTime fFin, string modulo)
+        {
+            
+            return dal.ListarBitacora_43BO(fInicio, fFin, modulo);
         }
     }
 }

@@ -40,13 +40,7 @@ namespace Servicios
 			set { _email = value; }
 		}
 
-		private string _rol;
-
-		public string Rol_43BO
-        {
-			get { return _rol; }
-			set { _rol = value; }
-		}
+		
         private string _hash;
 
         public string Hash_43BO
@@ -77,12 +71,13 @@ namespace Servicios
 				
         }
 
-		//public string UserName_43BO		
-		//{
-		//	get { return _nombre + _dni.ToString();  } 
+        public Rol_43BO Rol { get; set; } = new Rol_43BO();
 
-  //      }
 
+        public override string ToString()
+        {
+            return !string.IsNullOrEmpty(Nombre_43BO) ? Nombre_43BO : "";
+        }
 
 
     }

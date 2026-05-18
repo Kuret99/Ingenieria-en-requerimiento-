@@ -29,16 +29,16 @@
         private void InitializeComponent()
         {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.materToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.AdminToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gestionUsuarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bitacoraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.masterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ventaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.stockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.adminToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.UserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cambiarIdiomaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cambiarContraseñaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cerrarSesiobnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.masterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ventaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.stockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -46,8 +46,8 @@
             // 
             this.menuStrip1.BackColor = System.Drawing.SystemColors.Highlight;
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.materToolStripMenuItem,
-            this.adminToolStripMenuItem,
+            this.AdminToolStripMenuItem,
+            this.UserToolStripMenuItem,
             this.masterToolStripMenuItem,
             this.ventaToolStripMenuItem,
             this.stockToolStripMenuItem});
@@ -57,20 +57,20 @@
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // materToolStripMenuItem
+            // AdminToolStripMenuItem
             // 
-            this.materToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.AdminToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.gestionUsuarioToolStripMenuItem,
             this.bitacoraToolStripMenuItem});
-            this.materToolStripMenuItem.Name = "materToolStripMenuItem";
-            this.materToolStripMenuItem.Size = new System.Drawing.Size(55, 20);
-            this.materToolStripMenuItem.Text = "Admin";
+            this.AdminToolStripMenuItem.Name = "AdminToolStripMenuItem";
+            this.AdminToolStripMenuItem.Size = new System.Drawing.Size(55, 20);
+            this.AdminToolStripMenuItem.Text = "Admin";
             // 
             // gestionUsuarioToolStripMenuItem
             // 
             this.gestionUsuarioToolStripMenuItem.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.gestionUsuarioToolStripMenuItem.Name = "gestionUsuarioToolStripMenuItem";
-            this.gestionUsuarioToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
+            this.gestionUsuarioToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.gestionUsuarioToolStripMenuItem.Text = "GestionUsuario";
             this.gestionUsuarioToolStripMenuItem.Click += new System.EventHandler(this.gestionUsuarioToolStripMenuItem_Click);
             // 
@@ -78,36 +78,19 @@
             // 
             this.bitacoraToolStripMenuItem.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.bitacoraToolStripMenuItem.Name = "bitacoraToolStripMenuItem";
-            this.bitacoraToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
+            this.bitacoraToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.bitacoraToolStripMenuItem.Text = "Bitacora";
+            this.bitacoraToolStripMenuItem.Click += new System.EventHandler(this.bitacoraToolStripMenuItem_Click);
             // 
-            // masterToolStripMenuItem
+            // UserToolStripMenuItem
             // 
-            this.masterToolStripMenuItem.Name = "masterToolStripMenuItem";
-            this.masterToolStripMenuItem.Size = new System.Drawing.Size(55, 20);
-            this.masterToolStripMenuItem.Text = "Master";
-            // 
-            // ventaToolStripMenuItem
-            // 
-            this.ventaToolStripMenuItem.Name = "ventaToolStripMenuItem";
-            this.ventaToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
-            this.ventaToolStripMenuItem.Text = "Venta";
-            // 
-            // stockToolStripMenuItem
-            // 
-            this.stockToolStripMenuItem.Name = "stockToolStripMenuItem";
-            this.stockToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
-            this.stockToolStripMenuItem.Text = "Stock";
-            // 
-            // adminToolStripMenuItem
-            // 
-            this.adminToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.UserToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.cambiarIdiomaToolStripMenuItem,
             this.cambiarContraseñaToolStripMenuItem,
             this.cerrarSesiobnToolStripMenuItem});
-            this.adminToolStripMenuItem.Name = "adminToolStripMenuItem";
-            this.adminToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
-            this.adminToolStripMenuItem.Text = "Usuario";
+            this.UserToolStripMenuItem.Name = "UserToolStripMenuItem";
+            this.UserToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
+            this.UserToolStripMenuItem.Text = "Usuario";
             // 
             // cambiarIdiomaToolStripMenuItem
             // 
@@ -132,6 +115,24 @@
             this.cerrarSesiobnToolStripMenuItem.Text = "CerrarSesion";
             this.cerrarSesiobnToolStripMenuItem.Click += new System.EventHandler(this.cerrarSesiobnToolStripMenuItem_Click);
             // 
+            // masterToolStripMenuItem
+            // 
+            this.masterToolStripMenuItem.Name = "masterToolStripMenuItem";
+            this.masterToolStripMenuItem.Size = new System.Drawing.Size(55, 20);
+            this.masterToolStripMenuItem.Text = "Master";
+            // 
+            // ventaToolStripMenuItem
+            // 
+            this.ventaToolStripMenuItem.Name = "ventaToolStripMenuItem";
+            this.ventaToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
+            this.ventaToolStripMenuItem.Text = "Venta";
+            // 
+            // stockToolStripMenuItem
+            // 
+            this.stockToolStripMenuItem.Name = "stockToolStripMenuItem";
+            this.stockToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
+            this.stockToolStripMenuItem.Text = "Stock";
+            // 
             // Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -142,6 +143,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Menu";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Load += new System.EventHandler(this.Menu_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -152,8 +154,8 @@
         #endregion
 
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem adminToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem materToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem UserToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem AdminToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem gestionUsuarioToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem bitacoraToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem masterToolStripMenuItem;
