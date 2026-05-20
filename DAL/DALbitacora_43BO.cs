@@ -31,7 +31,7 @@ public class DALBitacora_43BO
     public DataTable ListarBitacora_43BO(DateTime fInicio, DateTime fFin, string modulo) 
     {
 
-        List<Bitacora_43BO> lista = new List<Bitacora_43BO>();
+      //  List<Bitacora_43BO> lista = new List<Bitacora_43BO>();
 
 
 

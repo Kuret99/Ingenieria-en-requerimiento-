@@ -72,9 +72,12 @@ namespace BLL
             {
                 ReiniciarIn_43BO(UserName);
 
+                if (!SessionManager_43BO.VerificarSesionActiva_43BO())
+                {
+                    SessionManager_43BO.IniciarSesion_43BO(usaurio);
+                }
 
-                SessionManager_43BO.IniciarSesion_43BO(usaurio);
-
+            
                 bllBi.GuardarLog_43BO(usaurio, Modulo_43BO.Usuario, Evento_43BO.Login, 1); // Log de éxito de login
 
 
@@ -141,14 +144,14 @@ namespace BLL
             SessionManager_43BO.CerrarSesion_43BO();
         }
 
-        public void InsertarUser_43BO(int dni, string nom, string ape, Rol_43BO  rol, string email)
+        public void InsertarUser_43BO(int dni, string nom, string ape, Rol_43BO rol, string email)
         {
             string contraseñaPlana = dni.ToString() + ape.Trim();
 
             string contraseñaDefault = CriptoManager_43BO.GenerarHash_43BO(contraseñaPlana);
 
             User_43BO usuario = new User_43BO();
-
+ 
 
             usuario.DNI_43BO = dni;
             usuario.Nombre_43BO = nom;
@@ -199,7 +202,7 @@ namespace BLL
 
                 DALuser.DesbloquearUser_43BO(dni, contraReset);
 
-                // CORREGIDO: Protección anticaídas si el objeto global de sesión está vacío
+               
                 User_43BO admin = SessionManager_43BO.Instancia.Usuario ?? usaurio;
                 bllBi.GuardarLog_43BO(admin, Modulo_43BO.Usuario, Evento_43BO.Desbloqueo, 2);
             }
@@ -207,7 +210,29 @@ namespace BLL
 
 
         }
+         
+        // necesito esto aca para hacer que en el menu si estas con la clave reseteada o ingresas con la cuenta de fabrica te haga cambiarla apra poder seguir
+        public bool EsContraseñaDeFabrica_43BO(User_43BO usuario)
+        {
+            if (usuario == null) return false;
 
+         
+            string contraFabricaPlana = usuario.DNI_43BO.ToString() + usuario.Apellido_43BO.Trim();
+            string contraFabricaHash = CriptoManager_43BO.GenerarHash_43BO(contraFabricaPlana);
+
+            return usuario.Hash_43BO == contraFabricaHash;
+        }
+
+        //Esto simularia el obtener los permisos
+        public List<string> ObtenerPermisos_43BO(User_43BO usuario)
+        {
+            if (usuario != null && usuario.Rol != null)
+            {
+              
+                return usuario.Rol.ObtenerPermisos_43BO();
+            }
+            return new List<string>();
+        }
         public List<User_43BO> ListarUsuarios_43BO()
         {
             //de aca retorna la lista de usarios que fue cargado con el .fill del aadapter

@@ -40,12 +40,13 @@ namespace Proyecto_IngSoftware
                 string modulo = cmbModulo.SelectedValue.ToString();
 
              
-                DataTable tablaDatos = bllBitacora.ObtenerAuditoriaPorFecha_43BO(inicio, fin, modulo);
+                DataTable tablaDatos = bllBitacora.ListarBitacora_43BO(inicio, fin, modulo);
 
                 if (tablaDatos != null)
                 {
-                    
+                    // esto es para aplicar los filtros adicionales que se hayan puesto en los cmbos y txtboxs (ademas de la fecha y modulo que ya se aplican en la consulta SQL) 
                     DataView vistaFiltrada = new DataView(tablaDatos);
+                    // y aca vamos a ir armando una lista de filtros para despues aplicarlos todos jntoss)
                     List<string> filtrosExtra = new List<string>();
 
                     // --- FILTROS DE COMBOS ---
@@ -118,9 +119,9 @@ namespace Proyecto_IngSoftware
             // Reseteamos el combo de Criticidad a "Todas"
             cmbCriticidad.Items.Clear();
             cmbCriticidad.Items.Add("Todas");
-            cmbCriticidad.Items.Add("1 - Baja");
+            cmbCriticidad.Items.Add("1 - Alta");
             cmbCriticidad.Items.Add("2 - Media");
-            cmbCriticidad.Items.Add("3 - Alta");
+            cmbCriticidad.Items.Add("3 - Baja");
             cmbCriticidad.SelectedIndex = 0;
 
             // Clavamos las fechas por defecto (Fin hoy, Inicio 3 días atrás)
@@ -139,22 +140,24 @@ namespace Proyecto_IngSoftware
 
   
         
-   
-        private void button1_Click(object sender, EventArgs e)
+        // este boton aplica los cambios que se haya puesto en los filtros
+        private void btnAplicar_Click(object sender, EventArgs e)
         {
             CargarGrillaFiltrada_43BO();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        //este boton solo limpia
+        private void btnLimpiar_Click(object sender, EventArgs e)
         {
             ResetearComponentes_43BO();
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        // y esteboton es el que imprime
+        private void btnImprimir_Click(object sender, EventArgs e)
         {
             if (dgvAuditoria.Rows.Count == 0)
             {
-                MessageBox.Show("No hay registros en la grilla para exportar.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("No hay datos para exportar.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -166,95 +169,27 @@ namespace Proyecto_IngSoftware
             {
                 try
                 {
-                    // Creamos el documento PDF en orientación hoironztal para que entren todas las columnas holgadamente
-                    Document doc = new Document(PageSize.A4.Rotate(), 20f, 20f, 30f, 30f);
-                    PdfWriter.GetInstance(doc, new FileStream(sfd.FileName, FileMode.Create));
+                    // aca lo que hacemos es tomar la fuente de datos del DataGridView (que es un DataView) y convertirlo a un DataTable limpio
+                    DataView vista = (DataView)dgvAuditoria.DataSource;
+                    // y ahora le saco el filtro para que me imprima todo lo que se ve en el datagrid (porque si no, al ser un DataView, me imprimia todo lo que habia originalmente sin aplicar los filtros visuales del datagrid)
+                    DataTable tablaLimpia = vista.ToTable();
 
-                    doc.Open();
-
-                    /// esto es pa cnfigurar los estilos de texto que vamos a usar en el PDF (títulos, encabezados, celdas, etc)
-                    BaseFont bf = BaseFont.CreateFont(BaseFont.HELVETICA, BaseFont.CP1252, BaseFont.NOT_EMBEDDED);
-                    iTextSharp.text.Font tituloFont = new iTextSharp.text.Font(bf, 18, iTextSharp.text.Font.BOLD, new BaseColor(26, 54, 93));
-                    iTextSharp.text.Font subTituloFont = new iTextSharp.text.Font(bf, 10, iTextSharp.text.Font.ITALIC, BaseColor.DARK_GRAY);
-                    iTextSharp.text.Font headerFont = new iTextSharp.text.Font(bf, 9, iTextSharp.text.Font.BOLD, BaseColor.WHITE);
-                    iTextSharp.text.Font cellFont = new iTextSharp.text.Font(bf, 8.5f, iTextSharp.text.Font.NORMAL, BaseColor.BLACK);
-
-                    //esto solo es el titulo y su formato 
-                    Paragraph titulo = new Paragraph("REPORTE DE AUDITORÍA Y BITACORA", tituloFont);
-                    titulo.Alignment = Element.ALIGN_LEFT;
-                    doc.Add(titulo);
-
-
-                    // Agregamos una línea de metadatos debajo del título para mostrar fecha de generación, filtros aplicados y dmemas tc (esto es opcional pero queda más profesional)
                     string crit = cmbCriticidad.SelectedItem != null ? cmbCriticidad.SelectedItem.ToString() : "Todas";
-                    Paragraph metadata = new Paragraph($"Generado el: {DateTime.Now:dd/MM/yyyy HH:mm} | Módulo: {cmbModulo.SelectedValue} | Criticidad: {crit}", subTituloFont);
-                    metadata.SpacingAfter = 20f;
-                    doc.Add(metadata);
+                    string mod = cmbModulo.SelectedValue != null ? cmbModulo.SelectedValue.ToString() : "Todos";
 
-                    int columnasVisibles = 0;
-                    // Contamos cuantas columnas hay visibles en la grilla para para que cuincida con las que deberian aparecer en este PDF (si no pongo esto rompe y crea celdas en blanco)
-                    foreach (DataGridViewColumn col in dgvAuditoria.Columns)
-                    {
-                        if (col.Visible) columnasVisibles++;
-                    }
+                 
+                    bllBitacora.Imprimir_43BO(sfd.FileName, tablaLimpia, crit, mod);
 
-                    //esto crea la tabla en el pdf 
-                    PdfPTable pdfTable = new PdfPTable(columnasVisibles);
-                    pdfTable.WidthPercentage = 100;
-
-
-                    // Agregamos las celdas de encabezado con el estilo definido (fondo azul, texto blanco, centrado, etc)
-                    foreach (DataGridViewColumn column in dgvAuditoria.Columns)
-                    {
-                        if (column.Visible)
-                        {
-                            PdfPCell cell = new PdfPCell(new Phrase(column.HeaderText, headerFont));
-                            cell.BackgroundColor = new BaseColor(43, 108, 176);
-                            cell.Padding = 6;
-                            cell.HorizontalAlignment = Element.ALIGN_CENTER;
-                            pdfTable.AddCell(cell);
-                        }
-                    }
-
-                    foreach (DataGridViewRow row in dgvAuditoria.Rows)
-                    {
-                        if (row.IsNewRow) continue;
-
-                        foreach (DataGridViewCell cell in row.Cells)
-                        {
-                            if (cell.OwningColumn.Visible)
-                            {
-                                string valorCelda = cell.Value != null ? cell.Value.ToString() : "";
-                                PdfPCell pdfCell = new PdfPCell(new Phrase(valorCelda, cellFont));
-                                pdfCell.Padding = 5;
-                                pdfCell.VerticalAlignment = Element.ALIGN_MIDDLE;
-
-                                if (cell.OwningColumn.HeaderText == "ID" ||
-                                    cell.OwningColumn.HeaderText.Contains("Fecha") ||
-                                    cell.OwningColumn.HeaderText == "Criticidad")
-                                {
-                                    pdfCell.HorizontalAlignment = Element.ALIGN_CENTER;
-                                }
-                                else
-                                {
-                                    pdfCell.HorizontalAlignment = Element.ALIGN_LEFT;
-                                }
-
-                                pdfTable.AddCell(pdfCell);
-                            }
-                        }
-                    }
-
-                    doc.Add(pdfTable);
-                    doc.Close();
-
-                    MessageBox.Show("Reporte PDF exportado con éxito.", "Operación Exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Reporte PDF exportado con éxito.", "Excelente", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Error al generar el PDF: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
+        
     }
+   
 }
+

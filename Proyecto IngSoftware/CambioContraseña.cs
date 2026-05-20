@@ -34,12 +34,30 @@ namespace Proyecto_IngSoftware
                 bll.CambiarContraseña_43BO(txtUser.Text, txtConAct.Text, txtConNueva.Text, txtConfirmar.Text);
 
              
-                MessageBox.Show("Contraseña cambiada exitosamente.");
+                MessageBox.Show("Contraseña cambiada exitosamente, La sesion se cerrarar y debera volver a logearse.");
 
-                
-                txtConAct.Clear();
-                txtConNueva.Clear();
-                txtConfirmar.Clear();
+
+                bll.CerrarSesion_43BO();
+
+
+
+                Login login = new Login();
+            
+                login.Show();
+
+                if (this.MdiParent != null)
+                {
+                    this.MdiParent.Close();
+                }
+                else
+                {
+                  
+                    this.Close();
+                }
+
+                //txtConAct.Clear();
+                //txtConNueva.Clear();
+                //txtConfirmar.Clear();
             }
             catch (Exception ex)
             {

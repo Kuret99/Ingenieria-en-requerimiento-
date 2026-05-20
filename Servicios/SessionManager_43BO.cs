@@ -18,9 +18,9 @@ namespace Servicios
              public User_43BO Usuario { get; private set; }
 
 
-        // propiedad para verificar si hay una sesión activa, devuelve true si _instancia no es null, lo que indica que hay un usuario en sesión, y false si _instancia es null
+           // propiedad para verificar si hay una sesión activa, devuelve true si _instancia no es null, lo que indica que hay un usuario en sesión, y false si _instancia es null
 
-        private SessionManager_43BO() { }
+           private SessionManager_43BO() { }
                      
 
 
@@ -37,7 +37,7 @@ namespace Servicios
                             return _instancia;
 
                         }
-          }
+           }
 
                     public static void IniciarSesion_43BO(User_43BO usuario)
                     {
@@ -61,5 +61,19 @@ namespace Servicios
                             _instancia = null; // Elimina la instancia actual
                         }
                     }
-                }
+
+        public static bool EsUsuarioActual_43BO(string username)
+        {
+            // Si nadie está logueado, devuelve false
+            if (_instancia == null || _instancia.Usuario == null) return false;
+
+          
+            return username.Trim().StartsWith(_instancia.Usuario.DNI_43BO.ToString());
+        }
+
+        public static bool VerificarSesionActiva_43BO()
+            {
+                return _instancia != null;
+            }
+    }
 }

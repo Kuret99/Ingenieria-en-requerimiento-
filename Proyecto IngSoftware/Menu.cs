@@ -74,35 +74,37 @@ namespace Proyecto_IngSoftware
 
                 if (usuarioLogueado != null)
                 {
-            
-                    string contraFabricaPlana = usuarioLogueado.DNI_43BO.ToString() + usuarioLogueado.Apellido_43BO.Trim();
-                    string contraFabricaHash = CriptoManager_43BO.GenerarHash_43BO(contraFabricaPlana);
-
-                 
-                    if (usuarioLogueado.Hash_43BO == contraFabricaHash)
+                   
+                    if (bll.EsContraseñaDeFabrica_43BO(usuarioLogueado))
                     {
                         MessageBox.Show("Por motivos de seguridad, debe modificar su contraseña de fábrica antes de operar en el sistema.");
 
-               
                         CambioContraseña frmCambio = new CambioContraseña();
-
-                     
                         frmCambio.MdiParent = this;
                         frmCambio.StartPosition = FormStartPosition.CenterScreen;
-
                         frmCambio.Show();
 
-                      
+                       
                         AdminToolStripMenuItem.Enabled = false;
                         masterToolStripMenuItem.Enabled = false;
                         ventaToolStripMenuItem.Enabled = false;
-                        stockToolStripMenuItem.Enabled = false;
-
-
-
+                        CompraToolStripMenuItem.Enabled = false;
                     }
+                    else
+                    {
+                        // AHORAAA SIIIIIIIIIIII ESTO va a poder simular lo de roles y permisos para ams adelante
+                        List<string> permisosActivos = bll.ObtenerPermisos_43BO(usuarioLogueado);
+
+                        //el menu solo habilita o deshabilita según los permisos o que tiene permitido el user
+                        AdminToolStripMenuItem.Enabled = permisosActivos.Contains("Admin");
+                        masterToolStripMenuItem.Enabled = permisosActivos.Contains("Master");
+                        ventaToolStripMenuItem.Enabled = permisosActivos.Contains("Venta");
+                        CompraToolStripMenuItem.Enabled = permisosActivos.Contains("Stock");
+                    }
+                   
                 }
             }
+            
             catch (Exception ex)
             {
                 MessageBox.Show("Error al verificar estado de la cuenta: " + ex.Message);
@@ -116,6 +118,26 @@ namespace Proyecto_IngSoftware
             Aud_43BO.MdiParent = this;
 
             Aud_43BO.Show();
+        }
+
+        private void reLoginToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Instanciamos el Login existente
+                Login ReLogin = new Login();
+
+                // Hacemos que se abra centrado respecto al menú principal
+                ReLogin.StartPosition = FormStartPosition.CenterParent;
+
+                // Lo abrimos como un cuadro de diálogo modal (bloquea el menú de fondo hasta que se cierre o rebote)
+                ReLogin.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al ejecutar el ReLogin: " + ex.Message);
+            }
+
         }
     }
 }

@@ -24,22 +24,35 @@ namespace Proyecto_IngSoftware
             ConfigurarComboBoxRoles_43BO();
 
         }
-
-
         private void ConfigurarComboBoxRoles_43BO()
         {
-            // Creamos la lista de objetos Rol para el combo
+            // Creamos los objetos directamente
             List<Rol_43BO> roles = new List<Rol_43BO>
-            {
-                new Rol_43BO { IdRol_43BO = 1, Nombre_43BO = "Administrador" },
-                new Rol_43BO { IdRol_43BO = 2, Nombre_43BO = "Básico" }
-            };
+    {
+        new Rol_43BO { IdRol_43BO = 1, Nombre_43BO = "Administrador" },
+        new Rol_43BO { IdRol_43BO = 2, Nombre_43BO = "Básico" }
+    };
 
             cmbRol.DataSource = roles;
-            cmbRol.DisplayMember = "Nombre_43BO"; // Lo que ve el usuario en pantalla
-            cmbRol.ValueMember = "IdRol_43BO";     // El ID real por detrás
+            cmbRol.DisplayMember = "Nombre_43BO";
+            cmbRol.ValueMember = "IdRol_43BO";
             cmbRol.SelectedIndex = -1;
         }
+
+        //private void ConfigurarComboBoxRoles_43BO()
+        //{
+        //    // Creamos la lista de objetos Rol para el combo
+        //    List<Rol_43BO> roles = new List<Rol_43BO>
+        //    {
+        //        new Rol_43BO { IdRol_43BO = 1, Nombre_43BO = "Administrador" },
+        //        new Rol_43BO { IdRol_43BO = 2, Nombre_43BO = "Básico" }
+        //    };
+
+        //    cmbRol.DataSource = roles;
+        //    cmbRol.DisplayMember = "Nombre_43BO"; // Lo que ve el usuario en pantalla
+        //    cmbRol.ValueMember = "IdRol_43BO";     // El ID real por detrás
+        //    cmbRol.SelectedIndex = -1;
+        //}
         private void Btns_43BO()
         {
             btnModi.Enabled = false;
@@ -246,18 +259,22 @@ namespace Proyecto_IngSoftware
                     MessageBox.Show("El DNI debe ser un número válido.");
                     return;
                 }
+                Rol_43BO rolSeleccionado = (Rol_43BO)cmbRol.SelectedItem;
 
                 if (string.IsNullOrEmpty(txtNom.Text) || string.IsNullOrEmpty(txtApe.Text) || cmbRol.SelectedItem == null || string.IsNullOrEmpty(txtEmail.Text))
                 {
                     MessageBox.Show("Todos los campos deben ser completados.");
                     return;
                 }
-                else
+
+
+                else 
                 {
-                    Rol_43BO rolSeleccionado = (Rol_43BO)cmbRol.SelectedItem;
+                 
 
                     if (Modificar_43BO)
                     {
+                    
                         blluser.ModificarUser_43BO(dni, rolSeleccionado, txtEmail.Text);
 
                         //pongo null por ahora porqeu no se cuadno va a esatr el login asi que el sessionmanager esta de adorno
@@ -270,16 +287,16 @@ namespace Proyecto_IngSoftware
                         txtNom.Enabled = true;
                         txtApe.Enabled = true;
 
-                        MessageBox.Show("Operación realizada con éxito.");
+                        MessageBox.Show(
+                      "Operación realizada con éxito.");
 
                     }
                     else
                     {
-
-                        blluser.InsertarUser_43BO(dni, txtNom.Text, txtApe.Text, rolSeleccionado, txtEmail.Text);
+                       blluser.InsertarUser_43BO(dni, txtNom.Text, txtApe.Text,rolSeleccionado, txtEmail.Text);
 
                         //lo mismo
-                        bllBitacora.GuardarLog_43BO(null, Modulo_43BO.Usuario, Evento_43BO.Crear, 3);
+                        bllBitacora.GuardarLog_43BO(null, Modulo_43BO.Usuario, Evento_43BO.Crear, 2);
                         MessageBox.Show("Usuario creado con éxito.");
                     }
                 }

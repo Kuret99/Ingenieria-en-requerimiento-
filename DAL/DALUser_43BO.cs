@@ -119,8 +119,8 @@ namespace DAL
                 if (filasAdectadas == 0)
                 {
                     throw new Exception("No se encontró el usuario para cambiar la contraseña.");
-                }
-            }
+            }                }
+
             catch(Exception ex)
             {
                 throw new Exception("Error al cambiar la contraseña. Por favor, inténtelo de nuevo.");
