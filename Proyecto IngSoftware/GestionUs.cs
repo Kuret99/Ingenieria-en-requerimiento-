@@ -137,10 +137,10 @@ namespace Proyecto_IngSoftware
             if (dgvUsaurio.Columns.Contains("Activo_43BO")) dgvUsaurio.Columns["Activo_43BO"].HeaderText = "Activo";
             if (dgvUsaurio.Columns.Contains("Bloqueado_43BO")) dgvUsaurio.Columns["Bloqueado_43BO"].HeaderText = "Bloqueado";
 
-            // Reordenamos la columna del nombre del Rol a la posición que quieras 
+            // roerdenamos la columna del nombre del Rol a la posición que quieras 
             if (dgvUsaurio.Columns.Contains("RolNombre")) dgvUsaurio.Columns["RolNombre"].DisplayIndex = 4;
 
-            // Pintamos los colores usando las celdas directas de la fila
+            // `pintamos los colores sando las celdas directas de la fila
             foreach (DataGridViewRow fila in dgvUsaurio.Rows)
             {
                 if (fila.Cells["Activo_43BO"].Value != null && fila.Cells["Bloqueado_43BO"].Value != null)
@@ -259,6 +259,14 @@ namespace Proyecto_IngSoftware
                     MessageBox.Show("El DNI debe ser un número válido.");
                     return;
                 }
+
+                if (txtDNI.Text.Length != 8)
+                {
+                    MessageBox.Show("El DNI debe tener  8 dígitos.");
+                    return;
+                }
+
+
                 Rol_43BO rolSeleccionado = (Rol_43BO)cmbRol.SelectedItem;
 
                 if (string.IsNullOrEmpty(txtNom.Text) || string.IsNullOrEmpty(txtApe.Text) || cmbRol.SelectedItem == null || string.IsNullOrEmpty(txtEmail.Text))

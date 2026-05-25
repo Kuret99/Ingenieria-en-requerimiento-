@@ -35,17 +35,18 @@ public class DALBitacora_43BO
 
 
 
-        string query = "SELECT B.IdEvento_43BO AS [ID], " +
-                   "B.Fecha_43BO AS [Fecha y Hora], " +
-                   "B.Modulo_43BO AS [Módulo], " +
-                   "B.Evento_43BO AS [Evento Realizado], " +
-                   "B.Criticidad_43BO AS [Criticidad], " +
-                   "B.DNIuser_43BO AS [DNI Operador], " +
-                   "U.Nombre_43BO AS [Nombre Usuario], " +
-                   "U.Apellido_43BO AS [Apellido Usuario] " +
-                   "FROM Bitacora_43BO B " +
-                   "INNER JOIN Usuarios_43BO U ON B.DNIuser_43BO = U.DNI_43BO " +
-                   "WHERE B.Fecha_43BO BETWEEN @fInicio AND @fFin AND B.Modulo_43BO = @modulo";
+        string query = @"SELECT B.IdEvento_43BO AS [ID], 
+                B.Fecha_43BO AS [Fecha y Hora], 
+                B.Modulo_43BO AS [Módulo], 
+                B.Evento_43BO AS [Evento Realizado], 
+                B.Criticidad_43BO AS [Criticidad], 
+                B.DNIuser_43BO AS [DNI], 
+                U.Nombre_43BO AS [Nombre], 
+                U.Apellido_43BO AS [Apellido],
+                (CAST(B.DNIuser_43BO AS VARCHAR) + U.Nombre_43BO) AS [Username] 
+                FROM Bitacora_43BO B 
+                INNER JOIN Usuarios_43BO U ON B.DNIuser_43BO = U.DNI_43BO 
+                WHERE B.Fecha_43BO BETWEEN @fInicio AND @fFin AND B.Modulo_43BO = @modulo";
 
         SqlParameter[] parametros = {
         new SqlParameter("@fInicio", fInicio.Date),

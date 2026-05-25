@@ -2,6 +2,7 @@
 using Servicios;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BLL
 {
@@ -146,6 +147,17 @@ namespace BLL
 
         public void InsertarUser_43BO(int dni, string nom, string ape, Rol_43BO rol, string email)
         {
+
+            var usuariosExistentes = DALuser.ListarUsuarios_43BO();
+
+
+            //solo era este if bldo
+            if (usuariosExistentes.Any(u => u.DNI_43BO == dni))
+            {             
+                throw new Exception("Error: El DNI " + dni + " ya se encuentra registrado en el sistema.");
+            }
+
+
             string contraseñaPlana = dni.ToString() + ape.Trim();
 
             string contraseñaDefault = CriptoManager_43BO.GenerarHash_43BO(contraseñaPlana);

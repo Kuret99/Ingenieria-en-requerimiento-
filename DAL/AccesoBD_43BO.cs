@@ -10,11 +10,15 @@ namespace DAL
 {
     public class AccesoBD_43BO
     {
-        private string _cadenaConexion;
+        private static readonly string _cadenaConexion = "Data Source=Usuario;Initial Catalog=Ing.Software;Integrated Security=True";
+
+
         public AccesoBD_43BO()
         {
-            _cadenaConexion = ConfigurationManager.ConnectionStrings["Ing.Software"].ConnectionString;
+           
         }
+
+
         public int Escribir_43BO(string query, SqlParameter[] parametros = null)
         {
             using (SqlConnection con = new SqlConnection(_cadenaConexion))
@@ -33,21 +37,20 @@ namespace DAL
         {
             DataTable tabla = new DataTable();
 
-            // 1. Establece la conexión usando la cadena del App.config
+      
             using (SqlConnection conexion = new SqlConnection(_cadenaConexion))
             {
-                // 2. Prepara el comando SQL
+                
                 using (SqlCommand comando = new SqlCommand(query, conexion))
                 {
-                    // 3. Agrega parámetros si existen para evitar SQL Injection
-                    if (parametros != null) comando.Parameters.AddRange(parametros);
+               if (parametros != null) comando.Parameters.AddRange(parametros);
 
-                    // 4. Usa un Adapter para llenar el DataTable (el "DataSet" de tu diagrama)
+                   
                     SqlDataAdapter adapter = new SqlDataAdapter(comando);
                     adapter.Fill(tabla);
                 }
             }
-            // 5. Devuelve la tabla con los datos en bruto
+           
             return tabla;
         }
     }

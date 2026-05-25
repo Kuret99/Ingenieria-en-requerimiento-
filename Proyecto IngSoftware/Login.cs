@@ -32,20 +32,13 @@ namespace Proyecto_IngSoftware
 
                 }
 
-                if (SessionManager_43BO.EsUsuarioActual_43BO(txtUser.Text))
+                if (SessionManager_43BO.VerificarSesionActiva_43BO())
                 {
-                    // 1. Traemos el objeto limpio desde la instancia del Singleton
-                    var usuarioEnSesion = SessionManager_43BO.Instancia.Usuario;
-
-                    // 2. Armamos el Username concatenando DNI y Nombre en el mismo formato que usa tu DAL
-                    string usernameInstancia = usuarioEnSesion.DNI_43BO.ToString() + usuarioEnSesion.Nombre_43BO.Trim();
-
-                    // 3. Lo escupimos en el cartel
-                    MessageBox.Show($"Operación Denegada: El usuario '{usernameInstancia}' ya tiene una instancia activa en el sistema.",
-                                    "Control de Concurrencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
+                    MessageBox.Show("Ya existe una sesión activa en el sistema. Debe cerrar la sesión actual antes de intentar un nuevo ingreso.",
+                                    "Acceso Denegado", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    return; // Bloqueamos totalmente el acceso
                 }
-
+               
                 bool ingreso = bll.ValidarLogin_43BO(txtUser.Text, txtContra.Text);
 
 

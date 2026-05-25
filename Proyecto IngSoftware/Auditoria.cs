@@ -18,6 +18,7 @@ namespace Proyecto_IngSoftware
     {
 
         private BLL.BLLBitacora_43BO bllBitacora = new BLL.BLLBitacora_43BO();
+        private bool estaReseteando = false;
 
         public Auditoria()
         {
@@ -27,6 +28,9 @@ namespace Proyecto_IngSoftware
 
         private void Auditoria_Load(object sender, EventArgs e)
         {
+
+            dtpFechaInicio.MaxDate = DateTime.MaxValue;
+            dtpFechaFin.MaxDate = DateTime.MaxValue;
 
             ResetearComponentes_43BO();
         }
@@ -44,6 +48,9 @@ namespace Proyecto_IngSoftware
 
                 if (tablaDatos != null)
                 {
+
+                   
+
                     // esto es para aplicar los filtros adicionales que se hayan puesto en los cmbos y txtboxs (ademas de la fecha y modulo que ya se aplican en la consulta SQL) 
                     DataView vistaFiltrada = new DataView(tablaDatos);
                     // y aca vamos a ir armando una lista de filtros para despues aplicarlos todos jntoss)
@@ -56,32 +63,35 @@ namespace Proyecto_IngSoftware
                         filtrosExtra.Add($"[Criticidad] = {numeroCriticidad}");
                     }
 
-                    if (cmbEvento.SelectedValue != null)
+                    if (cmbEvento.SelectedItem != null)
                     {
-                        filtrosExtra.Add($"[Evento Realizado] = '{cmbEvento.SelectedValue.ToString()}'");
+                        filtrosExtra.Add($"[Evento Realizado] = '{cmbEvento.SelectedItem.ToString()}'");
                     }
 
                     // --- FILTROS DE TEXTO ---
-                   
+
                     if (!string.IsNullOrEmpty(txtNombre.Text))
                     {
-                        filtrosExtra.Add($"[Nombre Usuario] LIKE '%{txtNombre.Text.Trim()}%'");
+                        filtrosExtra.Add($"[Nombre] LIKE '%{txtNombre.Text.Trim()}%'");
                     }
 
                     if (!string.IsNullOrEmpty(txtApellido.Text))
                     {
-                        filtrosExtra.Add($"[Apellido Usuario] LIKE '%{txtApellido.Text.Trim()}%'");
+                        filtrosExtra.Add($"CONVERT([Apellido], 'System.String') LIKE '%{txtApellido.Text.Trim()}%'");
                     }
 
-                    if (!string.IsNullOrEmpty(txtUsername.Text))
+                    if (!string.IsNullOrEmpty(txtUsername.Text)) 
                     {
-                        filtrosExtra.Add($"[DNI Operador] LIKE '%{txtUsername.Text.Trim()}%'");
+
+                        string valorBusqueda = txtUsername.Text.Trim();
+                        filtrosExtra.Add($"Username LIKE '%{valorBusqueda}%'");
                     }
 
 
                     if (filtrosExtra.Count > 0)
                     {
                         vistaFiltrada.RowFilter = string.Join(" AND ", filtrosExtra);
+
                     }
                     else
                     {
@@ -112,11 +122,25 @@ namespace Proyecto_IngSoftware
 
         private void ResetearComponentes_43BO()
         {
-            // Volvemos a cargar las opciones de los Enums
+            estaReseteando = true; // Bloqueamos los eventos para que no se disparen solos
+
+           
+            DateTime hoy = DateTime.Now.Date;
+
+            if (dtpFechaInicio.Value > hoy) dtpFechaInicio.Value = hoy;
+            if (dtpFechaFin.Value > hoy) dtpFechaFin.Value = hoy;
+
+           
+            dtpFechaInicio.MaxDate = hoy;
+            dtpFechaFin.MaxDate = hoy;
+
+            dtpFechaFin.Value = hoy;
+            dtpFechaInicio.Value = hoy.AddDays(-3);
+
+         
             cmbModulo.DataSource = Enum.GetValues(typeof(Modulo_43BO));
             cmbEvento.DataSource = Enum.GetValues(typeof(Evento_43BO));
 
-            // Reseteamos el combo de Criticidad a "Todas"
             cmbCriticidad.Items.Clear();
             cmbCriticidad.Items.Add("Todas");
             cmbCriticidad.Items.Add("1 - Alta");
@@ -124,16 +148,15 @@ namespace Proyecto_IngSoftware
             cmbCriticidad.Items.Add("3 - Baja");
             cmbCriticidad.SelectedIndex = 0;
 
-            // Clavamos las fechas por defecto (Fin hoy, Inicio 3 días atrás)
-            dtpFechaFin.Value = DateTime.Now;
-            dtpFechaInicio.Value = DateTime.Now.AddDays(-3);
-
-          
             txtNombre.Clear();
             txtApellido.Clear();
             txtUsername.Clear();
 
+            estaReseteando = false; // Desbloqueamos
+
+    
             CargarGrillaFiltrada_43BO();
+
         }
 
 
@@ -188,7 +211,66 @@ namespace Proyecto_IngSoftware
                 }
             }
         }
+
+
+        private void cmbModulo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (estaReseteando) return;
+
+
+            cmbEvento.DataSource = null;
+            cmbEvento.Items.Clear();
+
+          
+            if (cmbModulo.SelectedItem is Modulo_43BO modulo)
+            {
+                switch (modulo)
+                {
+                    case Modulo_43BO.Usuario:
+                        cmbEvento.Items.Add(Evento_43BO.Login);
+                        cmbEvento.Items.Add(Evento_43BO.Logout);
+                        cmbEvento.Items.Add(Evento_43BO.Crear);
+                        cmbEvento.Items.Add(Evento_43BO.Desactivar);
+                        cmbEvento.Items.Add(Evento_43BO.modificar);
+                        cmbEvento.Items.Add(Evento_43BO.Bloqueo);
+                        cmbEvento.Items.Add(Evento_43BO.Desbloqueo);
+                        break;
+
+                    case Modulo_43BO.Ventas:
+                      
+                        break;
+
+                    case Modulo_43BO.Compras:
+                       
+                        break;
+
+                      
+                }
+            }
+        }
+
+        private void dgvAuditoria_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (estaReseteando) return;
+
+            // avlidamos que el índice de fila sea correcto
+            if (e.RowIndex >= 0 && e.RowIndex < dgvAuditoria.Rows.Count)
+            {
+                DataGridViewRow fila = dgvAuditoria.Rows[e.RowIndex];
+
+               
+                string dni = fila.Cells["DNI"].Value?.ToString();
+                string nombre = fila.Cells["Nombre"].Value?.ToString();
+                string apellido = fila.Cells["Apellido"].Value?.ToString();
+                string username = fila.Cells["Username"].Value?.ToString(); 
+
+            
+                txtNombre.Text = nombre;
+                txtApellido.Text = apellido;
+                txtUsername.Text = username;
+            }
         
+        }
     }
    
 }

@@ -43,13 +43,13 @@ namespace Servicios
                     {
                         lock (_lock)
                         {
-                            if (_instancia == null)
+                            if (_instancia != null)
                             {
-                                _instancia = new SessionManager_43BO(); 
-                                _instancia.Usuario = usuario;
-
-                            }
-
+                            throw new Exception("Ya existe una sesión activa. Debe cerrar la anterior antes de iniciar otra.");
+                             }
+                                  _instancia = new SessionManager_43BO();
+                               _instancia.Usuario = usuario;
+    
                         }
                     }
 

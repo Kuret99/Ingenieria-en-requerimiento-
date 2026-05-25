@@ -58,6 +58,7 @@
             this.dgvAuditoria.Name = "dgvAuditoria";
             this.dgvAuditoria.Size = new System.Drawing.Size(635, 217);
             this.dgvAuditoria.TabIndex = 0;
+            this.dgvAuditoria.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAuditoria_CellClick);
             // 
             // label1
             // 
@@ -181,6 +182,7 @@
             this.cmbModulo.Name = "cmbModulo";
             this.cmbModulo.Size = new System.Drawing.Size(121, 21);
             this.cmbModulo.TabIndex = 15;
+            this.cmbModulo.SelectedIndexChanged += new System.EventHandler(this.cmbModulo_SelectedIndexChanged);
             // 
             // cmbEvento
             // 
