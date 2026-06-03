@@ -61,9 +61,9 @@ namespace DAL
                // lo mismo que arriba  u.Rol_43BO = fila["Rol_43BO"].ToString();
                 u.Activo_43BO = Convert.ToBoolean(fila["Activo_43BO"]);
                 u.Bloqueado_43BO = Convert.ToBoolean(fila["Bloqueado_43BO"]);
-                u.Rol = new Rol_43BO();
+                u.Rol = new Familia_43BO();
                 u.Rol.IdRol_43BO = Convert.ToInt32(fila["IdRol_43BO"]);
-                u.Rol.Nombre_43BO = fila["NombreRol_43BO"].ToString(); // Agarra el nombre real del rol mapeado
+                u.Rol.Nombre_43BO = fila["NombreRol_43BO"].ToString(); ; // Agarra el nombre real del rol mapeado
 
                 lista.Add(u); // Agregamos el objeto a la lista
             }
@@ -159,7 +159,7 @@ namespace DAL
                 u.Hash_43BO = fila["Hash_43BO"].ToString();
                 u.Activo_43BO = Convert.ToBoolean(fila["Activo_43BO"]);
                 u.Bloqueado_43BO = Convert.ToBoolean(fila["Bloqueado_43BO"]);
-                u.Rol = new Rol_43BO();
+                u.Rol = new Familia_43BO();
                 u.Rol.IdRol_43BO = Convert.ToInt32(fila["IdRol_43BO"]);
                 u.Rol.Nombre_43BO = fila["NombreRol_43BO"].ToString();
                 return u;

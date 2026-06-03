@@ -10,6 +10,7 @@ namespace BLL
     {
         private DALUser_43BO DALuser = new DALUser_43BO();
         private BLLBitacora_43BO bllBi = new BLLBitacora_43BO();
+        private DALpatente_43BO dalPatente = new DALpatente_43BO();
 
         // cf de contador de fallos y ultIntentos para poder reiniciar el contador deepues de X contador de tiempo 
         private static Dictionary<string, int> cf = new Dictionary<string, int>();
@@ -73,15 +74,14 @@ namespace BLL
             {
                 ReiniciarIn_43BO(UserName);
 
+                
+            
+                bllBi.GuardarLog_43BO(usaurio, Modulo_43BO.Usuario, Evento_43BO.Login, 1); // Log de éxito de login
+
                 if (!SessionManager_43BO.VerificarSesionActiva_43BO())
                 {
                     SessionManager_43BO.IniciarSesion_43BO(usaurio);
                 }
-
-            
-                bllBi.GuardarLog_43BO(usaurio, Modulo_43BO.Usuario, Evento_43BO.Login, 1); // Log de éxito de login
-
-
                 return true; // Login exitoso
             }
             else
@@ -238,13 +238,31 @@ namespace BLL
         //Esto simularia el obtener los permisos
         public List<string> ObtenerPermisos_43BO(User_43BO usuario)
         {
-            if (usuario != null && usuario.Rol != null)
+            if (usuario == null || usuario.Rol == null) return new List<string>();
+
+            //Llamamos al DAL que creaste recién usando el ID del rol
+            List<int> idsPermisos = dalPatente.ObtenerIdsPermisosPorRol_43BO(usuario.Rol.IdRol_43BO);
+
+            List<string> nombresPermisos = new List<string>();
+
+            //CONVEtimos cada id nume la nombre del Enum
+            foreach (int id in idsPermisos)
             {
-              
-                return usuario.Rol.ObtenerPermisos_43BO();
+                // Esto busca en el  Enum corresponde al ID
+                string nombre = Enum.GetName(typeof(Servicios.Permisos_43BO), id);
+
+                if (nombre != null)
+                {
+                    nombresPermisos.Add(nombre);
+                }
             }
-            return new List<string>();
+
+            return nombresPermisos;
         }
+
+
+
+
         public List<User_43BO> ListarUsuarios_43BO()
         {
             //de aca retorna la lista de usarios que fue cargado con el .fill del aadapter

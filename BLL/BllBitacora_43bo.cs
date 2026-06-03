@@ -20,18 +20,36 @@ namespace BLL
         public void GuardarLog_43BO(User_43BO usaurio, Modulo_43BO modulo, Evento_43BO evento, int criticidad)
         {
             Bitacora_43BO bi = new Bitacora_43BO();
-          
-            //como todavia no tengo el login tuve que mporvisar un dni de un usaurio para testear
-           
-            
-            bi.log_43BO = SessionManager_43BO.Instancia.Usuario;
+
+      
+
+            /// --- Esto queda aca por si ams adelante tengoq ue cambialo -----
+            //bi.log_43BO = SessionManager_43BO.Instancia.Usuario;
+
+            //bi.Modulo = modulo;
+            //bi.Evento = evento;
+            //bi.Fecha_43BO = DateTime.Now;
+            //bi.Criticidad_43BO = criticidad;
+
+            //dal.GuardarLog_43BO(bi);
+
+
+            if (SessionManager_43BO.Instancia != null)
+            {
+                bi.log_43BO = SessionManager_43BO.Instancia.Usuario;
+            }
+            else
+            {
+                bi.log_43BO = usaurio; // Usamos el usuario que llega por parámetro si la sesión no está lista
+            }
 
             bi.Modulo = modulo;
             bi.Evento = evento;
             bi.Fecha_43BO = DateTime.Now;
             bi.Criticidad_43BO = criticidad;
-            
             dal.GuardarLog_43BO(bi);
+
+
         }
 
         public DataTable ListarBitacora_43BO(DateTime fInicio, DateTime fFin, string modulo)

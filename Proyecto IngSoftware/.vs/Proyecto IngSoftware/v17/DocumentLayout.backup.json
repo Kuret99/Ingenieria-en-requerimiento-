@@ -3,61 +3,82 @@
   "WorkspaceRootPath": "C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\Proyecto IngSoftware\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{254E9F21-E2C6-4C41-8632-D4EA79499650}|GUI_43BO.csproj|c:\\users\\juanpy\\documents\\ing. software\\ingenieria-en-requerimiento-\\proyecto ingsoftware\\auditoria.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{254E9F21-E2C6-4C41-8632-D4EA79499650}|GUI_43BO.csproj|solutionrelative:auditoria.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6F931184-CDC0-4195-BE83-FD9D6427D832}|..\\DAL\\DAL_43BO.csproj|c:\\users\\juanpy\\documents\\ing. software\\ingenieria-en-requerimiento-\\dal\\dalbitacora_43bo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{254E9F21-E2C6-4C41-8632-D4EA79499650}|GUI_43BO.csproj|C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\Proyecto IngSoftware\\menu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{254E9F21-E2C6-4C41-8632-D4EA79499650}|GUI_43BO.csproj|solutionrelative:menu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{254E9F21-E2C6-4C41-8632-D4EA79499650}|GUI_43BO.csproj|C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\Proyecto IngSoftware\\auditoria.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{254E9F21-E2C6-4C41-8632-D4EA79499650}|GUI_43BO.csproj|solutionrelative:auditoria.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{254E9F21-E2C6-4C41-8632-D4EA79499650}|GUI_43BO.csproj|C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\Proyecto IngSoftware\\gestionus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{254E9F21-E2C6-4C41-8632-D4EA79499650}|GUI_43BO.csproj|solutionrelative:gestionus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{679653A6-C4A3-4BBD-9EB2-7F7F85CE8742}|..\\Servicios\\Servicios_43BO.csproj|c:\\users\\juanpy\\documents\\ing. software\\ingenieria-en-requerimiento-\\servicios\\bitacora_43bo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{679653A6-C4A3-4BBD-9EB2-7F7F85CE8742}|..\\Servicios\\Servicios_43BO.csproj|c:\\users\\juanpy\\documents\\ing. software\\ingenieria-en-requerimiento-\\servicios\\rol_43bo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{679653A6-C4A3-4BBD-9EB2-7F7F85CE8742}|..\\Servicios\\Servicios_43BO.csproj|c:\\users\\juanpy\\documents\\ing. software\\ingenieria-en-requerimiento-\\servicios\\criptomanager_43bo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{679653A6-C4A3-4BBD-9EB2-7F7F85CE8742}|..\\Servicios\\Servicios_43BO.csproj|c:\\users\\juanpy\\documents\\ing. software\\ingenieria-en-requerimiento-\\servicios\\sessionmanager_43bo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D0D05733-7006-4D0A-A2D0-E36E9F68B089}|..\\BLL\\BLL_43BO.csproj|c:\\users\\juanpy\\documents\\ing. software\\ingenieria-en-requerimiento-\\bll\\blluser_43bo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{6F931184-CDC0-4195-BE83-FD9D6427D832}|..\\DAL\\DAL_43BO.csproj|c:\\users\\juanpy\\documents\\ing. software\\ingenieria-en-requerimiento-\\dal\\dalpatente_43bo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{6F931184-CDC0-4195-BE83-FD9D6427D832}|..\\DAL\\DAL_43BO.csproj|c:\\users\\juanpy\\documents\\ing. software\\ingenieria-en-requerimiento-\\dal\\daluser_43bo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{254E9F21-E2C6-4C41-8632-D4EA79499650}|GUI_43BO.csproj|C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\Proyecto IngSoftware\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
-      "RelativeMoniker": "D:0:0:{254E9F21-E2C6-4C41-8632-D4EA79499650}|GUI_43BO.csproj|solutionrelative:app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+      "AbsoluteMoniker": "D:0:0:{679653A6-C4A3-4BBD-9EB2-7F7F85CE8742}|..\\Servicios\\Servicios_43BO.csproj|c:\\users\\juanpy\\documents\\ing. software\\ingenieria-en-requerimiento-\\servicios\\permisos_43bo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{679653A6-C4A3-4BBD-9EB2-7F7F85CE8742}|..\\Servicios\\Servicios_43BO.csproj|c:\\users\\juanpy\\documents\\ing. software\\ingenieria-en-requerimiento-\\servicios\\sessionmanager_43bo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{679653A6-C4A3-4BBD-9EB2-7F7F85CE8742}|..\\Servicios\\Servicios_43BO.csproj|c:\\users\\juanpy\\documents\\ing. software\\ingenieria-en-requerimiento-\\servicios\\rol_43bo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{254E9F21-E2C6-4C41-8632-D4EA79499650}|GUI_43BO.csproj|C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\Proyecto IngSoftware\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{254E9F21-E2C6-4C41-8632-D4EA79499650}|GUI_43BO.csproj|solutionrelative:login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{D0D05733-7006-4D0A-A2D0-E36E9F68B089}|..\\BLL\\BLL_43BO.csproj|c:\\users\\juanpy\\documents\\ing. software\\ingenieria-en-requerimiento-\\bll\\bllbitacora_43bo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D0D05733-7006-4D0A-A2D0-E36E9F68B089}|..\\BLL\\BLL_43BO.csproj|c:\\users\\juanpy\\documents\\ing. software\\ingenieria-en-requerimiento-\\bll\\bllpatente_43bo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{679653A6-C4A3-4BBD-9EB2-7F7F85CE8742}|..\\Servicios\\Servicios_43BO.csproj|c:\\users\\juanpy\\documents\\ing. software\\ingenieria-en-requerimiento-\\servicios\\user_43bo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{679653A6-C4A3-4BBD-9EB2-7F7F85CE8742}|..\\Servicios\\Servicios_43BO.csproj|c:\\users\\juanpy\\documents\\ing. software\\ingenieria-en-requerimiento-\\servicios\\patente_43bo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6F931184-CDC0-4195-BE83-FD9D6427D832}|..\\DAL\\DAL_43BO.csproj|c:\\users\\juanpy\\documents\\ing. software\\ingenieria-en-requerimiento-\\dal\\dalbitacora_43bo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{679653A6-C4A3-4BBD-9EB2-7F7F85CE8742}|..\\Servicios\\Servicios_43BO.csproj|c:\\users\\juanpy\\documents\\ing. software\\ingenieria-en-requerimiento-\\servicios\\familia_43bo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{254E9F21-E2C6-4C41-8632-D4EA79499650}|GUI_43BO.csproj|C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\Proyecto IngSoftware\\auditoria.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{254E9F21-E2C6-4C41-8632-D4EA79499650}|GUI_43BO.csproj|solutionrelative:auditoria.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{254E9F21-E2C6-4C41-8632-D4EA79499650}|GUI_43BO.csproj|C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\Proyecto IngSoftware\\menu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{254E9F21-E2C6-4C41-8632-D4EA79499650}|GUI_43BO.csproj|solutionrelative:menu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{254E9F21-E2C6-4C41-8632-D4EA79499650}|GUI_43BO.csproj|C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\Proyecto IngSoftware\\cambiocontrase\u00F1a.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{254E9F21-E2C6-4C41-8632-D4EA79499650}|GUI_43BO.csproj|solutionrelative:cambiocontrase\u00F1a.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{254E9F21-E2C6-4C41-8632-D4EA79499650}|GUI_43BO.csproj|C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\Proyecto IngSoftware\\gestionus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{254E9F21-E2C6-4C41-8632-D4EA79499650}|GUI_43BO.csproj|solutionrelative:gestionus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{254E9F21-E2C6-4C41-8632-D4EA79499650}|GUI_43BO.csproj|C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\Proyecto IngSoftware\\gestionus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{254E9F21-E2C6-4C41-8632-D4EA79499650}|GUI_43BO.csproj|solutionrelative:gestionus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{254E9F21-E2C6-4C41-8632-D4EA79499650}|GUI_43BO.csproj|c:\\users\\juanpy\\documents\\ing. software\\ingenieria-en-requerimiento-\\proyecto ingsoftware\\auditoria.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{254E9F21-E2C6-4C41-8632-D4EA79499650}|GUI_43BO.csproj|solutionrelative:auditoria.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{679653A6-C4A3-4BBD-9EB2-7F7F85CE8742}|..\\Servicios\\Servicios_43BO.csproj|c:\\users\\juanpy\\documents\\ing. software\\ingenieria-en-requerimiento-\\servicios\\bitacora_43bo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{679653A6-C4A3-4BBD-9EB2-7F7F85CE8742}|..\\Servicios\\Servicios_43BO.csproj|c:\\users\\juanpy\\documents\\ing. software\\ingenieria-en-requerimiento-\\servicios\\criptomanager_43bo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{254E9F21-E2C6-4C41-8632-D4EA79499650}|GUI_43BO.csproj|C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\Proyecto IngSoftware\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{254E9F21-E2C6-4C41-8632-D4EA79499650}|GUI_43BO.csproj|solutionrelative:app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{254E9F21-E2C6-4C41-8632-D4EA79499650}|GUI_43BO.csproj|C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\Proyecto IngSoftware\\cambiocontrase\u00F1a.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{254E9F21-E2C6-4C41-8632-D4EA79499650}|GUI_43BO.csproj|solutionrelative:cambiocontrase\u00F1a.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{254E9F21-E2C6-4C41-8632-D4EA79499650}|GUI_43BO.csproj|C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\Proyecto IngSoftware\\cambiocontrase\u00F1a.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
@@ -92,18 +113,162 @@
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "Auditoria.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\Proyecto IngSoftware\\Auditoria.cs",
-              "RelativeDocumentMoniker": "Auditoria.cs",
-              "ToolTip": "C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\Proyecto IngSoftware\\Auditoria.cs [Dise\u00F1o]",
-              "RelativeToolTip": "Auditoria.cs [Dise\u00F1o]",
+              "Title": "DALUser_43BO.cs",
+              "DocumentMoniker": "C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\DAL\\DALUser_43BO.cs",
+              "RelativeDocumentMoniker": "..\\DAL\\DALUser_43BO.cs",
+              "ToolTip": "C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\DAL\\DALUser_43BO.cs",
+              "RelativeToolTip": "..\\DAL\\DALUser_43BO.cs",
+              "ViewState": "AgIAALcAAAAAAAAAAAAAAMAAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-17T18:33:18.08Z",
-              "EditorCaption": " [Dise\u00F1o]"
+              "WhenOpened": "2026-05-01T21:34:47.133Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "BllUser_43BO.cs",
+              "DocumentMoniker": "C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\BLL\\BllUser_43BO.cs",
+              "RelativeDocumentMoniker": "..\\BLL\\BllUser_43BO.cs",
+              "ToolTip": "C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\BLL\\BllUser_43BO.cs",
+              "RelativeToolTip": "..\\BLL\\BllUser_43BO.cs",
+              "ViewState": "AgIAANwAAAAAAAAAAAAYwO0AAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-17T23:40:44.222Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Permisos_43BO.cs",
+              "DocumentMoniker": "C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\Servicios\\Permisos_43BO.cs",
+              "RelativeDocumentMoniker": "..\\Servicios\\Permisos_43BO.cs",
+              "ToolTip": "C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\Servicios\\Permisos_43BO.cs",
+              "RelativeToolTip": "..\\Servicios\\Permisos_43BO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-02T23:18:03.101Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "DALpatente_43BO.cs",
+              "DocumentMoniker": "C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\DAL\\DALpatente_43BO.cs",
+              "RelativeDocumentMoniker": "..\\DAL\\DALpatente_43BO.cs",
+              "ToolTip": "C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\DAL\\DALpatente_43BO.cs",
+              "RelativeToolTip": "..\\DAL\\DALpatente_43BO.cs",
+              "ViewState": "AgIAAHYAAAAAAAAAAAAWwIUAAAA2AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-02T23:48:10.115Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Menu.cs",
+              "DocumentMoniker": "C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\Proyecto IngSoftware\\Menu.cs",
+              "RelativeDocumentMoniker": "Menu.cs",
+              "ToolTip": "C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\Proyecto IngSoftware\\Menu.cs",
+              "RelativeToolTip": "Menu.cs",
+              "ViewState": "AgIAAE8AAAAAAAAAAADwv3gAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-01T22:42:07.653Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "SessionManager_43BO.cs",
+              "DocumentMoniker": "C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\Servicios\\SessionManager_43BO.cs",
+              "RelativeDocumentMoniker": "..\\Servicios\\SessionManager_43BO.cs",
+              "ToolTip": "C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\Servicios\\SessionManager_43BO.cs",
+              "RelativeToolTip": "..\\Servicios\\SessionManager_43BO.cs",
+              "ViewState": "AgIAACMAAAAAAAAAAAAIwC4AAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-03T23:34:56.238Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Rol_43BO.cs",
+              "DocumentMoniker": "C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\Servicios\\Rol_43BO.cs",
+              "RelativeDocumentMoniker": "..\\Servicios\\Rol_43BO.cs",
+              "ToolTip": "C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\Servicios\\Rol_43BO.cs",
+              "RelativeToolTip": "..\\Servicios\\Rol_43BO.cs",
+              "ViewState": "AgIAAAEAAAAAAAAAAAAlwA4AAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-19T02:33:38.317Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Patente_43BO.cs",
+              "DocumentMoniker": "C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\Servicios\\Patente_43BO.cs",
+              "RelativeDocumentMoniker": "..\\Servicios\\Patente_43BO.cs",
+              "ToolTip": "C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\Servicios\\Patente_43BO.cs",
+              "RelativeToolTip": "..\\Servicios\\Patente_43BO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-02T20:33:56.613Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Login.cs",
+              "DocumentMoniker": "C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\Proyecto IngSoftware\\Login.cs",
+              "RelativeDocumentMoniker": "Login.cs",
+              "ToolTip": "C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\Proyecto IngSoftware\\Login.cs",
+              "RelativeToolTip": "Login.cs",
+              "ViewState": "AgIAADUAAAAAAAAAAAAqwEgAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-01T14:36:24.946Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "BllPatente_43BO.cs",
+              "DocumentMoniker": "C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\BLL\\BllPatente_43BO.cs",
+              "RelativeDocumentMoniker": "..\\BLL\\BllPatente_43BO.cs",
+              "ToolTip": "C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\BLL\\BllPatente_43BO.cs",
+              "RelativeToolTip": "..\\BLL\\BllPatente_43BO.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAgwDUAAABMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-02T23:49:47.742Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "BllBitacora_43bo.cs",
+              "DocumentMoniker": "C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\BLL\\BllBitacora_43bo.cs",
+              "RelativeDocumentMoniker": "..\\BLL\\BllBitacora_43bo.cs",
+              "ToolTip": "C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\BLL\\BllBitacora_43bo.cs",
+              "RelativeToolTip": "..\\BLL\\BllBitacora_43bo.cs",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAQwBcAAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-03T01:15:08.873Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "User_43BO.cs",
+              "DocumentMoniker": "C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\Servicios\\User_43BO.cs",
+              "RelativeDocumentMoniker": "..\\Servicios\\User_43BO.cs",
+              "ToolTip": "C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\Servicios\\User_43BO.cs",
+              "RelativeToolTip": "..\\Servicios\\User_43BO.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAxwEkAAAADAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-02T20:37:38.422Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
               "Title": "DALbitacora_43BO.cs",
               "DocumentMoniker": "C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\DAL\\DALbitacora_43BO.cs",
               "RelativeDocumentMoniker": "..\\DAL\\DALbitacora_43BO.cs",
@@ -116,142 +281,33 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "CriptoManager_43BO.cs",
-              "DocumentMoniker": "C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\Servicios\\CriptoManager_43BO.cs",
-              "RelativeDocumentMoniker": "..\\Servicios\\CriptoManager_43BO.cs",
-              "ToolTip": "C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\Servicios\\CriptoManager_43BO.cs",
-              "RelativeToolTip": "..\\Servicios\\CriptoManager_43BO.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAdAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-26T22:43:02.543Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Menu.cs",
-              "DocumentMoniker": "C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\Proyecto IngSoftware\\Menu.cs",
-              "RelativeDocumentMoniker": "Menu.cs",
-              "ToolTip": "C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\Proyecto IngSoftware\\Menu.cs",
-              "RelativeToolTip": "Menu.cs",
-              "ViewState": "AgIAAIcAAAAAAAAAAAAEwHgAAAAIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-01T22:42:07.653Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Auditoria.cs",
-              "DocumentMoniker": "C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\Proyecto IngSoftware\\Auditoria.cs",
-              "RelativeDocumentMoniker": "Auditoria.cs",
-              "ToolTip": "C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\Proyecto IngSoftware\\Auditoria.cs",
-              "RelativeToolTip": "Auditoria.cs",
-              "ViewState": "AgIAADcAAAAAAAAAAAAAAFEAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-17T18:45:48.097Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "SessionManager_43BO.cs",
-              "DocumentMoniker": "C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\Servicios\\SessionManager_43BO.cs",
-              "RelativeDocumentMoniker": "..\\Servicios\\SessionManager_43BO.cs",
-              "ToolTip": "C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\Servicios\\SessionManager_43BO.cs",
-              "RelativeToolTip": "..\\Servicios\\SessionManager_43BO.cs",
+              "DocumentIndex": 13,
+              "Title": "Familia_43BO.cs",
+              "DocumentMoniker": "C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\Servicios\\Familia_43BO.cs",
+              "RelativeDocumentMoniker": "..\\Servicios\\Familia_43BO.cs",
+              "ToolTip": "C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\Servicios\\Familia_43BO.cs",
+              "RelativeToolTip": "..\\Servicios\\Familia_43BO.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-03T23:34:56.238Z"
+              "WhenOpened": "2026-06-02T20:35:04.754Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "BllUser_43BO.cs",
-              "DocumentMoniker": "C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\BLL\\BllUser_43BO.cs",
-              "RelativeDocumentMoniker": "..\\BLL\\BllUser_43BO.cs",
-              "ToolTip": "C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\BLL\\BllUser_43BO.cs",
-              "RelativeToolTip": "..\\BLL\\BllUser_43BO.cs",
-              "ViewState": "AgIAAKQAAAAAAAAAAAAnwKoAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-17T23:40:44.222Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 17,
               "Title": "GestionUs.cs",
               "DocumentMoniker": "C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\Proyecto IngSoftware\\GestionUs.cs",
               "RelativeDocumentMoniker": "GestionUs.cs",
               "ToolTip": "C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\Proyecto IngSoftware\\GestionUs.cs",
               "RelativeToolTip": "GestionUs.cs",
-              "ViewState": "AgIAAOIAAAAAAAAAAAA2wMMBAABBAAAAAAAAAA==",
+              "ViewState": "AgIAAIgAAAAAAAAAAAAmwJAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-05-19T21:53:28.491Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Rol_43BO.cs",
-              "DocumentMoniker": "C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\Servicios\\Rol_43BO.cs",
-              "RelativeDocumentMoniker": "..\\Servicios\\Rol_43BO.cs",
-              "ToolTip": "C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\Servicios\\Rol_43BO.cs",
-              "RelativeToolTip": "..\\Servicios\\Rol_43BO.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAQwAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-19T02:33:38.317Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Bitacora_43BO.cs",
-              "DocumentMoniker": "C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\Servicios\\Bitacora_43BO.cs",
-              "RelativeDocumentMoniker": "..\\Servicios\\Bitacora_43BO.cs",
-              "ToolTip": "C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\Servicios\\Bitacora_43BO.cs",
-              "RelativeToolTip": "..\\Servicios\\Bitacora_43BO.cs",
-              "ViewState": "AgIAABQAAAAAAAAAAAAwwDQAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-29T01:06:39.584Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "DALUser_43BO.cs",
-              "DocumentMoniker": "C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\DAL\\DALUser_43BO.cs",
-              "RelativeDocumentMoniker": "..\\DAL\\DALUser_43BO.cs",
-              "ToolTip": "C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\DAL\\DALUser_43BO.cs",
-              "RelativeToolTip": "..\\DAL\\DALUser_43BO.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-01T21:34:47.133Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "App.config",
-              "DocumentMoniker": "C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\Proyecto IngSoftware\\App.config",
-              "RelativeDocumentMoniker": "App.config",
-              "ToolTip": "C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\Proyecto IngSoftware\\App.config",
-              "RelativeToolTip": "App.config",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
-              "WhenOpened": "2026-05-22T22:49:14.116Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "Login.cs",
-              "DocumentMoniker": "C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\Proyecto IngSoftware\\Login.cs",
-              "RelativeDocumentMoniker": "Login.cs",
-              "ToolTip": "C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\Proyecto IngSoftware\\Login.cs",
-              "RelativeToolTip": "Login.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-01T14:36:24.946Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 15,
               "Title": "Menu.cs [Dise\u00F1o]",
               "DocumentMoniker": "C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\Proyecto IngSoftware\\Menu.cs",
               "RelativeDocumentMoniker": "Menu.cs",
@@ -263,7 +319,31 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 14,
+              "Title": "Auditoria.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\Proyecto IngSoftware\\Auditoria.cs",
+              "RelativeDocumentMoniker": "Auditoria.cs",
+              "ToolTip": "C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\Proyecto IngSoftware\\Auditoria.cs [Dise\u00F1o]",
+              "RelativeToolTip": "Auditoria.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-17T18:33:18.08Z",
+              "EditorCaption": " [Dise\u00F1o]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "CriptoManager_43BO.cs",
+              "DocumentMoniker": "C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\Servicios\\CriptoManager_43BO.cs",
+              "RelativeDocumentMoniker": "..\\Servicios\\CriptoManager_43BO.cs",
+              "ToolTip": "C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\Servicios\\CriptoManager_43BO.cs",
+              "RelativeToolTip": "..\\Servicios\\CriptoManager_43BO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-26T22:43:02.543Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
               "Title": "GestionUs.cs [Dise\u00F1o]",
               "DocumentMoniker": "C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\Proyecto IngSoftware\\GestionUs.cs",
               "RelativeDocumentMoniker": "GestionUs.cs",
@@ -275,7 +355,44 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 18,
+              "Title": "Auditoria.cs",
+              "DocumentMoniker": "C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\Proyecto IngSoftware\\Auditoria.cs",
+              "RelativeDocumentMoniker": "Auditoria.cs",
+              "ToolTip": "C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\Proyecto IngSoftware\\Auditoria.cs",
+              "RelativeToolTip": "Auditoria.cs",
+              "ViewState": "AgIAAFwAAAAAAAAAAAAwwFEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-17T18:45:48.097Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "Bitacora_43BO.cs",
+              "DocumentMoniker": "C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\Servicios\\Bitacora_43BO.cs",
+              "RelativeDocumentMoniker": "..\\Servicios\\Bitacora_43BO.cs",
+              "ToolTip": "C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\Servicios\\Bitacora_43BO.cs",
+              "RelativeToolTip": "..\\Servicios\\Bitacora_43BO.cs",
+              "ViewState": "AgIAABQAAAAAAAAAAAAwwDQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-29T01:06:39.584Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "App.config",
+              "DocumentMoniker": "C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\Proyecto IngSoftware\\App.config",
+              "RelativeDocumentMoniker": "App.config",
+              "ToolTip": "C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\Proyecto IngSoftware\\App.config",
+              "RelativeToolTip": "App.config",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
+              "WhenOpened": "2026-05-22T22:49:14.116Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
               "Title": "CambioContrase\u00F1a.cs",
               "DocumentMoniker": "C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\Proyecto IngSoftware\\CambioContrase\u00F1a.cs",
               "RelativeDocumentMoniker": "CambioContrase\u00F1a.cs",
@@ -287,7 +404,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 23,
               "Title": "CambioContrase\u00F1a.cs [Dise\u00F1o]",
               "DocumentMoniker": "C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\Proyecto IngSoftware\\CambioContrase\u00F1a.cs",
               "RelativeDocumentMoniker": "CambioContrase\u00F1a.cs",
@@ -298,7 +415,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 24,
               "Title": "Auditoria.Designer.cs",
               "DocumentMoniker": "C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\Proyecto IngSoftware\\Auditoria.Designer.cs",
               "RelativeDocumentMoniker": "Auditoria.Designer.cs",
@@ -310,7 +427,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 25,
               "Title": "Login.Designer.cs",
               "DocumentMoniker": "C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\Proyecto IngSoftware\\Login.Designer.cs",
               "RelativeDocumentMoniker": "Login.Designer.cs",
@@ -322,7 +439,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 26,
               "Title": "Menu.resx",
               "DocumentMoniker": "C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\Proyecto IngSoftware\\Menu.resx",
               "RelativeDocumentMoniker": "Menu.resx",
@@ -334,7 +451,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 27,
               "Title": "GestionUs.Designer.cs",
               "DocumentMoniker": "C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\Proyecto IngSoftware\\GestionUs.Designer.cs",
               "RelativeDocumentMoniker": "GestionUs.Designer.cs",

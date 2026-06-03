@@ -25,6 +25,7 @@ namespace Proyecto_IngSoftware
         {
             try
             {
+               
                 if (string.IsNullOrEmpty(txtUser.Text) || string.IsNullOrEmpty(txtContra.Text))
                 {
                     MessageBox.Show("por favir complete los campos.");
@@ -44,22 +45,59 @@ namespace Proyecto_IngSoftware
 
                 if (ingreso)
                 {
-                 
+                   
 
-                    MessageBox.Show("Ingreso Exitoso");
 
-                    // --- MANEJO DE VENTANAS (RE-LOGIN VS INICIO) ---
-                    if (Application.OpenForms["Menu"] != null)
+                  
+
+                    BLL.BLLpatente_43BO bllPatentes = new BLL.BLLpatente_43BO();  // Asignamos el árbol
+                    var sesion = SessionManager_43BO.Instancia;
+
+
+                    User_43BO usuarioLogueado = sesion.Usuario;
+
+                    if (usuarioLogueado != null && usuarioLogueado.Rol != null)
                     {
-                        this.Close(); // Es ReLogin, cerramos solo la ventanita flotante
+                        // 3. Cargamos los permisos usando el rol del usuario que ya tenemos en sesión
+                        sesion.PermisosUsuario = bllPatentes.ObtenerArbolDePermisos_43BO(usuarioLogueado.Rol.IdRol_43BO);
+
+                        MessageBox.Show("Ingreso Exitoso");
+
+                        // --- LÓGICA DE MENÚ ---
+                        if (Application.OpenForms["Menu"] != null)
+                        {
+                            this.Close();
+                        }
+                        else
+                        {
+                            menu = new Menu();
+                            menu.Show();
+                            this.Hide();
+                        }
                     }
                     else
                     {
-                        // Es el arranque inicial del sistema
-                        menu = new Menu();
-                        menu.Show();
-                        this.Hide();
+                        MessageBox.Show("Error crítico: El usuario se logueó pero su rol está vacío.");
                     }
+
+
+                    //sesion.PermisosUsuario = bllPatentes.ObtenerArbolDePermisos_43BO(sesion.Usuario.Rol.IdRol_43BO);
+
+
+                    //MessageBox.Show("Ingreso Exitoso");
+
+                    //// --- MANEJO DE VENTANAS (RE-LOGIN VS INICIO) ---
+                    //if (Application.OpenForms["Menu"] != null)
+                    //{
+                    //    this.Close(); // Es ReLogin, cerramos solo la ventanita flotante
+                    //}
+                    //else
+                    //{
+                    //    // Es el arranque inicial del sistema
+                    //    menu = new Menu();
+                    //    menu.Show();
+                    //    this.Hide();
+                    //}
 
                 }
 

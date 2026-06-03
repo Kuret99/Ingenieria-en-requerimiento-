@@ -28,10 +28,10 @@ namespace Proyecto_IngSoftware
         {
             // Creamos los objetos directamente
             List<Rol_43BO> roles = new List<Rol_43BO>
-    {
-        new Rol_43BO { IdRol_43BO = 1, Nombre_43BO = "Administrador" },
-        new Rol_43BO { IdRol_43BO = 2, Nombre_43BO = "Básico" }
-    };
+            {
+        new Familia_43BO { IdRol_43BO = 1, Nombre_43BO = "Administrador" },
+        new Familia_43BO { IdRol_43BO = 2, Nombre_43BO = "Básico" }
+            };
 
             cmbRol.DataSource = roles;
             cmbRol.DisplayMember = "Nombre_43BO";

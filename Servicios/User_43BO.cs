@@ -71,7 +71,7 @@ namespace Servicios
 				
         }
 
-        public Rol_43BO Rol { get; set; } = new Rol_43BO();
+        public Rol_43BO Rol { get; set; }
 
 
         public override string ToString()

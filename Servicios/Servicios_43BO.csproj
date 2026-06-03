@@ -43,6 +43,9 @@
   <ItemGroup>
     <Compile Include="Bitacora_43BO.cs" />
     <Compile Include="CriptoManager_43BO.cs" />
+    <Compile Include="Familia_43BO.cs" />
+    <Compile Include="Patente_43BO.cs" />
+    <Compile Include="Permisos_43BO.cs" />
     <Compile Include="Rol_43BO.cs" />
     <Compile Include="SessionManager_43BO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

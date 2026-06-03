@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BllBitacora_43bo.cs" />
+    <Compile Include="BllPatente_43BO.cs" />
     <Compile Include="BllUser_43BO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

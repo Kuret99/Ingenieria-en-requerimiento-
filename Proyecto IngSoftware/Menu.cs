@@ -95,8 +95,12 @@ namespace Proyecto_IngSoftware
                         // AHORAAA SIIIIIIIIIIII ESTO va a poder simular lo de roles y permisos para ams adelante
                         List<string> permisosActivos = bll.ObtenerPermisos_43BO(usuarioLogueado);
 
+                        string listaDebug = string.Join(", ", permisosActivos);
+                        string listaDebug = string.Join(", ", permisosActivos);
+                        MessageBox.Show("Permisos encontrados en la base: " + (string.IsNullOrEmpty(listaDebug) ? "NINGUNO" : listaDebug));
+
                         //el menu solo habilita o deshabilita según los permisos o que tiene permitido el user
-                        AdminToolStripMenuItem.Enabled = permisosActivos.Contains("Admin");
+                        AdminToolStripMenuItem.Enabled = permisosActivos.Contains("GestionUsuarios_Acceso");
                         masterToolStripMenuItem.Enabled = permisosActivos.Contains("Master");
                         ventaToolStripMenuItem.Enabled = permisosActivos.Contains("Venta");
                         CompraToolStripMenuItem.Enabled = permisosActivos.Contains("Stock");
