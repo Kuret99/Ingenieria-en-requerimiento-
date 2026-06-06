@@ -96,7 +96,7 @@ namespace Proyecto_IngSoftware
                         List<string> permisosActivos = bll.ObtenerPermisos_43BO(usuarioLogueado);
 
                         string listaDebug = string.Join(", ", permisosActivos);
-                        string listaDebug = string.Join(", ", permisosActivos);
+                      
                         MessageBox.Show("Permisos encontrados en la base: " + (string.IsNullOrEmpty(listaDebug) ? "NINGUNO" : listaDebug));
 
                         //el menu solo habilita o deshabilita según los permisos o que tiene permitido el user
