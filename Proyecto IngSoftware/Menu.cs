@@ -1,68 +1,103 @@
 ﻿using BLL;
 using Servicios;
+using Servicios.IidiomaObserver;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+
 namespace Proyecto_IngSoftware
 {
-    public partial class Menu : Form
+    public partial class Menu : Form, IdiomaObserver_43BO
     {
         private GestionUs Gu_43BO;
         private CambioContraseña CC_43BO;
         private Auditoria Aud_43BO;
         private BllUser_43BO bll = new BLL.BllUser_43BO();
+        private GestionPerfiles Gperfiles;
+        private Dictionary<string, string> _dic;
+
         public Menu()
         {
             InitializeComponent();
+            GestorIdioma_43BO.Instancia.Suscribir_43BO(this);
+        }
+
+       
+        public void ActualizarIdioma_43BO(Dictionary<string, string> dic)
+        {
+            _dic = dic;
+
+            // Menú Admin
+            AdminToolStripMenuItem.Text = GetTexto("menu_admin");
+            gestionUsuarioToolStripMenuItem.Text = GetTexto("menu_admin_gestion_usuario");
+            bitacoraToolStripMenuItem.Text = GetTexto("menu_admin_auditoria");
+            gestionPerfilesToolStripMenuItem.Text = GetTexto("menu_admin_gestion_perfiles");
+
+            // Menú Usuario
+            UserToolStripMenuItem.Text = GetTexto("menu_usuario");
+            cambiarContraseñaToolStripMenuItem.Text = GetTexto("menu_usuario_cambiar_contra");
+            cerrarSesiobnToolStripMenuItem.Text = GetTexto("menu_usuario_cerrar_sesion");
+            cambiarIdiomaToolStripMenuItem.Text = GetTexto("menu_usuario_cambiar_idioma");
+            reLoginToolStripMenuItem.Text = GetTexto("menu_usuario_relogin");
+
+            // Otros
+            masterToolStripMenuItem.Text = GetTexto("menu_master");
+            ventaToolStripMenuItem.Text = GetTexto("menu_venta");
+            CompraToolStripMenuItem.Text = GetTexto("menu_compra");
+            reporteToolStripMenuItem.Text = GetTexto("menu_reporte");
+            ayudaToolStripMenuItem.Text = GetTexto("menu_ayuda");
+        }
+
+  
+        private string GetTexto(string key)
+        {
+            if (_dic != null && _dic.ContainsKey(key))
+                return _dic[key];
+            return key; // Si es un error crudo de SQL o BLL devuelve la cadena original sin romperse
+        }
+
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            GestorIdioma_43BO.Instancia.Desuscribir_43BO(this);
+            base.OnFormClosing(e);
         }
 
         private void gestionUsuarioToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Gu_43BO = new GestionUs();
-
             Gu_43BO.MdiParent = this;
-
             Gu_43BO.Show();
         }
 
         private void cerrarSesiobnToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
-            DialogResult result = MessageBox.Show("¿Está seguro que desea cerrar sesión?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult result = MessageBox.Show(
+                GetTexto("menu_msg_confirmar_cerrar_sesion"),
+                GetTexto("titulo_confirmacion"),
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question
+            );
 
             if (result == DialogResult.Yes)
             {
                 try
                 {
-                  
-                 
                     bll.CerrarSesion_43BO();
-
-
                     Login frmLogin = new Login();
                     frmLogin.Show();
-
                     this.Close();
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Error al cerrar sesión: " + ex.Message);
+                    MessageBox.Show(GetTexto(ex.Message), GetTexto("titulo_error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
 
         private void cambiarContraseñaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
             CC_43BO = new CambioContraseña();
             CC_43BO.MdiParent = this;
-
             CC_43BO.Show();
         }
 
@@ -74,17 +109,20 @@ namespace Proyecto_IngSoftware
 
                 if (usuarioLogueado != null)
                 {
-                   
                     if (bll.EsContraseñaDeFabrica_43BO(usuarioLogueado))
                     {
-                        MessageBox.Show("Por motivos de seguridad, debe modificar su contraseña de fábrica antes de operar en el sistema.");
+                        MessageBox.Show(
+                            GetTexto("menu_msg_cambiar_contra_fabrica"),
+                            GetTexto("titulo_atencion"),
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Warning
+                        );
 
                         CambioContraseña frmCambio = new CambioContraseña();
                         frmCambio.MdiParent = this;
                         frmCambio.StartPosition = FormStartPosition.CenterScreen;
                         frmCambio.Show();
 
-                       
                         AdminToolStripMenuItem.Enabled = false;
                         masterToolStripMenuItem.Enabled = false;
                         ventaToolStripMenuItem.Enabled = false;
@@ -92,35 +130,36 @@ namespace Proyecto_IngSoftware
                     }
                     else
                     {
-                        // AHORAAA SIIIIIIIIIIII ESTO va a poder simular lo de roles y permisos para ams adelante
                         List<string> permisosActivos = bll.ObtenerPermisos_43BO(usuarioLogueado);
 
-                        string listaDebug = string.Join(", ", permisosActivos);
-                      
-                        MessageBox.Show("Permisos encontrados en la base: " + (string.IsNullOrEmpty(listaDebug) ? "NINGUNO" : listaDebug));
+                        // Traducimos el cartel de depuración de permisos usando componentes del JSON
+                        string detallePermisos = string.IsNullOrEmpty(listaDebug(permisosActivos)) ? GetTexto("menu_msg_ninguno") : listaDebug(permisosActivos);
+                        MessageBox.Show(
+                            GetTexto("menu_msg_permisos_encontrados") + " " + detallePermisos,
+                            GetTexto("titulo_atencion"),
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Information
+                        );
 
-                        //el menu solo habilita o deshabilita según los permisos o que tiene permitido el user
                         AdminToolStripMenuItem.Enabled = permisosActivos.Contains("GestionUsuarios_Acceso");
                         masterToolStripMenuItem.Enabled = permisosActivos.Contains("Master");
                         ventaToolStripMenuItem.Enabled = permisosActivos.Contains("Venta");
                         CompraToolStripMenuItem.Enabled = permisosActivos.Contains("Stock");
                     }
-                   
                 }
             }
-            
             catch (Exception ex)
             {
-                MessageBox.Show("Error al verificar estado de la cuenta: " + ex.Message);
+                MessageBox.Show(GetTexto(ex.Message), GetTexto("titulo_error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
+        private string listaDebug(List<string> lista) => string.Join(", ", lista);
+
         private void bitacoraToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
             Aud_43BO = new Auditoria();
             Aud_43BO.MdiParent = this;
-
             Aud_43BO.Show();
         }
 
@@ -128,20 +167,27 @@ namespace Proyecto_IngSoftware
         {
             try
             {
-                // Instanciamos el Login existente
                 Login ReLogin = new Login();
-
-                // Hacemos que se abra centrado respecto al menú principal
                 ReLogin.StartPosition = FormStartPosition.CenterParent;
-
-                // Lo abrimos como un cuadro de diálogo modal (bloquea el menú de fondo hasta que se cierre o rebote)
                 ReLogin.ShowDialog();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al ejecutar el ReLogin: " + ex.Message);
+                MessageBox.Show(GetTexto(ex.Message), GetTexto("titulo_error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
 
+        private void gestionPerfilesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Gperfiles = new GestionPerfiles();
+            Gperfiles.MdiParent = this;
+            Gperfiles.Show();
+        }
+
+        private void cambiarIdiomaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CambiarIdioma ci = new CambiarIdioma();
+            ci.ShowDialog(this);
         }
     }
 }

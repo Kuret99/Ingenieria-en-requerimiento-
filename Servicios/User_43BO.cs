@@ -74,11 +74,13 @@ namespace Servicios
         public Rol_43BO Rol { get; set; }
 
 
-        public override string ToString()
-        {
-            return !string.IsNullOrEmpty(Nombre_43BO) ? Nombre_43BO : "";
-        }
+        private string _idioma;
 
+        public string Idioma_43BO
+        {
+            get { return _idioma; }
+            set { _idioma = value; }
+        }
 
     }
 }

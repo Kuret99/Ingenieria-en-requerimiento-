@@ -143,7 +143,7 @@
             this.dgvUsaurio.Name = "dgvUsaurio";
             this.dgvUsaurio.Size = new System.Drawing.Size(656, 216);
             this.dgvUsaurio.TabIndex = 8;
-            this.dgvUsaurio.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvUsuarios_CellClick_43BO);
+            this.dgvUsaurio.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvUsaurio_CellClick_43BO);
             // 
             // rbBloqueados
             // 

@@ -32,6 +32,7 @@
             this.AdminToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gestionUsuarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bitacoraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gestionPerfilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.UserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cambiarContraseñaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cerrarSesiobnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -66,7 +67,8 @@
             // 
             this.AdminToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.gestionUsuarioToolStripMenuItem,
-            this.bitacoraToolStripMenuItem});
+            this.bitacoraToolStripMenuItem,
+            this.gestionPerfilesToolStripMenuItem});
             this.AdminToolStripMenuItem.Name = "AdminToolStripMenuItem";
             this.AdminToolStripMenuItem.Size = new System.Drawing.Size(55, 20);
             this.AdminToolStripMenuItem.Text = "Admin";
@@ -75,7 +77,7 @@
             // 
             this.gestionUsuarioToolStripMenuItem.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.gestionUsuarioToolStripMenuItem.Name = "gestionUsuarioToolStripMenuItem";
-            this.gestionUsuarioToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.gestionUsuarioToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
             this.gestionUsuarioToolStripMenuItem.Text = "GestionUsuario";
             this.gestionUsuarioToolStripMenuItem.Click += new System.EventHandler(this.gestionUsuarioToolStripMenuItem_Click);
             // 
@@ -83,9 +85,17 @@
             // 
             this.bitacoraToolStripMenuItem.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.bitacoraToolStripMenuItem.Name = "bitacoraToolStripMenuItem";
-            this.bitacoraToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.bitacoraToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
             this.bitacoraToolStripMenuItem.Text = "Auditoria";
             this.bitacoraToolStripMenuItem.Click += new System.EventHandler(this.bitacoraToolStripMenuItem_Click);
+            // 
+            // gestionPerfilesToolStripMenuItem
+            // 
+            this.gestionPerfilesToolStripMenuItem.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.gestionPerfilesToolStripMenuItem.Name = "gestionPerfilesToolStripMenuItem";
+            this.gestionPerfilesToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
+            this.gestionPerfilesToolStripMenuItem.Text = "GestionPerfiles";
+            this.gestionPerfilesToolStripMenuItem.Click += new System.EventHandler(this.gestionPerfilesToolStripMenuItem_Click);
             // 
             // UserToolStripMenuItem
             // 
@@ -120,6 +130,7 @@
             this.cambiarIdiomaToolStripMenuItem.Name = "cambiarIdiomaToolStripMenuItem";
             this.cambiarIdiomaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.cambiarIdiomaToolStripMenuItem.Text = "Cambiar Idioma";
+            this.cambiarIdiomaToolStripMenuItem.Click += new System.EventHandler(this.cambiarIdiomaToolStripMenuItem_Click);
             // 
             // reLoginToolStripMenuItem
             // 
@@ -195,5 +206,6 @@
         private System.Windows.Forms.ToolStripMenuItem reLoginToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem reporteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ayudaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem gestionPerfilesToolStripMenuItem;
     }
 }

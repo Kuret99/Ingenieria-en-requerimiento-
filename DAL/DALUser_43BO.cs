@@ -14,7 +14,7 @@ namespace DAL
 
         public void InsertarUser_43BO(User_43BO Usuario)
         {
-            // Agregamos Hash_43BO, Bloqueado_43BO y Activo_43BO a la consulta
+            
             string query = "INSERT INTO Usuarios_43BO (DNI_43BO, Nombre_43BO, Apellido_43BO, Email_43BO, Hash_43BO, Bloqueado_43BO, Activo_43BO, Rol_43BO) " +
                            "VALUES (@dni, @nom, @ape, @mail, @hash, @bloq, @act, @rol)";
 
@@ -43,14 +43,14 @@ namespace DAL
             List<User_43BO> lista = new List<User_43BO>();
             string query = @"SELECT U.DNI_43BO, U.Nombre_43BO, U.Apellido_43BO, U.Email_43BO, 
                                     U.Activo_43BO, U.Bloqueado_43BO, U.Hash_43BO,
-                                    R.IdRol_43BO, R.NombreRol_43BO AS NombreRol_43BO
+                                    R.IdRol_43BO, R.NombreRol_43BO AS NombreRol_43BO, U.Idioma_43BO
                              FROM Usuarios_43BO U
                              INNER JOIN Rol_43BO R ON U.Rol_43BO = R.IdRol_43BO";
 
-            //llamamos a leer en DalAcceso
+         
             DataTable tabla = acceso.Leer_43BO(query);
 
-            //  Recorremos la tabla y le llenamos con la info que le llega desde la BD
+       
             foreach (DataRow fila in tabla.Rows)
             {
                 User_43BO u = new User_43BO();
@@ -58,13 +58,12 @@ namespace DAL
                 u.Nombre_43BO = fila["Nombre_43BO"].ToString();
                 u.Apellido_43BO = fila["Apellido_43BO"].ToString();
                 u.Email_43BO = fila["Email_43BO"].ToString();
-               // lo mismo que arriba  u.Rol_43BO = fila["Rol_43BO"].ToString();
                 u.Activo_43BO = Convert.ToBoolean(fila["Activo_43BO"]);
                 u.Bloqueado_43BO = Convert.ToBoolean(fila["Bloqueado_43BO"]);
                 u.Rol = new Familia_43BO();
                 u.Rol.IdRol_43BO = Convert.ToInt32(fila["IdRol_43BO"]);
                 u.Rol.Nombre_43BO = fila["NombreRol_43BO"].ToString(); ; // Agarra el nombre real del rol mapeado
-
+                u.Idioma_43BO = fila["Idioma_43BO"] != DBNull.Value ? fila["Idioma_43BO"].ToString() : "es";
                 lista.Add(u); // Agregamos el objeto a la lista
             }
 
@@ -90,7 +89,7 @@ namespace DAL
         public int EliminarUser_43BO(int dni, bool activo)
         {
 
-            // En lugar de eliminar actualizo el campo Activo_43BO a false
+            // en lugar de eliminar actualizo el campo Activo_43BO a false
             string query = "UPDATE Usuarios_43BO SET Activo_43BO = @activo WHERE DNI_43BO = @dni";
             SqlParameter[] parametros = new SqlParameter[]
             {
@@ -134,7 +133,7 @@ namespace DAL
 
             string query = @"SELECT U.DNI_43BO, U.Nombre_43BO, U.Apellido_43BO, U.Email_43BO, 
                                     U.Activo_43BO, U.Bloqueado_43BO, U.Hash_43BO,
-                                    R.IdRol_43BO, R.NombreRol_43BO AS NombreRol_43BO
+                                    R.IdRol_43BO, R.NombreRol_43BO AS NombreRol_43BO, U.Idioma_43BO
                              FROM Usuarios_43BO U
                              INNER JOIN Rol_43BO R ON U.Rol_43BO = R.IdRol_43BO
                              WHERE (CAST(U.DNI_43BO AS VARCHAR) + trim(U.Nombre_43BO)) = @Username";
@@ -155,13 +154,13 @@ namespace DAL
                 u.Nombre_43BO = fila["Nombre_43BO"].ToString();
                 u.Apellido_43BO = fila["Apellido_43BO"].ToString();
                 u.Email_43BO = fila["Email_43BO"].ToString();
-              //  u.Rol_43BO = fila["Rol_43BO"].ToString();
                 u.Hash_43BO = fila["Hash_43BO"].ToString();
                 u.Activo_43BO = Convert.ToBoolean(fila["Activo_43BO"]);
                 u.Bloqueado_43BO = Convert.ToBoolean(fila["Bloqueado_43BO"]);
                 u.Rol = new Familia_43BO();
                 u.Rol.IdRol_43BO = Convert.ToInt32(fila["IdRol_43BO"]);
                 u.Rol.Nombre_43BO = fila["NombreRol_43BO"].ToString();
+                u.Idioma_43BO = fila["Idioma_43BO"] != DBNull.Value ? fila["Idioma_43BO"].ToString() : "es";
                 return u;
 
             }
@@ -187,6 +186,16 @@ namespace DAL
         new SqlParameter("@hash", contraReset)
     };
 
+            return acceso.Escribir_43BO(query, parametros);
+        }
+
+        public int ActualizarIdioma_43BO(int dni, string idioma)
+        {
+            string query = "UPDATE Usuarios_43BO SET Idioma_43BO = @idioma WHERE DNI_43BO = @dni";
+            SqlParameter[] parametros = {
+        new SqlParameter("@dni", dni),
+        new SqlParameter("@idioma", idioma)
+    };
             return acceso.Escribir_43BO(query, parametros);
         }
     }

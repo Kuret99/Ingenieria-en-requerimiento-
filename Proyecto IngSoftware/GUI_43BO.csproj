@@ -39,6 +39,10 @@
     <Reference Include="itextsharp, Version=5.5.13.5, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
       <HintPath>packages\iTextSharp.5.5.13.5\lib\net461\itextsharp.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>packages\Newtonsoft.Json.13.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -57,6 +61,12 @@
     </Compile>
     <Compile Include="Auditoria.Designer.cs">
       <DependentUpon>Auditoria.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CambiarIdioma.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CambiarIdioma.Designer.cs">
+      <DependentUpon>CambiarIdioma.cs</DependentUpon>
     </Compile>
     <Compile Include="CambioContraseña.cs">
       <SubType>Form</SubType>
@@ -82,16 +92,19 @@
     <Compile Include="Menu.Designer.cs">
       <DependentUpon>Menu.cs</DependentUpon>
     </Compile>
-    <Compile Include="PerfilesFamilia.cs">
+    <Compile Include="GestionPerfiles.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PerfilesFamilia.Designer.cs">
-      <DependentUpon>PerfilesFamilia.cs</DependentUpon>
+    <Compile Include="GestionPerfiles.Designer.cs">
+      <DependentUpon>GestionPerfiles.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Auditoria.resx">
       <DependentUpon>Auditoria.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CambiarIdioma.resx">
+      <DependentUpon>CambiarIdioma.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CambioContraseña.resx">
       <DependentUpon>CambioContraseña.cs</DependentUpon>
@@ -105,8 +118,8 @@
     <EmbeddedResource Include="Menu.resx">
       <DependentUpon>Menu.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PerfilesFamilia.resx">
-      <DependentUpon>PerfilesFamilia.cs</DependentUpon>
+    <EmbeddedResource Include="GestionPerfiles.resx">
+      <DependentUpon>GestionPerfiles.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -117,6 +130,12 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="Idiomas\es.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Idiomas\pr.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -144,6 +163,11 @@
       <Project>{679653a6-c4a3-4bbd-9eb2-7f7f85ce8742}</Project>
       <Name>Servicios_43BO</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Idiomas\en.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

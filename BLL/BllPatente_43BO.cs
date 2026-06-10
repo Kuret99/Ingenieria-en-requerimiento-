@@ -2,63 +2,86 @@
 using Servicios;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BLL
 {
     public class BLLpatente_43BO
     {
-        // Instanciamos la DAL que acabás de crear
-        DALpatente_43BO dal = new DALpatente_43BO();
+        private readonly DALpatente_43BO _dal = new DALpatente_43BO();
 
-        // Este es el método que vas a llamar desde el Login o SessionManager
-        public Familia_43BO ObtenerArbolDePermisos_43BO(int idRol)
+        // ALTAS
+       // public int RegistrarPatente_43BO(string nombre) => _dal.InsertarPatente_43BO(nombre);
+        public int RegistrarFamilia_43BO(string nombre) => _dal.InsertarFamilia_43BO(nombre);
+        public int RegistrarRol_43BO(string nombre) => _dal.InsertarRol_43BO(nombre);
+
+        // LISTADOS
+        public List<Patente_43BO> ListarTodasLasPatentes_43BO() => _dal.ListarTodasLasPatentes_43BO();
+        public List<Familia_43BO> ListarTodasLasFamilias_43BO() => _dal.ListarTodasLasFamilias_43BO();
+        public List<Familia_43BO> ListarTodosLosRoles_43BO() => _dal.ListarTodosLosRoles_43BO();
+
+  
+        public bool AgregarComponenteHijo_43BO(Rol_43BO padre, Rol_43BO hijo, bool esModoRol)
         {
-            // Creamos un "nodo raíz" (Familia) que va a contener todo el árbol de este Rol
-            Familia_43BO rolRaiz = new Familia_43BO();
-            rolRaiz.IdRol_43BO = idRol;
+            if (padre == null || hijo == null) throw new ArgumentNullException();
 
-            // 1. Traemos las patentes directas que tiene este rol y las agregamos
-            List<Patente_43BO> patentesDelRol = dal.ObtenerPatentesRol_43BO(idRol);
-            foreach (var p in patentesDelRol)
+            if (hijo is Familia_43BO familiaHija)
             {
-                rolRaiz.Agregar(p);
+                // Forzamos la carga de todos sus hijos recursivamente
+                HidratarFamiliaRecursivo_43BO(familiaHija);
+            }
+            // ---------------------------
+
+            if (padre is Familia_43BO familiaPadre)
+            {
+                // Ahora sí, llamamos al método que ya tiene la lógica de validación
+                familiaPadre.Agregar_43BO(hijo);
             }
 
-            // 2. Traemos las familias directas que tiene este rol
-            List<Familia_43BO> familiasDelRol = dal.ObtenerFamiliasRol_43BO(idRol);
-            foreach (var f in familiasDelRol)
-            {
-                rolRaiz.Agregar(f);
-
-                // Acá disparamos la recursividad para llenar cada familia por dentro
-                LlenarFamiliaRecursiva_43BO(f);
-            }
-
-            return rolRaiz; // Te devuelve el árbol completo armado
+            return _dal.VincularHijo_43BO(padre, hijo, esModoRol);
         }
 
-        // Método privado encargado de la magia de la recursividad
-        private void LlenarFamiliaRecursiva_43BO(Familia_43BO familiaPadre)
+        public bool QuitarComponenteHijo_43BO(Rol_43BO padre, Rol_43BO hijo, bool esModoRol)
         {
-            // 1. Buscamos y agregamos las patentes (hojas) de esta familia
-            List<Patente_43BO> patentesHijas = dal.ObtenerPatentesDeFamilia_43BO(familiaPadre.IdRol_43BO);
-            foreach (var p in patentesHijas)
-            {
-                familiaPadre.Agregar(p);
-            }
+            return _dal.DesvincularHijo_43BO(padre, hijo, esModoRol);
+        }
 
-            // 2. Buscamos y agregamos las sub-familias (ramas) de esta familia
-            List<Familia_43BO> familiasHijas = dal.ObtenerFamiliasHijas_43BO(familiaPadre.IdRol_43BO);
-            foreach (var f in familiasHijas)
-            {
-                familiaPadre.Agregar(f);
+        // CARGA RECURSIVA
+        public void HidratarRolCompleto_43BO(Familia_43BO rolRaiz)
+        {
+            if (rolRaiz == null) return;
+            rolRaiz.LimpiarHijos_43BO();
 
-                // RECURSIVIDAD: Como es una familia, volvemos a llamarnos a nosotros mismos
-                LlenarFamiliaRecursiva_43BO(f);
+            foreach (var p in _dal.ObtenerPatentesRol_43BO(rolRaiz.IdRol_43BO)) rolRaiz.AgregarHijo_43BO(p);
+            foreach (var f in _dal.ObtenerFamiliasRol_43BO(rolRaiz.IdRol_43BO))
+            {
+                HidratarFamiliaRecursivo_43BO(f);
+                rolRaiz.AgregarHijo_43BO(f);
             }
+        }
+
+        public void HidratarFamiliaRecursivo_43BO(Familia_43BO familiaPadre)
+        {
+            if (familiaPadre == null) return;
+            familiaPadre.LimpiarHijos_43BO();
+
+            foreach (var p in _dal.ObtenerPatentesDeFamilia_43BO(familiaPadre.IdRol_43BO)) familiaPadre.AgregarHijo_43BO(p);
+            foreach (var f in _dal.ObtenerFamiliasHijas_43BO(familiaPadre.IdRol_43BO))
+            {
+                HidratarFamiliaRecursivo_43BO(f);
+                familiaPadre.AgregarHijo_43BO(f);
+            }
+        }
+
+        // ELIMINACIÓN
+        public void EliminarRol_43BO(int idRol) => _dal.EliminarRol_43BO(idRol);
+        public void EliminarFamilia_43BO(int idFamilia) => _dal.EliminarFamilia_43BO(idFamilia);
+
+        public Familia_43BO ObtenerArbolDePermisos_43BO(int idRol)
+        {
+            Familia_43BO rolRaiz = new Familia_43BO();
+            rolRaiz.IdRol_43BO = idRol;
+            HidratarRolCompleto_43BO(rolRaiz);
+            return rolRaiz;
         }
     }
 }

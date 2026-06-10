@@ -261,7 +261,31 @@ namespace BLL
         }
 
 
+        public void CambiarIdiomaUsuario_43BO(int dni_43BO, string nuevoIdioma_43BO)
+        {
+        
+            DALuser.ActualizarIdioma_43BO(dni_43BO, nuevoIdioma_43BO);
 
+            // Si el usuario está logueado, actualizamos su objeto en memoria
+            if (SessionManager_43BO.Instancia.Usuario != null && SessionManager_43BO.Instancia.Usuario.DNI_43BO == dni_43BO)
+            {
+                SessionManager_43BO.Instancia.Usuario.Idioma_43BO = nuevoIdioma_43BO;
+            }
+        }
+
+        public string ObtenerJsonIdioma_43BO(string codigoIdioma_43BO)
+        {
+            
+            string path_43BO = AppDomain.CurrentDomain.BaseDirectory + $"Idiomas\\{codigoIdioma_43BO}.json";
+
+          
+            if (!System.IO.File.Exists(path_43BO))
+            {
+                path_43BO = AppDomain.CurrentDomain.BaseDirectory + "Idiomas\\es.json";
+            }
+
+            return System.IO.File.ReadAllText(path_43BO);
+        }
 
         public List<User_43BO> ListarUsuarios_43BO()
         {
