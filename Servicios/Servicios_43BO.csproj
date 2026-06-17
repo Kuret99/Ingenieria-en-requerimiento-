@@ -46,10 +46,9 @@
   <ItemGroup>
     <Compile Include="Bitacora_43BO.cs" />
     <Compile Include="CriptoManager_43BO.cs" />
-    <Compile Include="IidiomaObserver\GesrotArchivoIdioma_43BO.cs" />
+    <Compile Include="IidiomaObserver\GestorArchivoIdioma_43BO.cs" />
     <Compile Include="IidiomaObserver\GestorIdioma_43BO.cs" />
     <Compile Include="IidiomaObserver\IdiomaObserver_43BO.cs" />
-    <Compile Include="IidiomaObserver\Traductor_43BO.cs" />
     <Compile Include="PermisosComposite\Familia_43BO.cs" />
     <Compile Include="PermisosComposite\Patente_43BO.cs" />
     <Compile Include="Permisos_43BO.cs" />

@@ -6,7 +6,7 @@ public class GestorIdioma_43BO
     private static GestorIdioma_43BO _instancia;
     private List<IdiomaObserver_43BO> _suscriptores = new List<IdiomaObserver_43BO>();
 
-    // Almacena el estado para que no sea null
+    //almcenar el estado para que no sea null
     private Dictionary<string, string> _diccionarioActual;
 
     public static GestorIdioma_43BO Instancia

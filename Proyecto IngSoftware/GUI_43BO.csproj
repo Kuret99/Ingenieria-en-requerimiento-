@@ -56,12 +56,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Auditoria.cs">
+    <Compile Include="Admin\Auditoria.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Auditoria.Designer.cs">
+    <Compile Include="Admin\Auditoria.Designer.cs">
       <DependentUpon>Auditoria.cs</DependentUpon>
     </Compile>
+    <Compile Include="AsignadorPermisos_43BO.cs" />
     <Compile Include="CambiarIdioma.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -74,10 +75,10 @@
     <Compile Include="CambioContraseña.Designer.cs">
       <DependentUpon>CambioContraseña.cs</DependentUpon>
     </Compile>
-    <Compile Include="GestionUs.cs">
+    <Compile Include="Admin\GestionUs.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GestionUs.Designer.cs">
+    <Compile Include="Admin\GestionUs.Designer.cs">
       <DependentUpon>GestionUs.cs</DependentUpon>
     </Compile>
     <Compile Include="Login.cs">
@@ -92,15 +93,15 @@
     <Compile Include="Menu.Designer.cs">
       <DependentUpon>Menu.cs</DependentUpon>
     </Compile>
-    <Compile Include="GestionPerfiles.cs">
+    <Compile Include="Admin\GestionPerfiles.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GestionPerfiles.Designer.cs">
+    <Compile Include="Admin\GestionPerfiles.Designer.cs">
       <DependentUpon>GestionPerfiles.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Auditoria.resx">
+    <EmbeddedResource Include="Admin\Auditoria.resx">
       <DependentUpon>Auditoria.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CambiarIdioma.resx">
@@ -109,7 +110,7 @@
     <EmbeddedResource Include="CambioContraseña.resx">
       <DependentUpon>CambioContraseña.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GestionUs.resx">
+    <EmbeddedResource Include="Admin\GestionUs.resx">
       <DependentUpon>GestionUs.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
@@ -118,7 +119,7 @@
     <EmbeddedResource Include="Menu.resx">
       <DependentUpon>Menu.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GestionPerfiles.resx">
+    <EmbeddedResource Include="Admin\GestionPerfiles.resx">
       <DependentUpon>GestionPerfiles.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">

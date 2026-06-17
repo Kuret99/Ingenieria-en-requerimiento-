@@ -15,5 +15,3 @@ C:\Users\Juanpy\Documents\Ing. Software\Ingenieria-en-requerimiento-\BLL\obj\Deb
 C:\Users\Juanpy\Documents\Ing. Software\Ingenieria-en-requerimiento-\BLL\obj\Debug\BLL_43BO.csproj.Up2Date
 C:\Users\Juanpy\Documents\Ing. Software\Ingenieria-en-requerimiento-\BLL\obj\Debug\BLL.dll
 C:\Users\Juanpy\Documents\Ing. Software\Ingenieria-en-requerimiento-\BLL\obj\Debug\BLL.pdb
-C:\Users\Juanpy\Documents\Ing. Software\Ingenieria-en-requerimiento-\BLL\bin\Debug\Newtonsoft.Json.dll
-C:\Users\Juanpy\Documents\Ing. Software\Ingenieria-en-requerimiento-\BLL\bin\Debug\Newtonsoft.Json.xml

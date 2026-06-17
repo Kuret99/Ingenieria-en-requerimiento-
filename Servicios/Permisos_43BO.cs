@@ -17,6 +17,19 @@ namespace Servicios
         GestionUsuarios_Listar = 6,
         Auditoria_Acceso = 7,
         Auditoria_Consultar = 8,
-        Auditoria_Imprimir = 9
+        Auditoria_Imprimir = 9,
+
+
+      
+         Menu_SeccionAdmin = 10,
+        Menu_SeccionMaster = 11,
+        Menu_SeccionVenta = 12,
+        Menu_SeccionCompra = 13,
+        Menu_SeccionReporte = 14,
+
+    
+        GestionPerfiles_Acceso = 15,
+        GestionPerfiles_AsignarRelaciones = 16, // Botones <<-- y -->>
+        GestionPerfiles_ConfigurarEstructura = 17 
     }
 }

@@ -49,7 +49,12 @@ namespace BLL
 
         public bool ValidarLogin_43BO(string UserName, string ContraDefault)
         {
-            //traigo esto para poder laburar con los atributos e ir apsando de validacion en validacion 
+           //agregamos esto aca apra el relogin
+            if (SessionManager_43BO.Instancia != null && SessionManager_43BO.Instancia.Usuario != null)
+            {
+                throw new Exception("Ya hay una sesión activa en el sistema. Cierre sesión primero.");
+            }
+
             User_43BO usaurio = DALuser.BuscarUserName_43BO(UserName);
 
             if (usaurio == null)
@@ -61,36 +66,31 @@ namespace BLL
             {
                 throw new Exception("Usuario bloqueado. Por favor, contacte al administrador.");
             }
+
             if (!usaurio.Activo_43BO)
             {
                 throw new Exception("Su cuenta se encuentra desactivada. Contacte al administrador.");
             }
 
-
             string contra = CriptoManager_43BO.GenerarHash_43BO(ContraDefault);
-
 
             if (usaurio.Hash_43BO == contra)
             {
                 ReiniciarIn_43BO(UserName);
+                bllBi.GuardarLog_43BO(usaurio, Modulo_43BO.Usuario, Evento_43BO.Login, 1);
 
-                
-            
-                bllBi.GuardarLog_43BO(usaurio, Modulo_43BO.Usuario, Evento_43BO.Login, 1); // Log de éxito de login
+                List<string> permisosDelUsuario = ObtenerPermisos_43BO(usaurio);
+                SessionManager_43BO.IniciarSesion_43BO(usaurio, permisosDelUsuario);
 
-                if (!SessionManager_43BO.VerificarSesionActiva_43BO())
-                {
-                    SessionManager_43BO.IniciarSesion_43BO(usaurio);
-                }
-                return true; // Login exitoso
+                return true;
             }
             else
             {
-                // aca usamos usuario y user name porque si llega  fallar se le suma al intento al username que puso ese usuario y no al usuario en base de da
                 ManejarFallos_43BO(usaurio, UserName);
-                return false; 
+                return false;
             }
         }
+
 
         private void ManejarFallos_43BO(User_43BO us, string username)
         {
@@ -235,20 +235,19 @@ namespace BLL
             return usuario.Hash_43BO == contraFabricaHash;
         }
 
-        //Esto simularia el obtener los permisos
+       
         public List<string> ObtenerPermisos_43BO(User_43BO usuario)
         {
+         
             if (usuario == null || usuario.Rol == null) return new List<string>();
 
-            //Llamamos al DAL que creaste recién usando el ID del rol
             List<int> idsPermisos = dalPatente.ObtenerIdsPermisosPorRol_43BO(usuario.Rol.IdRol_43BO);
 
             List<string> nombresPermisos = new List<string>();
 
-            //CONVEtimos cada id nume la nombre del Enum
+          
             foreach (int id in idsPermisos)
-            {
-                // Esto busca en el  Enum corresponde al ID
+            { 
                 string nombre = Enum.GetName(typeof(Servicios.Permisos_43BO), id);
 
                 if (nombre != null)
@@ -257,6 +256,7 @@ namespace BLL
                 }
             }
 
+         
             return nombresPermisos;
         }
 

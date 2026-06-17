@@ -17,10 +17,10 @@ namespace Servicios
             var lista = new List<Rol_43BO>();
             foreach (var hijo in _hijos)
             {
-                lista.Add(hijo); // Agregamos el hijo directo
+                lista.Add(hijo); //agrega el hijo directo
                 if (hijo is Familia_43BO subFamilia)
                 {
-                    // Agregamos recursivamente todo lo que tenga el hijo
+                  
                     lista.AddRange(subFamilia.ObtenerTodosLosDescendientes_43BO());
                 }
             }
@@ -46,28 +46,25 @@ namespace Servicios
 
         public void Agregar_43BO(Rol_43BO hijo)
         {
-            // 1. Obtener todos los descendientes actuales del PADRE (yo mismo)
+           
             var misDescendientes = this.ObtenerTodosLosDescendientes_43BO();
 
-            // 2. Obtener todos los descendientes del HIJO que queremos agregar
-            var descendientesDelHijo = new List<Rol_43BO>();
-            descendientesDelHijo.Add(hijo); // El hijo mismo es parte del conflicto
+         
+            var nuevoArbol = new List<Rol_43BO> { hijo };
             if (hijo is Familia_43BO fHijo)
-                descendientesDelHijo.AddRange(fHijo.ObtenerTodosLosDescendientes_43BO());
+                nuevoArbol.AddRange(fHijo.ObtenerTodosLosDescendientes_43BO());
 
-            // 3. COMPARAR: ¿Alguno de los elementos que voy a agregar ya está en mi lista?
-            foreach (var item in descendientesDelHijo)
+        
+            foreach (var item in nuevoArbol)
             {
-                // Buscamos si existe alguno con el mismo ID y Tipo
-                bool existe = misDescendientes.Any(d => d.IdRol_43BO == item.IdRol_43BO && d.GetType() == item.GetType());
-
-                if (existe)
+                // Si el ítem a agregar ya está en mis descendientes, o es el mismo padre
+                if (misDescendientes.Any(d => d.IdRol_43BO == item.IdRol_43BO && d.GetType() == item.GetType())
+                    || (this.IdRol_43BO == item.IdRol_43BO && this.GetType() == item.GetType()))
                 {
-                    throw new Exception($"No se puede agregar '{hijo.Nombre_43BO}' porque contiene elementos ('{item.Nombre_43BO}') que ya están presentes en la estructura actual.");
+                    throw new Exception($"Error: El elemento '{item.Nombre_43BO}' ya existe en la jerarquía.");
                 }
             }
 
-            // 4. Si pasamos todas las pruebas, agregamos
             _hijos.Add(hijo);
         }
 

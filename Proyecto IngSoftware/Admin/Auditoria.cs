@@ -1,4 +1,5 @@
-﻿using iTextSharp.text;
+﻿using GUI_43BO;
+using iTextSharp.text;
 using iTextSharp.text.pdf;
 using Servicios;
 using Servicios.IidiomaObserver;
@@ -20,6 +21,13 @@ namespace Proyecto_IngSoftware
         private BLL.BLLBitacora_43BO bllBitacora = new BLL.BLLBitacora_43BO();
         private bool estaReseteando = false;
         private Dictionary<string, string> _dic;
+        
+        
+        private readonly Dictionary<string, Permisos_43BO> _mapaAuditoria = new Dictionary<string, Permisos_43BO>
+        {
+            { "btnAplicar", Permisos_43BO.Auditoria_Consultar },
+            { "btnImprimir", Permisos_43BO.Auditoria_Imprimir }
+        };
 
         public Auditoria()
         {
@@ -33,6 +41,7 @@ namespace Proyecto_IngSoftware
             dtpFechaFin.MaxDate = DateTime.MaxValue;
 
             ResetearComponentes_43BO();
+            AsignadorPermisos_43BO.Aplicar(this, _mapaAuditoria);
         }
 
         // --- IMPLEMENTACIÓN DEL PATRÓN OBSERVER ---

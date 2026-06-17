@@ -67,17 +67,29 @@ namespace Proyecto_IngSoftware
                 if (bll_43BO.ValidarLogin_43BO(txtUser.Text, txtContra.Text))
                 {
                     MessageBox.Show(_diccionario["login_msg_exito"]);
-                    Menu menu_43BO = new Menu();
-                    menu_43BO.Show();
-                    this.Hide();
+
+                    if (this.Modal)
+                    {
+                        this.DialogResult = DialogResult.OK; // Acá SÍ queremos pasar
+                        this.Close();
+                    }
+                    else
+                    {
+                        Menu menu_43BO = new Menu();
+                        menu_43BO.Show();
+                        this.Hide();
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Usuario o contraseña incorrectos");
+               
+                    this.DialogResult = DialogResult.None;
+                    MessageBox.Show("Usuario o contraseña incorrectos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             catch (Exception ex)
             {
+                this.DialogResult = DialogResult.None;
                 MessageBox.Show("Error: " + ex.Message);
             }
         }

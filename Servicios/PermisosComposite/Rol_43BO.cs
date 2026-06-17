@@ -11,7 +11,8 @@ namespace Servicios
         public int IdRol_43BO { get; set; }
         public string Nombre_43BO { get; set; }
 
-        // Este método obliga a todas las clases derivadas a definir cómo obtienen permisos
+        // esto lo vana ausr las subclases
+
         public abstract List<string> ObtenerPermisos_43BO();
     }
 }

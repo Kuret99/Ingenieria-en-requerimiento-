@@ -10,7 +10,6 @@ namespace BLL
         private readonly DALpatente_43BO _dal = new DALpatente_43BO();
 
         // ALTAS
-       // public int RegistrarPatente_43BO(string nombre) => _dal.InsertarPatente_43BO(nombre);
         public int RegistrarFamilia_43BO(string nombre) => _dal.InsertarFamilia_43BO(nombre);
         public int RegistrarRol_43BO(string nombre) => _dal.InsertarRol_43BO(nombre);
 
@@ -19,33 +18,36 @@ namespace BLL
         public List<Familia_43BO> ListarTodasLasFamilias_43BO() => _dal.ListarTodasLasFamilias_43BO();
         public List<Familia_43BO> ListarTodosLosRoles_43BO() => _dal.ListarTodosLosRoles_43BO();
 
-  
+        // VINCULACIONES 
         public bool AgregarComponenteHijo_43BO(Rol_43BO padre, Rol_43BO hijo, bool esModoRol)
         {
             if (padre == null || hijo == null) throw new ArgumentNullException();
 
             if (hijo is Familia_43BO familiaHija)
             {
-                // Forzamos la carga de todos sus hijos recursivamente
+                //feurzo una cerga recursivamente
                 HidratarFamiliaRecursivo_43BO(familiaHija);
             }
-            // ---------------------------
 
             if (padre is Familia_43BO familiaPadre)
             {
-                // Ahora sí, llamamos al método que ya tiene la lógica de validación
+              
                 familiaPadre.Agregar_43BO(hijo);
             }
 
+          
             return _dal.VincularHijo_43BO(padre, hijo, esModoRol);
         }
 
         public bool QuitarComponenteHijo_43BO(Rol_43BO padre, Rol_43BO hijo, bool esModoRol)
         {
+            if (padre == null || hijo == null) throw new ArgumentNullException();
+
+          
             return _dal.DesvincularHijo_43BO(padre, hijo, esModoRol);
         }
 
-        // CARGA RECURSIVA
+        // esto carga on recursvividad
         public void HidratarRolCompleto_43BO(Familia_43BO rolRaiz)
         {
             if (rolRaiz == null) return;
@@ -76,12 +78,10 @@ namespace BLL
         public void EliminarRol_43BO(int idRol) => _dal.EliminarRol_43BO(idRol);
         public void EliminarFamilia_43BO(int idFamilia) => _dal.EliminarFamilia_43BO(idFamilia);
 
-        public Familia_43BO ObtenerArbolDePermisos_43BO(int idRol)
+        //MOODIFICACION
+        public bool ModificarNombreComponente_43BO(int id, string nuevoNombre, bool esModoRol)
         {
-            Familia_43BO rolRaiz = new Familia_43BO();
-            rolRaiz.IdRol_43BO = idRol;
-            HidratarRolCompleto_43BO(rolRaiz);
-            return rolRaiz;
+            return _dal.ModificarNombreComponente_43BO(id, nuevoNombre, esModoRol);
         }
     }
 }

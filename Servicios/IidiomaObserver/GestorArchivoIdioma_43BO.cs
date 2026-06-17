@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 public static class GestorArchivosIdioma_43BO
 {
-    public static string ObtenerContenidoJson_43BO(string codigoIdioma_43BO)
+    public static string ObtenerContenidoJson_43BO(string codigoIdioma)
     {
    
-        string ruta_43BO = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Idiomas", $"{codigoIdioma_43BO}.json");
+        string ruta_43BO = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Idiomas", $"{codigoIdioma}.json");
 
         if (!File.Exists(ruta_43BO))
             ruta_43BO = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Idiomas", "es.json"); // Default

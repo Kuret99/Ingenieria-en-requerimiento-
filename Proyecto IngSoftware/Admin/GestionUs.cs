@@ -1,4 +1,5 @@
 ﻿using BLL;
+using GUI_43BO;
 using Servicios;
 using Servicios.IidiomaObserver;
 using System;
@@ -16,6 +17,18 @@ namespace Proyecto_IngSoftware
         List<User_43BO> todoslosusuarios;
         private bool Modificar_43BO = false;
         private Dictionary<string, string> _dic;
+        BLLpatente_43BO bllpatente = new BLLpatente_43BO();
+
+        // ══════════════════════════════════════════════════════════════════
+        // DICCIONARIO DE GESTIÓN DE USUARIOS (Mapeado con tu Enum Real)
+        // ══════════════════════════════════════════════════════════════════
+        private readonly Dictionary<string, Permisos_43BO> _mapaGestionUsuarios = new Dictionary<string, Permisos_43BO>
+        {
+            { "btnCrear", Permisos_43BO.GestionUsuarios_Alta },
+            { "btnModi", Permisos_43BO.GestionUsuarios_Modificar },
+            { "btnDes", Permisos_43BO.GestionUsuarios_Desbloquear },
+            { "btnAct", Permisos_43BO.GestionUsuarios_ActivarDesactivar }
+        };
 
         public GestionUs()
         {
@@ -24,13 +37,17 @@ namespace Proyecto_IngSoftware
             Btns_43BO();
             ActualizarDGV_43BO();
             ConfigurarComboBoxRoles_43BO();
+
+            // [Lugar 1] Control inicial al abrir la pantalla
+            AsignadorPermisos_43BO.Aplicar(this, _mapaGestionUsuarios);
         }
 
+        // --- IMPLEMENTACIÓN DEL PATRÓN OBSERVER ---
         public void ActualizarIdioma_43BO(Dictionary<string, string> dic)
         {
             _dic = dic;
 
-            // traduce controles 
+            // Traduce controles 
             this.Text = GetTexto("gestion_usuarios_titulo");
             rbActivos.Text = GetTexto("gestion_usuarios_rb_activos");
             rbTodos.Text = GetTexto("gestion_usuarios_rb_todos");
@@ -46,7 +63,6 @@ namespace Proyecto_IngSoftware
             FormatoDgv_43BO();
         }
 
-        // Método  reutilizable 
         private string GetTexto(string key)
         {
             if (_dic != null && _dic.ContainsKey(key))
@@ -54,23 +70,28 @@ namespace Proyecto_IngSoftware
             return key;
         }
 
-        //protected override void OnFormClosing(FormClosingEventArgs e)
-        //{
-        //    GestorIdioma_43BO.Instancia.Desuscribir_43BO(this);
-        //    base.OnFormClosing(e);
-        //}
+        // Desuscripción activa para evitar memory leaks
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            GestorIdioma_43BO.Instancia.Desuscribir_43BO(this);
+            base.OnFormClosing(e);
+        }
 
         private void ConfigurarComboBoxRoles_43BO()
         {
-            List<Rol_43BO> roles = new List<Rol_43BO>
+            try
             {
-                new Familia_43BO { IdRol_43BO = 1, Nombre_43BO = "Administrador" },
-                new Familia_43BO { IdRol_43BO = 2, Nombre_43BO = "Básico" }
-            };
-            cmbRol.DataSource = roles;
-            cmbRol.DisplayMember = "Nombre_43BO";
-            cmbRol.ValueMember = "IdRol_43BO";
-            cmbRol.SelectedIndex = -1;
+                var rolesReales = bllpatente.ListarTodosLosRoles_43BO();
+                cmbRol.DataSource = rolesReales;
+                cmbRol.DisplayMember = "Nombre_43BO";
+                cmbRol.ValueMember = "IdRol_43BO";
+
+                cmbRol.SelectedIndex = -1;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar los roles desde la BD: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void Btns_43BO()
@@ -140,6 +161,10 @@ namespace Proyecto_IngSoftware
             if (dgvUsaurio.CurrentRow != null)
             {
                 btnModi.Enabled = true; btnDes.Enabled = true; btnAct.Enabled = true; btnCrear.Enabled = false;
+
+                // [Lugar 2] Re-evalúa tras forzar la activación por clicks en la grilla
+                AsignadorPermisos_43BO.Aplicar(this, _mapaGestionUsuarios);
+
                 txtDNI.Text = dgvUsaurio.CurrentRow.Cells["DNI_43BO"].Value.ToString();
                 txtNom.Text = dgvUsaurio.CurrentRow.Cells["Nombre_43BO"].Value.ToString();
                 txtApe.Text = dgvUsaurio.CurrentRow.Cells["Apellido_43BO"].Value.ToString();
@@ -171,9 +196,12 @@ namespace Proyecto_IngSoftware
                 if (Modificar_43BO) blluser.ModificarUser_43BO(int.Parse(txtDNI.Text), rol, txtEmail.Text);
                 else blluser.InsertarUser_43BO(int.Parse(txtDNI.Text), txtNom.Text, txtApe.Text, rol, txtEmail.Text);
 
-                // Mensaje traducido con éxito
                 MessageBox.Show(GetTexto("gestion_usuarios_msg_exito"), GetTexto("titulo_excelente"), MessageBoxButtons.OK, MessageBoxIcon.Information);
                 ActualizarDGV_43BO();
+                Btns_43BO();
+
+                // [Lugar 3] Re-evalúa tras guardar la operación exitosa
+                AsignadorPermisos_43BO.Aplicar(this, _mapaGestionUsuarios);
             }
             catch (Exception ex)
             {
@@ -185,7 +213,11 @@ namespace Proyecto_IngSoftware
         {
             Modificar_43BO = false; btnApli.Enabled = false; btnCrear.Enabled = true;
             txtDNI.Clear(); txtNom.Clear(); txtApe.Clear(); txtEmail.Clear();
-            cmbRol.SelectedIndex = -1; Btns_43BO();
+            cmbRol.SelectedIndex = -1;
+            Btns_43BO();
+
+            // [Lugar 4] Re-evalúa al restaurar el estado original del formulario
+            AsignadorPermisos_43BO.Aplicar(this, _mapaGestionUsuarios);
         }
 
         private void btnAct_Click(object sender, EventArgs e)
@@ -196,6 +228,10 @@ namespace Proyecto_IngSoftware
                 bool act = (bool)dgvUsaurio.CurrentRow.Cells["Activo_43BO"].Value;
                 blluser.Eliminar_43BO(dni, !act);
                 ActualizarDGV_43BO();
+                Btns_43BO();
+
+                // [Lugar 5] Re-evalúa tras cambiar el estado lógico del usuario
+                AsignadorPermisos_43BO.Aplicar(this, _mapaGestionUsuarios);
             }
             catch (Exception ex)
             {
@@ -209,6 +245,10 @@ namespace Proyecto_IngSoftware
             {
                 blluser.DesbloquearUser_43BO(int.Parse(txtDNI.Text));
                 ActualizarDGV_43BO();
+                Btns_43BO();
+
+                // [Lugar 6] Re-evalúa tras efectuar el desbloqueo
+                AsignadorPermisos_43BO.Aplicar(this, _mapaGestionUsuarios);
             }
             catch (Exception ex)
             {

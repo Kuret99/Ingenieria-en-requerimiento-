@@ -10,7 +10,7 @@ namespace Servicios
     {
         public override List<string> ObtenerPermisos_43BO()
         {
-            // El permiso individual retorna una lista con su propio nombre
+            
             return new List<string> { this.Nombre_43BO };
         }
     }

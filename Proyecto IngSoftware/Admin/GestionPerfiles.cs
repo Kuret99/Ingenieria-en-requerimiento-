@@ -1,12 +1,14 @@
 ﻿using BLL;
+using GUI_43BO;
 using Microsoft.VisualBasic;
-using Newtonsoft.Json; // Aseguramos el uso para deserializar el JSON
+using Newtonsoft.Json;
 using Servicios;
+using Servicios.IidiomaObserver;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
-using Servicios.IidiomaObserver;
+
 namespace Proyecto_IngSoftware
 {
     public partial class GestionPerfiles : Form, IdiomaObserver_43BO
@@ -16,16 +18,24 @@ namespace Proyecto_IngSoftware
         private Familia_43BO _rolActual = null;
         private Rol_43BO _hijoActual = null;
         private bool _modoGestionRoles = true;
-
-        // Diccionario local para almacenar las traducciones de la pantalla
         private Dictionary<string, string> _diccionario;
+        private bool _editandoModo = false; // <-- Controla el estado de edición de la pantalla
+
+        private readonly Dictionary<string, Permisos_43BO> _mapaGestionPerfiles = new Dictionary<string, Permisos_43BO>
+        {
+            { "button7", Permisos_43BO.GestionPerfiles_AsignarRelaciones },      // Botón <<--
+            { "button8", Permisos_43BO.GestionPerfiles_AsignarRelaciones },      // Botón -->>
+            { "btnCrear", Permisos_43BO.GestionPerfiles_ConfigurarEstructura },     // Crear Rol/Familia
+            { "btnModificar", Permisos_43BO.GestionPerfiles_ConfigurarEstructura }, // Modificar Rol/Familia
+            { "btnEliminarRol", Permisos_43BO.GestionPerfiles_ConfigurarEstructura } // Eliminar Rol/Familia
+        };
 
         public GestionPerfiles()
         {
             InitializeComponent();
             ConfigurarUI_43BO();
 
-            // 1. Cargamos el archivo directamente aquí para asegurar datos al arrancar
+            // Cargo idioma inicial 
             try
             {
                 string json = GestorArchivosIdioma_43BO.ObtenerContenidoJson_43BO("es");
@@ -37,7 +47,7 @@ namespace Proyecto_IngSoftware
                 MessageBox.Show("Error al cargar idioma inicial: " + ex.Message);
             }
 
-            // 2. Nos suscribimos al sistema de eventos global de idiomas
+            // Se suscribe a los cambios de idioma
             GestorIdioma_43BO.Instancia.Suscribir_43BO(this);
 
             CargarDatos_43BO();
@@ -61,7 +71,6 @@ namespace Proyecto_IngSoftware
             this.Text = ObtenerTexto("perfiles_titulo", "Gestión de Perfiles y Permisos (Composite)");
             btnEliminarRol.Text = ObtenerTexto("perfiles_btn_eliminar", "Eliminar Seleccionado");
 
-            // Forzamos la actualización de los textos dinámicos mutables según el modo actual
             ConfigurarPantallaSegunModo();
         }
 
@@ -104,7 +113,9 @@ namespace Proyecto_IngSoftware
                 groupBox1.Text = ObtenerTexto("perfiles_modo_roles", "Configurador de Relaciones - MODO ROLES");
                 btnCambiarVista.Text = ObtenerTexto("perfiles_btn_cambiar_familias", "Cambiar a Vista Familias");
                 btnCrear.Text = ObtenerTexto("perfiles_nuevo_rol", "Nuevo Rol");
-                btnModificar.Text = ObtenerTexto("perfiles_modificar_rol", "Modificar Rol");
+
+                // Si está editando mantiene el texto de confirmación, sino usa el dinámico
+                btnModificar.Text = _editandoModo ? "✔ Finalizar Edición" : ObtenerTexto("perfiles_modificar_rol", "Modificar Rol");
 
                 foreach (var rol in _bll.ListarTodosLosRoles_43BO())
                 {
@@ -119,7 +130,8 @@ namespace Proyecto_IngSoftware
                 groupBox1.Text = ObtenerTexto("perfiles_modo_familias", "Configurador de Relaciones - MODO FAMILIAS");
                 btnCambiarVista.Text = ObtenerTexto("perfiles_btn_cambiar_roles", "Cambiar a Vista Roles");
                 btnCrear.Text = ObtenerTexto("perfiles_nueva_familia", "Nueva Familia");
-                btnModificar.Text = ObtenerTexto("perfiles_modificar_familia", "Modificar Familia");
+
+                btnModificar.Text = _editandoModo ? "✔ Finalizar Edición" : ObtenerTexto("perfiles_modificar_familia", "Modificar Familia");
 
                 foreach (var fam in _bll.ListarTodasLasFamilias_43BO())
                 {
@@ -130,6 +142,10 @@ namespace Proyecto_IngSoftware
                 }
             }
             treeView1.ExpandAll();
+
+            // Aplicamos los permisos y actualizamos estados visuales
+            AsignadorPermisos_43BO.Aplicar(this, _mapaGestionPerfiles);
+            ControlarEstadoControles();
         }
 
         private void RefrescarListas()
@@ -190,6 +206,7 @@ namespace Proyecto_IngSoftware
                 else _bll.HidratarFamiliaRecursivo_43BO(_rolActual);
 
                 RefrescarListas();
+                ControlarEstadoControles(); // <-- Evaluamos bloqueos al cambiar de nodo
             }
         }
 
@@ -198,6 +215,7 @@ namespace Proyecto_IngSoftware
 
         private void btnCambiarVista_Click(object sender, EventArgs e)
         {
+            _editandoModo = false; // Cancelamos edición si cambia de vista
             _modoGestionRoles = !_modoGestionRoles;
             _rolActual = null;
             CargarDatos_43BO();
@@ -217,16 +235,12 @@ namespace Proyecto_IngSoftware
             try
             {
                 _bll.AgregarComponenteHijo_43BO(_rolActual, itemParaAgregar, _modoGestionRoles);
-                CargarDatos_43BO();
 
-                foreach (TreeNode nodo in treeView1.Nodes)
-                {
-                    if (nodo.Tag is Rol_43BO rol && rol.IdRol_43BO == idRolEditado)
-                    {
-                        treeView1.SelectedNode = nodo;
-                        break;
-                    }
-                }
+                // Refrescamos datos en memoria sin perder el estado de edición
+                if (_modoGestionRoles) _bll.HidratarRolCompleto_43BO(_rolActual);
+                else _bll.HidratarFamiliaRecursivo_43BO(_rolActual);
+
+                RefrescarListas();
             }
             catch (Exception ex)
             {
@@ -243,42 +257,20 @@ namespace Proyecto_IngSoftware
             }
 
             var itemParaQuitar = (Rol_43BO)listBox1.SelectedItem;
-            int idQueEstabaEditando = _rolActual.IdRol_43BO;
 
             try
             {
-                bool eliminado = _bll.QuitarComponenteHijo_43BO(_rolActual, itemParaQuitar, _modoGestionRoles);
+                _bll.QuitarComponenteHijo_43BO(_rolActual, itemParaQuitar, _modoGestionRoles);
 
-                if (eliminado)
-                {
-                    CargarDatos_43BO();
+                // Refrescamos datos en memoria sin perder el estado de edición
+                if (_modoGestionRoles) _bll.HidratarRolCompleto_43BO(_rolActual);
+                else _bll.HidratarFamiliaRecursivo_43BO(_rolActual);
 
-                    foreach (TreeNode nodo in treeView1.Nodes)
-                    {
-                        if (nodo.Tag is Rol_43BO r && r.IdRol_43BO == idQueEstabaEditando)
-                        {
-                            treeView1.SelectedNode = nodo;
-                            break;
-                        }
-
-                        foreach (TreeNode subNodo in nodo.Nodes)
-                        {
-                            if (subNodo.Tag is Rol_43BO s && s.IdRol_43BO == idQueEstabaEditando)
-                            {
-                                treeView1.SelectedNode = subNodo;
-                                break;
-                            }
-                        }
-                    }
-                }
-                else
-                {
-                    MessageBox.Show(ObtenerTexto("perfiles_msg_error_quitar", "No se pudo quitar."));
-                }
+                RefrescarListas();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al quitar: " + ex.Message);
+                MessageBox.Show("Error al quitar: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -310,23 +302,56 @@ namespace Proyecto_IngSoftware
                 return;
             }
 
-            string titulo = _modoGestionRoles ? ObtenerTexto("perfiles_modificar_rol", "Modificar Rol") : ObtenerTexto("perfiles_modificar_familia", "Modificar Familia");
-            string nuevoNombre = Interaction.InputBox(ObtenerTexto("perfiles_msg_ingrese_nuevo_nombre", "Ingrese el nuevo nombre:"), titulo, _rolActual.Nombre_43BO);
-
-            if (string.IsNullOrWhiteSpace(nuevoNombre) || nuevoNombre == _rolActual.Nombre_43BO) return;
-
-            try
+            if (!_editandoModo)
             {
-                // Descomentar cuando la BLL esté expuesta
-                // if (_modoGestionRoles) _bll.ModificarRol_43BO(_rolActual.IdRol_43BO, nuevoNombre);
-                // else _bll.ModificarFamilia_43BO(_rolActual.IdRol_43BO, nuevoNombre);
 
+                string titulo = _modoGestionRoles ? ObtenerTexto("perfiles_modificar_rol", "Modificar Rol") : ObtenerTexto("perfiles_modificar_familia", "Modificar Familia");
+                string nuevoNombre = Interaction.InputBox(ObtenerTexto("perfiles_msg_ingrese_nuevo_nombre", "Ingrese el nuevo nombre:"), titulo, _rolActual.Nombre_43BO);
+
+                if (!string.IsNullOrWhiteSpace(nuevoNombre) && nuevoNombre != _rolActual.Nombre_43BO)
+                {
+                    try
+                    {
+                        _bll.ModificarNombreComponente_43BO(_rolActual.IdRol_43BO, nuevoNombre, _modoGestionRoles);
+
+                        // Si no explotó, actualizamos el estado en memoria
+                        _rolActual.Nombre_43BO = nuevoNombre;
+
+                       
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error al modificar el nombre: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+
+                _editandoModo = true;
+                // cambio el btn para que diga finaliar edicion (no sabia qu podia copair y pegar un emoji)
+                btnModificar.Text = "✔ Finalizar Edición";
+            }
+            else
+            {
+             
+                _editandoModo = false;
+                btnModificar.Text = _modoGestionRoles
+                    ? ObtenerTexto("perfiles_modificar_rol", "Modificar Rol")
+                    : ObtenerTexto("perfiles_modificar_familia", "Modificar Familia");
+
+            
+                int idGuardado = _rolActual.IdRol_43BO;
                 CargarDatos_43BO();
+
+               
+                foreach (TreeNode nodo in treeView1.Nodes)
+                {
+                    if (nodo.Tag is Rol_43BO r && r.IdRol_43BO == idGuardado)
+                    {
+                        treeView1.SelectedNode = nodo;
+                        break;
+                    }
+                }
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al modificar: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            ControlarEstadoControles();
         }
 
         private void btnEliminarRol_Click(object sender, EventArgs e)
@@ -335,6 +360,26 @@ namespace Proyecto_IngSoftware
             if (_modoGestionRoles) _bll.EliminarRol_43BO(_rolActual.IdRol_43BO); else _bll.EliminarFamilia_43BO(_rolActual.IdRol_43BO);
             _rolActual = null;
             CargarDatos_43BO();
+        }
+
+        private void ControlarEstadoControles()
+        {
+            bool tieneSeleccion = (_rolActual != null);
+
+
+            listBox1.Enabled = tieneSeleccion && _editandoModo;
+            listBox2.Enabled = tieneSeleccion && _editandoModo;
+            button7.Enabled = tieneSeleccion && _editandoModo; // Botón <<--
+            button8.Enabled = tieneSeleccion && _editandoModo; // Botón -->>
+
+         
+            btnModificar.Enabled = tieneSeleccion;
+            btnCrear.Enabled = !_editandoModo;       
+            btnEliminarRol.Enabled = tieneSeleccion && !_editandoModo;
+            btnCambiarVista.Enabled = !_editandoModo;
+
+        
+            treeView1.Enabled = !_editandoModo;
         }
     }
 }

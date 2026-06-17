@@ -25,7 +25,6 @@ C:\Users\Juanpy\Documents\Ing. Software\Ingenieria-en-requerimiento-\Proyecto In
 C:\Users\Juanpy\Documents\Ing. Software\Ingenieria-en-requerimiento-\Proyecto IngSoftware\bin\Debug\Proyecto IngSoftware.exe.config
 C:\Users\Juanpy\Documents\Ing. Software\Ingenieria-en-requerimiento-\Proyecto IngSoftware\bin\Debug\Proyecto IngSoftware.pdb
 C:\Users\Juanpy\Documents\Ing. Software\Ingenieria-en-requerimiento-\Proyecto IngSoftware\obj\Debug\GUI_43BO.csproj.Up2Date
-C:\Users\Juanpy\Documents\Ing. Software\Ingenieria-en-requerimiento-\Proyecto IngSoftware\obj\Debug\Proyecto IngSoftware.exe.config
 C:\Users\Juanpy\Documents\Ing. Software\Ingenieria-en-requerimiento-\Proyecto IngSoftware\obj\Debug\Proyecto_IngSoftware.GestionPerfiles.resources
 C:\Users\Juanpy\Documents\Ing. Software\Ingenieria-en-requerimiento-\Proyecto IngSoftware\bin\Debug\Newtonsoft.Json.dll
 C:\Users\Juanpy\Documents\Ing. Software\Ingenieria-en-requerimiento-\Proyecto IngSoftware\bin\Debug\Newtonsoft.Json.xml
@@ -33,3 +32,4 @@ C:\Users\Juanpy\Documents\Ing. Software\Ingenieria-en-requerimiento-\Proyecto In
 C:\Users\Juanpy\Documents\Ing. Software\Ingenieria-en-requerimiento-\Proyecto IngSoftware\obj\Debug\Proyecto_IngSoftware.CambiarIdioma.resources
 C:\Users\Juanpy\Documents\Ing. Software\Ingenieria-en-requerimiento-\Proyecto IngSoftware\bin\Debug\Idiomas\pr.json
 C:\Users\Juanpy\Documents\Ing. Software\Ingenieria-en-requerimiento-\Proyecto IngSoftware\bin\Debug\Idiomas\en.json
+C:\Users\Juanpy\Documents\Ing. Software\Ingenieria-en-requerimiento-\Proyecto IngSoftware\obj\Debug\Proyecto IngSoftware.exe.config

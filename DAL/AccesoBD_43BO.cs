@@ -19,39 +19,53 @@ namespace DAL
         }
 
 
-        public int Escribir_43BO(string query, SqlParameter[] parametros = null)
+      
+        public int Escribir_43BO(string comandoText, SqlParameter[] parametros = null, CommandType tipoComando = CommandType.Text)
         {
             using (SqlConnection con = new SqlConnection(_cadenaConexion))
             {
-                using (SqlCommand cm = new SqlCommand(query, con))
+                using (SqlCommand cm = new SqlCommand(comandoText, con))
                 {
-                    if (parametros != null) cm.Parameters.AddRange(parametros);
+                    cm.CommandType = tipoComando; //aca por dfecto viene query si no es un Sp
 
+                    if (parametros != null) cm.Parameters.AddRange(parametros);
                     con.Open();
-                    return cm.ExecuteNonQuery(); // Devuelve filas afectadas
+                    return cm.ExecuteNonQuery();
                 }
             }
         }
 
-        public DataTable Leer_43BO(string query, SqlParameter[] parametros = null)
+        public DataTable Leer_43BO(string comandoText, SqlParameter[] parametros = null, CommandType tipoComando = CommandType.Text)
         {
             DataTable tabla = new DataTable();
-
-      
             using (SqlConnection conexion = new SqlConnection(_cadenaConexion))
             {
-                
-                using (SqlCommand comando = new SqlCommand(query, conexion))
+                using (SqlCommand comando = new SqlCommand(comandoText, conexion))
                 {
-               if (parametros != null) comando.Parameters.AddRange(parametros);
+                    comando.CommandType = tipoComando; //lo mismo
 
-                   
+                    if (parametros != null) comando.Parameters.AddRange(parametros);
                     SqlDataAdapter adapter = new SqlDataAdapter(comando);
                     adapter.Fill(tabla);
                 }
             }
-           
             return tabla;
+        }
+
+        public int EjecutarScalar_43BO(string comandoText, SqlParameter[] parametros = null, CommandType tipoComando = CommandType.Text)
+        {
+            using (SqlConnection con = new SqlConnection(_cadenaConexion))
+            {
+                using (SqlCommand cm = new SqlCommand(comandoText, con))
+                {
+                    cm.CommandType = tipoComando;
+                    if (parametros != null) cm.Parameters.AddRange(parametros);
+                    con.Open();
+                    return Convert.ToInt32(cm.ExecuteScalar());
+                }
+            }
         }
     }
 }
+
+
