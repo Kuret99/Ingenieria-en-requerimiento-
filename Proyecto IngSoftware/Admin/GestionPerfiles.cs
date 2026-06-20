@@ -236,7 +236,7 @@ namespace Proyecto_IngSoftware
             {
                 _bll.AgregarComponenteHijo_43BO(_rolActual, itemParaAgregar, _modoGestionRoles);
 
-                // Refrescamos datos en memoria sin perder el estado de edición
+                //  
                 if (_modoGestionRoles) _bll.HidratarRolCompleto_43BO(_rolActual);
                 else _bll.HidratarFamiliaRecursivo_43BO(_rolActual);
 
@@ -262,7 +262,7 @@ namespace Proyecto_IngSoftware
             {
                 _bll.QuitarComponenteHijo_43BO(_rolActual, itemParaQuitar, _modoGestionRoles);
 
-                // Refrescamos datos en memoria sin perder el estado de edición
+               
                 if (_modoGestionRoles) _bll.HidratarRolCompleto_43BO(_rolActual);
                 else _bll.HidratarFamiliaRecursivo_43BO(_rolActual);
 
@@ -314,7 +314,7 @@ namespace Proyecto_IngSoftware
                     {
                         _bll.ModificarNombreComponente_43BO(_rolActual.IdRol_43BO, nuevoNombre, _modoGestionRoles);
 
-                        // Si no explotó, actualizamos el estado en memoria
+                        //is no exploto, actualizo el estado en memoria
                         _rolActual.Nombre_43BO = nuevoNombre;
 
                        

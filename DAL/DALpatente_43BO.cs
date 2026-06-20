@@ -11,7 +11,7 @@ namespace DAL
         AccesoBD_43BO acceso = new AccesoBD_43BO();
 
 
-        public List<int> ObtenerIdsPermisosPorRol_43BO(int idRol)
+        public List<int> ObtenerPermisos_43BO(int idRol)
         {
             List<int> lista = new List<int>();
             SqlParameter[] param = { new SqlParameter("@idRol", idRol) };

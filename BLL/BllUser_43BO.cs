@@ -3,6 +3,8 @@ using Servicios;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Newtonsoft.Json;
+
 
 namespace BLL
 {
@@ -80,7 +82,9 @@ namespace BLL
                 bllBi.GuardarLog_43BO(usaurio, Modulo_43BO.Usuario, Evento_43BO.Login, 1);
 
                 List<string> permisosDelUsuario = ObtenerPermisos_43BO(usaurio);
-                SessionManager_43BO.IniciarSesion_43BO(usaurio, permisosDelUsuario);
+
+                SessionManager_43BO.IniciarSesion_43BO(usaurio, permisosDelUsuario, usaurio.Idioma_43BO);
+                GestorIdioma_43BO.Instancia.CargarIdioma_43BO(usaurio.Idioma_43BO);
 
                 return true;
             }
@@ -241,7 +245,7 @@ namespace BLL
          
             if (usuario == null || usuario.Rol == null) return new List<string>();
 
-            List<int> idsPermisos = dalPatente.ObtenerIdsPermisosPorRol_43BO(usuario.Rol.IdRol_43BO);
+            List<int> idsPermisos = dalPatente.ObtenerPermisos_43BO(usuario.Rol.IdRol_43BO);
 
             List<string> nombresPermisos = new List<string>();
 
@@ -266,7 +270,7 @@ namespace BLL
         
             DALuser.ActualizarIdioma_43BO(dni_43BO, nuevoIdioma_43BO);
 
-            // Si el usuario está logueado, actualizamos su objeto en memoria
+           
             if (SessionManager_43BO.Instancia.Usuario != null && SessionManager_43BO.Instancia.Usuario.DNI_43BO == dni_43BO)
             {
                 SessionManager_43BO.Instancia.Usuario.Idioma_43BO = nuevoIdioma_43BO;

@@ -9,3 +9,5 @@ C:\Users\Juanpy\Documents\Ing. Software\Ingenieria-en-requerimiento-\DAL\obj\Deb
 C:\Users\Juanpy\Documents\Ing. Software\Ingenieria-en-requerimiento-\DAL\obj\Debug\DAL_43BO.csproj.Up2Date
 C:\Users\Juanpy\Documents\Ing. Software\Ingenieria-en-requerimiento-\DAL\obj\Debug\DAL.dll
 C:\Users\Juanpy\Documents\Ing. Software\Ingenieria-en-requerimiento-\DAL\obj\Debug\DAL.pdb
+C:\Users\Juanpy\Documents\Ing. Software\Ingenieria-en-requerimiento-\DAL\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Juanpy\Documents\Ing. Software\Ingenieria-en-requerimiento-\DAL\bin\Debug\Newtonsoft.Json.xml

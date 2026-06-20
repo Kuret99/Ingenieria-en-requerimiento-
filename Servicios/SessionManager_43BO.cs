@@ -13,11 +13,12 @@ namespace Servicios
 
         public User_43BO Usuario { get; private set; }
 
-        //al finl nnoc reo usarlo 
+        //al finl nnocreo usarlo 
         //public Familia_43BO PermisosUsuario { get; set; } 
 
        
         public List<string> Permisos { get; private set; }
+        public string idioma { get; private set; }
 
         private SessionManager_43BO() { }
 
@@ -26,7 +27,7 @@ namespace Servicios
             get { return _instancia; }
         }
 
-        public static void IniciarSesion_43BO(User_43BO usuario, List<string> permisos)
+        public static void IniciarSesion_43BO(User_43BO usuario, List<string> permisos, string idioma)
         {
             lock (_lock)
             {
@@ -36,6 +37,7 @@ namespace Servicios
                 }
                 _instancia.Usuario = usuario;
                 _instancia.Permisos = permisos;
+                _instancia.idioma = idioma; 
             }
         }
 
@@ -47,21 +49,10 @@ namespace Servicios
             }
         }
 
-        public static bool EsUsuarioActual_43BO(string username)
-        {
-            if (_instancia == null || _instancia.Usuario == null) return false;
-            return username.Trim().StartsWith(_instancia.Usuario.DNI_43BO.ToString());
-        }
-
-        public static bool VerificarSesionActiva_43BO()
-        {
-            return _instancia != null;
-        }
-
-        public bool TienePermiso_43BO(string nombrePermisoBuscado)
-        {
-            if (Permisos == null) return false;
-            return Permisos.Contains(nombrePermisoBuscado);
-        }
+        //public static bool EsUsuarioActual_43BO(string username)
+        //{
+        //    if (_instancia == null || _instancia.Usuario == null) return false;
+        //    return username.Trim().StartsWith(_instancia.Usuario.DNI_43BO.ToString());
+        //}
     }
 }

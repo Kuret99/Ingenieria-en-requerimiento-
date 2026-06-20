@@ -58,16 +58,18 @@ namespace Proyecto_IngSoftware
             {
                 try
                 {
-                    //busco el contenido del archivo JSON (es, en o pt)
-                    string json = GestorArchivosIdioma_43BO.ObtenerContenidoJson_43BO(codigoIdioma);
+                  
+                    int dniUsuario = SessionManager_43BO.Instancia.Usuario.DNI_43BO;
+
+                    BLL.BllUser_43BO bllUser = new BLL.BllUser_43BO();
+                    bllUser.CambiarIdiomaUsuario_43BO(dniUsuario, codigoIdioma);
 
                     
+                    string json = GestorArchivosIdioma_43BO.ObtenerContenidoJson_43BO(codigoIdioma);
                     var nuevoDiccionario = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
 
-                
                     GestorIdioma_43BO.Instancia.Notificar_43BO(nuevoDiccionario);
 
-                  
                     this.Close();
                 }
                 catch (Exception ex)
@@ -79,7 +81,7 @@ namespace Proyecto_IngSoftware
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-            // Cierra el formulario sin hacer absolutamente nada
+            
             this.Close();
         }
     }

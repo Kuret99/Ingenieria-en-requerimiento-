@@ -1,4 +1,5 @@
-﻿using Servicios.IidiomaObserver;
+﻿using Newtonsoft.Json;
+using Servicios.IidiomaObserver;
 using System.Collections.Generic;
 
 public class GestorIdioma_43BO
@@ -35,5 +36,13 @@ public class GestorIdioma_43BO
         {
             sub.ActualizarIdioma_43BO(nuevoDiccionario);
         }
+    }
+
+    public void CargarIdioma_43BO(string codigoIdioma)
+    {
+       
+        string json = GestorArchivosIdioma_43BO.ObtenerContenidoJson_43BO(codigoIdioma);
+        var dict = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
+        Notificar_43BO(dict);
     }
 }

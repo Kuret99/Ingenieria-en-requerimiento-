@@ -3,6 +3,13 @@
   "WorkspaceRootPath": "C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\Proyecto IngSoftware\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{254E9F21-E2C6-4C41-8632-D4EA79499650}|GUI_43BO.csproj|C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\Proyecto IngSoftware\\cambiaridioma.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{254E9F21-E2C6-4C41-8632-D4EA79499650}|GUI_43BO.csproj|solutionrelative:cambiaridioma.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{679653A6-C4A3-4BBD-9EB2-7F7F85CE8742}|..\\Servicios\\Servicios_43BO.csproj|c:\\users\\juanpy\\documents\\ing. software\\ingenieria-en-requerimiento-\\servicios\\permisoscomposite\\rol_43bo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{679653A6-C4A3-4BBD-9EB2-7F7F85CE8742}|..\\Servicios\\Servicios_43BO.csproj|c:\\users\\juanpy\\documents\\ing. software\\ingenieria-en-requerimiento-\\servicios\\iidiomaobserver\\gestorarchivoidioma_43bo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -12,16 +19,13 @@
       "AbsoluteMoniker": "D:0:0:{679653A6-C4A3-4BBD-9EB2-7F7F85CE8742}|..\\Servicios\\Servicios_43BO.csproj|c:\\users\\juanpy\\documents\\ing. software\\ingenieria-en-requerimiento-\\servicios\\permisoscomposite\\familia_43bo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{679653A6-C4A3-4BBD-9EB2-7F7F85CE8742}|..\\Servicios\\Servicios_43BO.csproj|c:\\users\\juanpy\\documents\\ing. software\\ingenieria-en-requerimiento-\\servicios\\permisoscomposite\\rol_43bo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{679653A6-C4A3-4BBD-9EB2-7F7F85CE8742}|..\\Servicios\\Servicios_43BO.csproj|c:\\users\\juanpy\\documents\\ing. software\\ingenieria-en-requerimiento-\\servicios\\iidiomaobserver\\idiomaobserver_43bo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{679653A6-C4A3-4BBD-9EB2-7F7F85CE8742}|..\\Servicios\\Servicios_43BO.csproj|c:\\users\\juanpy\\documents\\ing. software\\ingenieria-en-requerimiento-\\servicios\\permisoscomposite\\patente_43bo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{254E9F21-E2C6-4C41-8632-D4EA79499650}|GUI_43BO.csproj|c:\\users\\juanpy\\documents\\ing. software\\ingenieria-en-requerimiento-\\proyecto ingsoftware\\admin\\gestionperfiles.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{254E9F21-E2C6-4C41-8632-D4EA79499650}|GUI_43BO.csproj|C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\Proyecto IngSoftware\\admin\\gestionperfiles.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{254E9F21-E2C6-4C41-8632-D4EA79499650}|GUI_43BO.csproj|solutionrelative:admin\\gestionperfiles.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -47,7 +51,7 @@
       "AbsoluteMoniker": "D:0:0:{6F931184-CDC0-4195-BE83-FD9D6427D832}|..\\DAL\\DAL_43BO.csproj|c:\\users\\juanpy\\documents\\ing. software\\ingenieria-en-requerimiento-\\dal\\daluser_43bo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{254E9F21-E2C6-4C41-8632-D4EA79499650}|GUI_43BO.csproj|c:\\users\\juanpy\\documents\\ing. software\\ingenieria-en-requerimiento-\\proyecto ingsoftware\\admin\\gestionperfiles.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{254E9F21-E2C6-4C41-8632-D4EA79499650}|GUI_43BO.csproj|C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\Proyecto IngSoftware\\admin\\gestionperfiles.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{254E9F21-E2C6-4C41-8632-D4EA79499650}|GUI_43BO.csproj|solutionrelative:admin\\gestionperfiles.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
@@ -66,10 +70,6 @@
     },
     {
       "AbsoluteMoniker": "D:0:0:{679653A6-C4A3-4BBD-9EB2-7F7F85CE8742}|..\\Servicios\\Servicios_43BO.csproj|c:\\users\\juanpy\\documents\\ing. software\\ingenieria-en-requerimiento-\\servicios\\bitacora_43bo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{254E9F21-E2C6-4C41-8632-D4EA79499650}|GUI_43BO.csproj|C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\Proyecto IngSoftware\\cambiaridioma.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{254E9F21-E2C6-4C41-8632-D4EA79499650}|GUI_43BO.csproj|solutionrelative:cambiaridioma.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{254E9F21-E2C6-4C41-8632-D4EA79499650}|GUI_43BO.csproj|C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\Proyecto IngSoftware\\idiomas\\en.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
@@ -129,24 +129,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "IdiomaObserver_43BO.cs",
-              "DocumentMoniker": "C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\Servicios\\IidiomaObserver\\IdiomaObserver_43BO.cs",
-              "RelativeDocumentMoniker": "..\\Servicios\\IidiomaObserver\\IdiomaObserver_43BO.cs",
-              "ToolTip": "C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\Servicios\\IidiomaObserver\\IdiomaObserver_43BO.cs",
-              "RelativeToolTip": "..\\Servicios\\IidiomaObserver\\IdiomaObserver_43BO.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-09T20:51:32.672Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "GestorIdioma_43BO.cs",
               "DocumentMoniker": "C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\Servicios\\IidiomaObserver\\GestorIdioma_43BO.cs",
               "RelativeDocumentMoniker": "..\\Servicios\\IidiomaObserver\\GestorIdioma_43BO.cs",
@@ -154,25 +141,24 @@
               "RelativeToolTip": "..\\Servicios\\IidiomaObserver\\GestorIdioma_43BO.cs",
               "ViewState": "AgIAABUAAAAAAAAAAAAowBoAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-09T20:54:07.408Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-09T20:54:07.408Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "GestorArchivoIdioma_43BO.cs",
               "DocumentMoniker": "C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\Servicios\\IidiomaObserver\\GestorArchivoIdioma_43BO.cs",
               "RelativeDocumentMoniker": "..\\Servicios\\IidiomaObserver\\GestorArchivoIdioma_43BO.cs",
               "ToolTip": "C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\Servicios\\IidiomaObserver\\GestorArchivoIdioma_43BO.cs",
               "RelativeToolTip": "..\\Servicios\\IidiomaObserver\\GestorArchivoIdioma_43BO.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAAAQwBMAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAABMAAAAAAAAAAAAAAAcAAAAtAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-06-16T23:56:05.914Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
               "Title": "Rol_43BO.cs",
               "DocumentMoniker": "C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\Servicios\\PermisosComposite\\Rol_43BO.cs",
               "RelativeDocumentMoniker": "..\\Servicios\\PermisosComposite\\Rol_43BO.cs",
@@ -185,7 +171,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "Familia_43BO.cs",
               "DocumentMoniker": "C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\Servicios\\PermisosComposite\\Familia_43BO.cs",
               "RelativeDocumentMoniker": "..\\Servicios\\PermisosComposite\\Familia_43BO.cs",
@@ -193,12 +179,36 @@
               "RelativeToolTip": "..\\Servicios\\PermisosComposite\\Familia_43BO.cs",
               "ViewState": "AgIAABIAAAAAAAAAAAAowB0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-08T23:27:34.401Z",
+              "WhenOpened": "2026-06-08T23:27:34.401Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "CambiarIdioma.cs",
+              "DocumentMoniker": "C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\Proyecto IngSoftware\\CambiarIdioma.cs",
+              "RelativeDocumentMoniker": "CambiarIdioma.cs",
+              "ToolTip": "C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\Proyecto IngSoftware\\CambiarIdioma.cs",
+              "RelativeToolTip": "CambiarIdioma.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-10T01:44:22.229Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 5,
+              "Title": "IdiomaObserver_43BO.cs",
+              "DocumentMoniker": "C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\Servicios\\IidiomaObserver\\IdiomaObserver_43BO.cs",
+              "RelativeDocumentMoniker": "..\\Servicios\\IidiomaObserver\\IdiomaObserver_43BO.cs",
+              "ToolTip": "C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\Servicios\\IidiomaObserver\\IdiomaObserver_43BO.cs",
+              "RelativeToolTip": "..\\Servicios\\IidiomaObserver\\IdiomaObserver_43BO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-09T20:51:32.672Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
               "Title": "Patente_43BO.cs",
               "DocumentMoniker": "C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\Servicios\\PermisosComposite\\Patente_43BO.cs",
               "RelativeDocumentMoniker": "..\\Servicios\\PermisosComposite\\Patente_43BO.cs",
@@ -206,12 +216,11 @@
               "RelativeToolTip": "..\\Servicios\\PermisosComposite\\Patente_43BO.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-09T19:35:35.782Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-09T19:35:35.782Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "GestionPerfiles.cs",
               "DocumentMoniker": "C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\Proyecto IngSoftware\\Admin\\GestionPerfiles.cs",
               "RelativeDocumentMoniker": "Admin\\GestionPerfiles.cs",
@@ -219,12 +228,11 @@
               "RelativeToolTip": "Admin\\GestionPerfiles.cs",
               "ViewState": "AgIAAKkAAAAAAAAAAAAAwMIAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-16T19:08:52.2Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-16T19:08:52.2Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "User_43BO.cs",
               "DocumentMoniker": "C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\Servicios\\User_43BO.cs",
               "RelativeDocumentMoniker": "..\\Servicios\\User_43BO.cs",
@@ -232,12 +240,11 @@
               "RelativeToolTip": "..\\Servicios\\User_43BO.cs",
               "ViewState": "AgIAAD4AAAAAAAAAAAA8wFIAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-09T21:28:06.243Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-09T21:28:06.243Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "DALpatente_43BO.cs",
               "DocumentMoniker": "C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\DAL\\DALpatente_43BO.cs",
               "RelativeDocumentMoniker": "..\\DAL\\DALpatente_43BO.cs",
@@ -245,12 +252,11 @@
               "RelativeToolTip": "..\\DAL\\DALpatente_43BO.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-02T23:48:10.115Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-02T23:48:10.115Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "BllPatente_43BO.cs",
               "DocumentMoniker": "C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\BLL\\BllPatente_43BO.cs",
               "RelativeDocumentMoniker": "..\\BLL\\BllPatente_43BO.cs",
@@ -258,12 +264,11 @@
               "RelativeToolTip": "..\\BLL\\BllPatente_43BO.cs",
               "ViewState": "AgIAAEYAAAAAAAAAAAAYwE4AAABgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-02T23:49:47.742Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-02T23:49:47.742Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "Permisos_43BO.cs",
               "DocumentMoniker": "C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\Servicios\\Permisos_43BO.cs",
               "RelativeDocumentMoniker": "..\\Servicios\\Permisos_43BO.cs",
@@ -271,12 +276,11 @@
               "RelativeToolTip": "..\\Servicios\\Permisos_43BO.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-17T00:03:34.03Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-17T00:03:34.03Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 12,
               "Title": "Menu.cs",
               "DocumentMoniker": "C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\Proyecto IngSoftware\\Menu.cs",
               "RelativeDocumentMoniker": "Menu.cs",
@@ -284,12 +288,11 @@
               "RelativeToolTip": "Menu.cs",
               "ViewState": "AgIAAHsAAAAAAAAAAAAuwJAAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-01T22:42:07.653Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-01T22:42:07.653Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 13,
               "Title": "BllUser_43BO.cs",
               "DocumentMoniker": "C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\BLL\\BllUser_43BO.cs",
               "RelativeDocumentMoniker": "..\\BLL\\BllUser_43BO.cs",
@@ -297,12 +300,11 @@
               "RelativeToolTip": "..\\BLL\\BllUser_43BO.cs",
               "ViewState": "AgIAAOEAAAAAAAAAAAAowO0AAAAHAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-09T21:21:05.115Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-09T21:21:05.115Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 14,
               "Title": "DALUser_43BO.cs",
               "DocumentMoniker": "C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\DAL\\DALUser_43BO.cs",
               "RelativeDocumentMoniker": "..\\DAL\\DALUser_43BO.cs",
@@ -310,12 +312,11 @@
               "RelativeToolTip": "..\\DAL\\DALUser_43BO.cs",
               "ViewState": "AgIAAMAAAAAAAAAAAAAAAMkAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-09T21:24:38.495Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-09T21:24:38.495Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 16,
               "Title": "AccesoBD_43BO.cs",
               "DocumentMoniker": "C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\DAL\\AccesoBD_43BO.cs",
               "RelativeDocumentMoniker": "..\\DAL\\AccesoBD_43BO.cs",
@@ -323,20 +324,18 @@
               "RelativeToolTip": "..\\DAL\\AccesoBD_43BO.cs",
               "ViewState": "AgIAADUAAAAAAAAAAAAawEcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-16T17:50:19.123Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-16T17:50:19.123Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 15,
               "Title": "GestionPerfiles.cs [Dise\u00F1o]",
               "DocumentMoniker": "C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\Proyecto IngSoftware\\Admin\\GestionPerfiles.cs",
               "RelativeDocumentMoniker": "Admin\\GestionPerfiles.cs",
               "ToolTip": "C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\Proyecto IngSoftware\\Admin\\GestionPerfiles.cs [Dise\u00F1o]",
               "RelativeToolTip": "Admin\\GestionPerfiles.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-16T19:08:44.235Z",
-              "EditorCaption": " [Dise\u00F1o]"
+              "WhenOpened": "2026-06-16T19:08:44.235Z"
             },
             {
               "$type": "Document",
@@ -348,18 +347,6 @@
               "RelativeToolTip": "Auditoria.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-06-10T00:58:05.452Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 20,
-              "Title": "CambiarIdioma.cs",
-              "DocumentMoniker": "C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\Proyecto IngSoftware\\CambiarIdioma.cs",
-              "RelativeDocumentMoniker": "CambiarIdioma.cs",
-              "ToolTip": "C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\Proyecto IngSoftware\\CambiarIdioma.cs",
-              "RelativeToolTip": "CambiarIdioma.cs",
-              "ViewState": "AgIAAAQAAAAAAAAAAAAiwBEAAAAIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-10T01:44:22.229Z"
             },
             {
               "$type": "Document",
@@ -375,7 +362,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 19,
               "Title": "CambioContrase\u00F1a.cs",
               "DocumentMoniker": "C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\Proyecto IngSoftware\\CambioContrase\u00F1a.cs",
               "RelativeDocumentMoniker": "CambioContrase\u00F1a.cs",
@@ -387,7 +374,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 18,
               "Title": "es.json",
               "DocumentMoniker": "C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\Proyecto IngSoftware\\Idiomas\\es.json",
               "RelativeDocumentMoniker": "Idiomas\\es.json",
@@ -467,7 +454,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 17,
               "Title": "BllBitacora_43bo.cs",
               "DocumentMoniker": "C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\BLL\\BllBitacora_43bo.cs",
               "RelativeDocumentMoniker": "..\\BLL\\BllBitacora_43bo.cs",
@@ -491,7 +478,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 20,
               "Title": "Bitacora_43BO.cs",
               "DocumentMoniker": "C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\Servicios\\Bitacora_43BO.cs",
               "RelativeDocumentMoniker": "..\\Servicios\\Bitacora_43BO.cs",
@@ -546,8 +533,7 @@
               "ToolTip": "C:\\Users\\Juanpy\\Documents\\Ing. Software\\Ingenieria-en-requerimiento-\\Proyecto IngSoftware\\Menu.resx",
               "RelativeToolTip": "Menu.resx",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001005|",
-              "WhenOpened": "2026-04-29T00:56:50.701Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-29T00:56:50.701Z"
             }
           ]
         }
