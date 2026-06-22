@@ -10,6 +10,9 @@ public class GestorIdioma_43BO
     //almcenar el estado para que no sea null
     private Dictionary<string, string> _diccionarioActual;
 
+    // Agregá esta propiedad
+    public bool IdiomAnterior => _diccionarioActual != null;
+
     public static GestorIdioma_43BO Instancia
     {
         get
@@ -36,6 +39,16 @@ public class GestorIdioma_43BO
         {
             sub.ActualizarIdioma_43BO(nuevoDiccionario);
         }
+    }
+    public string ObtenerTexto_43BO(string key)
+    {
+        //aaca se puede usar el diccionario actual para obtener el texto, si no existe se devuelve la clave para que se note que falta traducción, o se podría devolver un mensaje de error o algo 
+        if (_diccionarioActual != null && _diccionarioActual.ContainsKey(key))
+        {
+            return _diccionarioActual[key];
+        }
+
+        return key;
     }
 
     public void CargarIdioma_43BO(string codigoIdioma)

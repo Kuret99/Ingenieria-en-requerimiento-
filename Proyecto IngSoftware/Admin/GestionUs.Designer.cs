@@ -205,28 +205,28 @@
             // 
             // txtDNI
             // 
-            this.txtDNI.Location = new System.Drawing.Point(62, 258);
+            this.txtDNI.Location = new System.Drawing.Point(69, 258);
             this.txtDNI.Name = "txtDNI";
             this.txtDNI.Size = new System.Drawing.Size(100, 20);
             this.txtDNI.TabIndex = 15;
             // 
             // txtNom
             // 
-            this.txtNom.Location = new System.Drawing.Point(62, 284);
+            this.txtNom.Location = new System.Drawing.Point(69, 284);
             this.txtNom.Name = "txtNom";
             this.txtNom.Size = new System.Drawing.Size(100, 20);
             this.txtNom.TabIndex = 16;
             // 
             // txtApe
             // 
-            this.txtApe.Location = new System.Drawing.Point(62, 310);
+            this.txtApe.Location = new System.Drawing.Point(69, 310);
             this.txtApe.Name = "txtApe";
             this.txtApe.Size = new System.Drawing.Size(100, 20);
             this.txtApe.TabIndex = 17;
             // 
             // txtEmail
             // 
-            this.txtEmail.Location = new System.Drawing.Point(62, 361);
+            this.txtEmail.Location = new System.Drawing.Point(69, 361);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(100, 20);
             this.txtEmail.TabIndex = 19;
@@ -243,7 +243,7 @@
             // cmbRol
             // 
             this.cmbRol.FormattingEnabled = true;
-            this.cmbRol.Location = new System.Drawing.Point(62, 336);
+            this.cmbRol.Location = new System.Drawing.Point(69, 334);
             this.cmbRol.Name = "cmbRol";
             this.cmbRol.Size = new System.Drawing.Size(100, 21);
             this.cmbRol.TabIndex = 21;

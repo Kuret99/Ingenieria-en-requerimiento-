@@ -15,6 +15,8 @@ namespace Servicios
         GestionUsuarios_Modificar = 4,
         GestionUsuarios_ActivarDesactivar = 5,
         GestionUsuarios_Listar = 6,
+        GestionUsuarios_Aplicar = 18,
+
         Auditoria_Acceso = 7,
         Auditoria_Consultar = 8,
         Auditoria_Imprimir = 9,

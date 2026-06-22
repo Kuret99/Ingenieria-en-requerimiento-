@@ -115,7 +115,8 @@ namespace BLL
             }
             catch (Exception ex)
             {
-                throw new Exception("Error en BLL al generar PDF: " + ex.Message);
+                string msg = GestorIdioma_43BO.Instancia.ObtenerTexto_43BO("bllbitacora_43bo_error_en_bll_al_generar_pdf");
+                throw new Exception(msg + " " + ex.Message);
             }
         }
     }

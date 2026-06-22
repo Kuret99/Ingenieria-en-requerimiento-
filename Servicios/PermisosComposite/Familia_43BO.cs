@@ -61,7 +61,8 @@ namespace Servicios
                 if (misDescendientes.Any(d => d.IdRol_43BO == item.IdRol_43BO && d.GetType() == item.GetType())
                     || (this.IdRol_43BO == item.IdRol_43BO && this.GetType() == item.GetType()))
                 {
-                    throw new Exception($"Error: El elemento '{item.Nombre_43BO}' ya existe en la jerarquía.");
+                    string msgBase = GestorIdioma_43BO.Instancia.ObtenerTexto_43BO("gestionperfiles_error_elemento_existente");
+                    throw new Exception(string.Format(msgBase, item.Nombre_43BO));
                 }
             }
 

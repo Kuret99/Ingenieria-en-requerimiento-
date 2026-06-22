@@ -90,7 +90,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(187, 308);
+            this.label4.Location = new System.Drawing.Point(259, 289);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(50, 13);
             this.label4.TabIndex = 4;
@@ -137,6 +137,7 @@
             // 
             // dtpFechaInicio
             // 
+            this.dtpFechaInicio.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpFechaInicio.Location = new System.Drawing.Point(229, 252);
             this.dtpFechaInicio.Name = "dtpFechaInicio";
             this.dtpFechaInicio.Size = new System.Drawing.Size(200, 20);
@@ -144,6 +145,7 @@
             // 
             // dtpFechaFin
             // 
+            this.dtpFechaFin.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpFechaFin.Location = new System.Drawing.Point(557, 252);
             this.dtpFechaFin.Name = "dtpFechaFin";
             this.dtpFechaFin.Size = new System.Drawing.Size(200, 20);
@@ -152,7 +154,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(387, 308);
+            this.label7.Location = new System.Drawing.Point(475, 289);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(42, 13);
             this.label7.TabIndex = 12;
@@ -161,7 +163,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(589, 308);
+            this.label8.Location = new System.Drawing.Point(674, 289);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(41, 13);
             this.label8.TabIndex = 13;
@@ -170,7 +172,7 @@
             // cmbCriticidad
             // 
             this.cmbCriticidad.FormattingEnabled = true;
-            this.cmbCriticidad.Location = new System.Drawing.Point(243, 305);
+            this.cmbCriticidad.Location = new System.Drawing.Point(229, 308);
             this.cmbCriticidad.Name = "cmbCriticidad";
             this.cmbCriticidad.Size = new System.Drawing.Size(121, 21);
             this.cmbCriticidad.TabIndex = 14;

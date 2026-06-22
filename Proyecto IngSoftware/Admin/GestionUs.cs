@@ -12,22 +12,20 @@ namespace Proyecto_IngSoftware
 {
     public partial class GestionUs : Form, IdiomaObserver_43BO
     {
-        BLL.BllUser_43BO blluser = new BLL.BllUser_43BO();
-        BLL.BLLBitacora_43BO bllBitacora = new BLL.BLLBitacora_43BO();
-        List<User_43BO> todoslosusuarios;
+        private BLL.BllUser_43BO blluser = new BLL.BllUser_43BO();
+        private BLL.BLLBitacora_43BO bllBitacora = new BLL.BLLBitacora_43BO();
+        private List<User_43BO> todoslosusuarios;
         private bool Modificar_43BO = false;
-        private Dictionary<string, string> _dic;
-        BLLpatente_43BO bllpatente = new BLLpatente_43BO();
+        private BLLpatente_43BO bllpatente = new BLLpatente_43BO();
+        private Dictionary<string, string> _diccionario;
 
-        // ══════════════════════════════════════════════════════════════════
-        // DICCIONARIO DE GESTIÓN DE USUARIOS (Mapeado con tu Enum Real)
-        // ══════════════════════════════════════════════════════════════════
         private readonly Dictionary<string, Permisos_43BO> _mapaGestionUsuarios = new Dictionary<string, Permisos_43BO>
         {
             { "btnCrear", Permisos_43BO.GestionUsuarios_Alta },
             { "btnModi", Permisos_43BO.GestionUsuarios_Modificar },
             { "btnDes", Permisos_43BO.GestionUsuarios_Desbloquear },
-            { "btnAct", Permisos_43BO.GestionUsuarios_ActivarDesactivar }
+            { "btnAct", Permisos_43BO.GestionUsuarios_ActivarDesactivar },
+            { "btnApli", Permisos_43BO.GestionUsuarios_Aplicar }
         };
 
         public GestionUs()
@@ -38,39 +36,45 @@ namespace Proyecto_IngSoftware
             ActualizarDGV_43BO();
             ConfigurarComboBoxRoles_43BO();
 
-            
             AsignadorPermisos_43BO.Aplicar(this, _mapaGestionUsuarios);
         }
 
-       // aca se aplica el observer 
         public void ActualizarIdioma_43BO(Dictionary<string, string> dic)
         {
-            _dic = dic;
+            _diccionario = dic;
 
-            // Traduce controles 
-            this.Text = GetTexto("gestion_usuarios_titulo");
-            rbActivos.Text = GetTexto("gestion_usuarios_rb_activos");
-            rbTodos.Text = GetTexto("gestion_usuarios_rb_todos");
-            rbBloqueados.Text = GetTexto("gestion_usuarios_rb_bloqueados");
-            btnCrear.Text = GetTexto("gestion_usuarios_btn_crear");
-            btnDes.Text = GetTexto("gestion_usuarios_btn_desbloquear");
-            btnModi.Text = GetTexto("gestion_usuarios_btn_modificar");
-            btnAct.Text = GetTexto("gestion_usuarios_btn_act_desact");
-            btnApli.Text = GetTexto("gestion_usuarios_btn_aplicar");
-            btnCanc.Text = GetTexto("gestion_usuarios_btn_cancelar");
-            btnSalir.Text = GetTexto("gestion_usuarios_btn_salir");
+            // Título del formulario
+            this.Traducir(dic, "gestion_usuarios_titulo");
 
+            // RadioButtons
+            rbActivos.Traducir(dic, "gestion_usuarios_rb_activos");
+            rbTodos.Traducir(dic, "gestion_usuarios_rb_todos");
+            rbBloqueados.Traducir(dic, "gestion_usuarios_rb_bloqueados");
+
+            // Labels (Asegurate de que estos sean los nombres de tus labels en el Designer)
+            label1.Traducir(dic, "dgv_dni");
+            label2.Traducir(dic, "dgv_nombre");
+            label3.Traducir(dic, "dgv_apellido");
+            label4.Traducir(dic, "dgv_rol");
+            label5.Traducir(dic, "dgv_email");
+
+            // Botones
+            btnCrear.Traducir(dic, "gestion_usuarios_btn_crear");
+            btnDes.Traducir(dic, "gestion_usuarios_btn_desbloquear");
+            btnModi.Traducir(dic, "gestion_usuarios_btn_modificar");
+            btnAct.Traducir(dic, "gestion_usuarios_btn_act_desact");
+            btnApli.Traducir(dic, "gestion_usuarios_btn_aplicar");
+            btnCanc.Traducir(dic, "gestion_usuarios_btn_cancelar");
+            btnSalir.Traducir(dic, "gestion_usuarios_btn_salir");
+
+            // La grilla siempre al final para mantener el formato
             FormatoDgv_43BO();
         }
 
-        private string GetTexto(string key)
+        private string ObtenerTexto(string clave, string porDefecto)
         {
-            if (_dic != null && _dic.ContainsKey(key))
-                return _dic[key];
-            return key;
+            return _diccionario != null && _diccionario.ContainsKey(clave) ? _diccionario[clave] : porDefecto;
         }
-
-   
 
         private void ConfigurarComboBoxRoles_43BO()
         {
@@ -80,12 +84,11 @@ namespace Proyecto_IngSoftware
                 cmbRol.DataSource = rolesReales;
                 cmbRol.DisplayMember = "Nombre_43BO";
                 cmbRol.ValueMember = "IdRol_43BO";
-
                 cmbRol.SelectedIndex = -1;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al cargar los roles desde la BD: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ObtenerTexto("gestionus_error_al_cargar_los_roles_desde_la_bd", "Error al cargar los roles desde la BD: ") + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -97,21 +100,21 @@ namespace Proyecto_IngSoftware
 
         private void FormatoDgv_43BO()
         {
-            if (dgvUsaurio.Columns.Count == 0 || _dic == null) return;
+            if (dgvUsaurio.Columns.Count == 0) return;
 
-            void SetHeader(string col, string key)
+            void SetHeader(string col, string key, string defaultText)
             {
                 if (dgvUsaurio.Columns.Contains(col))
-                    dgvUsaurio.Columns[col].HeaderText = GetTexto(key);
+                    dgvUsaurio.Columns[col].HeaderText = ObtenerTexto(key, defaultText);
             }
 
-            SetHeader("DNI_43BO", "dgv_dni");
-            SetHeader("Nombre_43BO", "dgv_nombre");
-            SetHeader("Apellido_43BO", "dgv_apellido");
-            SetHeader("Email_43BO", "dgv_email");
-            SetHeader("RolNombre", "dgv_rol");
-            SetHeader("Activo_43BO", "dgv_activo");
-            SetHeader("Bloqueado_43BO", "dgv_bloqueado");
+            SetHeader("DNI_43BO", "dgv_dni", "DNI");
+            SetHeader("Nombre_43BO", "dgv_nombre", "Nombre");
+            SetHeader("Apellido_43BO", "dgv_apellido", "Apellido");
+            SetHeader("Email_43BO", "dgv_email", "Email");
+            SetHeader("RolNombre", "dgv_rol", "Rol");
+            SetHeader("Activo_43BO", "dgv_activo", "Activo");
+            SetHeader("Bloqueado_43BO", "dgv_bloqueado", "Bloqueado");
 
             if (dgvUsaurio.Columns.Contains("RolNombre"))
                 dgvUsaurio.Columns["RolNombre"].DisplayIndex = 4;
@@ -134,12 +137,13 @@ namespace Proyecto_IngSoftware
                 todoslosusuarios = blluser.ListarUsuarios_43BO();
                 var lista = rbActivos.Checked ? todoslosusuarios.Where(u => u.Activo_43BO).ToList() :
                             rbBloqueados.Checked ? todoslosusuarios.Where(u => u.Bloqueado_43BO).ToList() : todoslosusuarios;
+
                 dgvUsaurio.DataSource = lista.Select(u => new {
                     u.DNI_43BO,
                     u.Nombre_43BO,
                     u.Apellido_43BO,
                     u.Email_43BO,
-                    RolNombre = u.Rol != null ? u.Rol.Nombre_43BO : "Sin Rol",
+                    RolNombre = u.Rol != null ? u.Rol.Nombre_43BO : ObtenerTexto("gestionus_sin_rol", "Sin Rol"),
                     u.Bloqueado_43BO,
                     u.Activo_43BO
                 }).ToList();
@@ -147,7 +151,7 @@ namespace Proyecto_IngSoftware
             }
             catch (Exception ex)
             {
-                MessageBox.Show(GetTexto(ex.Message), GetTexto("titulo_error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ObtenerTexto("msg_error_general", "Error: ") + ex.Message, ObtenerTexto("titulo_error", "Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -156,15 +160,14 @@ namespace Proyecto_IngSoftware
             if (dgvUsaurio.CurrentRow != null)
             {
                 btnModi.Enabled = true; btnDes.Enabled = true; btnAct.Enabled = true; btnCrear.Enabled = false;
-
-               
                 AsignadorPermisos_43BO.Aplicar(this, _mapaGestionUsuarios);
 
                 txtDNI.Text = dgvUsaurio.CurrentRow.Cells["DNI_43BO"].Value.ToString();
                 txtNom.Text = dgvUsaurio.CurrentRow.Cells["Nombre_43BO"].Value.ToString();
                 txtApe.Text = dgvUsaurio.CurrentRow.Cells["Apellido_43BO"].Value.ToString();
                 txtEmail.Text = dgvUsaurio.CurrentRow.Cells["Email_43BO"].Value.ToString();
-                cmbRol.SelectedValue = todoslosusuarios.FirstOrDefault(u => u.DNI_43BO.ToString() == txtDNI.Text)?.Rol?.IdRol_43BO;
+                cmbRol.SelectedValue = todoslosusuarios.FirstOrDefault(u => u.DNI_43BO.ToString() == txtDNI.Text)?.Rol?.IdRol_43BO ?? -1;
+
                 txtDNI.Enabled = false; txtNom.Enabled = false; txtApe.Enabled = false; cmbRol.Enabled = false; txtEmail.Enabled = false;
             }
         }
@@ -189,23 +192,36 @@ namespace Proyecto_IngSoftware
             {
                 Rol_43BO rol = (Rol_43BO)cmbRol.SelectedItem;
                 if (Modificar_43BO)
-                {
                     blluser.ModificarUser_43BO(int.Parse(txtDNI.Text), rol, txtEmail.Text);
-                }
                 else
-                {
                     blluser.InsertarUser_43BO(int.Parse(txtDNI.Text), txtNom.Text, txtApe.Text, rol, txtEmail.Text);
-                }
-                MessageBox.Show(GetTexto("gestion_usuarios_msg_exito"), GetTexto("titulo_excelente"), MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                MessageBox.Show(ObtenerTexto("gestion_usuarios_msg_exito", "Operación exitosa."), ObtenerTexto("titulo_excelente", "Éxito"), MessageBoxButtons.OK, MessageBoxIcon.Information);
                 ActualizarDGV_43BO();
                 Btns_43BO();
-
-                
                 AsignadorPermisos_43BO.Aplicar(this, _mapaGestionUsuarios);
             }
             catch (Exception ex)
             {
-                MessageBox.Show(GetTexto(ex.Message), GetTexto("titulo_error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                string mensajeError = ex.Message;
+
+                // Si el mensaje tiene un "|" significa que trae parámetros (como los intentos restantes)
+                if (mensajeError.Contains("|"))
+                {
+                    string[] partes = mensajeError.Split('|');
+                    // Traducimos la llave (ej: "error_intentos_restantes") y reemplazamos el {0}
+                    mensajeError = string.Format(ObtenerTexto(partes[0], partes[0]), partes[1]);
+                }
+                else
+                {
+                    // Traducimos el error común usando tu gestor
+                    mensajeError = ObtenerTexto(mensajeError, mensajeError);
+                }
+
+                MessageBox.Show(ObtenerTexto("msg_error_general", "Se produjo un error: ") + mensajeError,
+                                ObtenerTexto("msg_titulo_error", "Error"),
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
             }
         }
 
@@ -215,8 +231,6 @@ namespace Proyecto_IngSoftware
             txtDNI.Clear(); txtNom.Clear(); txtApe.Clear(); txtEmail.Clear();
             cmbRol.SelectedIndex = -1;
             Btns_43BO();
-
-      
             AsignadorPermisos_43BO.Aplicar(this, _mapaGestionUsuarios);
         }
 
@@ -229,13 +243,11 @@ namespace Proyecto_IngSoftware
                 blluser.Eliminar_43BO(dni, !act);
                 ActualizarDGV_43BO();
                 Btns_43BO();
-
-             
                 AsignadorPermisos_43BO.Aplicar(this, _mapaGestionUsuarios);
             }
             catch (Exception ex)
             {
-                MessageBox.Show(GetTexto(ex.Message), GetTexto("titulo_error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ObtenerTexto("msg_error_general", "Error: ") + ex.Message, ObtenerTexto("titulo_error", "Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -246,13 +258,11 @@ namespace Proyecto_IngSoftware
                 blluser.DesbloquearUser_43BO(int.Parse(txtDNI.Text));
                 ActualizarDGV_43BO();
                 Btns_43BO();
-
-              
                 AsignadorPermisos_43BO.Aplicar(this, _mapaGestionUsuarios);
             }
             catch (Exception ex)
             {
-                MessageBox.Show(GetTexto(ex.Message), GetTexto("titulo_error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ObtenerTexto("msg_error_general", "Error: ") + ex.Message, ObtenerTexto("titulo_error", "Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
