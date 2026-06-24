@@ -17,11 +17,8 @@ namespace BLL
     {
         DALBitacora_43BO dal = new DALBitacora_43BO();
 
-        public void GuardarLog_43BO(User_43BO usaurio, Modulo_43BO modulo, Evento_43BO evento, int criticidad)
+        public void GuardarLog_43BO(Modulo_43BO modulo, Evento_43BO evento, int criticidad)
         {
-            Bitacora_43BO bi = new Bitacora_43BO();
-
-      
 
             /// --- Esto queda aca por si ams adelante tengoq ue cambialo -----
             //bi.log_43BO = SessionManager_43BO.Instancia.Usuario;
@@ -30,32 +27,32 @@ namespace BLL
             //bi.Evento = evento;
             //bi.Fecha_43BO = DateTime.Now;
             //bi.Criticidad_43BO = criticidad;
-
             //dal.GuardarLog_43BO(bi);
 
 
-            if (SessionManager_43BO.Instancia != null)
+            Bitacora_43BO bi = new Bitacora_43BO();
+
+            if (SessionManager_43BO.Instancia == null) return;
+            var usuarioActual = SessionManager_43BO.Instancia.Usuario;
+            if (usuarioActual != null)
             {
-                bi.log_43BO = SessionManager_43BO.Instancia.Usuario;
+                bi.log_43BO = usuarioActual;
             }
             else
-            {
-                bi.log_43BO = usaurio; // Usamos el usuario que llega por parámetro si la sesión no está lista
+            {            
+                bi.log_43BO = null;
             }
-
             bi.Modulo = modulo;
             bi.Evento = evento;
             bi.Fecha_43BO = DateTime.Now;
-            bi.Criticidad_43BO = criticidad;
+            bi.Criticidad_43BO = criticidad;    
             dal.GuardarLog_43BO(bi);
-
-
         }
 
-        public DataTable ListarBitacora_43BO(DateTime fInicio, DateTime fFin, string modulo)
+        public DataTable ListarBitacora_43BO(DateTime fInicio, DateTime fFin, string modulo, string evento, string criticidad)
         {
             
-            return dal.ListarBitacora_43BO(fInicio, fFin, modulo);
+            return dal.ListarBitacora_43BO(fInicio, fFin, modulo, evento, criticidad);
         }
         public void Imprimir_43BO(string ruta, DataTable datos, string criticidad, string modulo)
         {

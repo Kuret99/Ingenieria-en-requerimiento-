@@ -146,20 +146,20 @@ namespace DAL
         }
 
         //
-        public int InsertarFamilia_43BO(string nombre)
+        public int RegistrarFamilia_43BO(string nombre)
         {
             SqlParameter[] parametros = { new SqlParameter("@nombre", nombre), new SqlParameter("@tipo", "Familia") };
             return acceso.EjecutarScalar_43BO("InsertarComponente_43BO", parametros, CommandType.StoredProcedure);
         }
 
-        public int InsertarRol_43BO(string nombre)
+        public int RegistrarRol_43BO(string nombre)
         {
             SqlParameter[] parametros = { new SqlParameter("@nombre", nombre), new SqlParameter("@tipo", "Rol") };
             return acceso.EjecutarScalar_43BO("InsertarComponente_43BO", parametros, CommandType.StoredProcedure);
         }
 
         // 
-        public bool VincularHijo_43BO(Rol_43BO padre, Rol_43BO hijo, bool esModoRol)
+        public bool AgregarComponenteHijo_43BO(Rol_43BO padre, Rol_43BO hijo, bool esModoRol)
         {
             if (padre.IdRol_43BO <= 0 || hijo.IdRol_43BO <= 0) return false;
 
@@ -167,8 +167,6 @@ namespace DAL
                 ? ((hijo is Patente_43BO) ? "RolPatente" : "RolFamilia")
                 : ((hijo is Patente_43BO) ? "PatenteFamilia" : "FamiliaFamilia");
 
-            try
-            {
                 SqlParameter[] parametros = {
                     new SqlParameter("@idPadre", padre.IdRol_43BO),
                     new SqlParameter("@idHijo", hijo.IdRol_43BO),
@@ -176,14 +174,10 @@ namespace DAL
                 };
                 int filas = acceso.Escribir_43BO("VincularComponente_43BO", parametros, CommandType.StoredProcedure);
                 return filas > 0;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
+            
         }
 
-        public bool DesvincularHijo_43BO(Rol_43BO padre, Rol_43BO hijo, bool esModoRol)
+        public bool QuitarComponenteHijo_43BO(Rol_43BO padre, Rol_43BO hijo, bool esModoRol)
         {
             if (padre.IdRol_43BO <= 0 || hijo.IdRol_43BO <= 0) return false;
 

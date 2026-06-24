@@ -19,6 +19,8 @@ namespace Proyecto_IngSoftware
         private bool _modoGestionRoles = true;
         private Dictionary<string, string> _diccionario;
         private bool _editandoModo = false;
+        private string _modoActual = "";
+     
 
         private readonly Dictionary<string, Permisos_43BO> _mapaGestionPerfiles = new Dictionary<string, Permisos_43BO>
         {
@@ -55,9 +57,15 @@ namespace Proyecto_IngSoftware
 
             this.Text = ObtenerTexto("gestionperfiles_titulo", "Gestión de Perfiles y Permisos");
             btnEliminarRol.Text = ObtenerTexto("gestionperfiles._eliminar_seleccionado", "Eliminar Seleccionado");
-            btnCrear.Text = ObtenerTexto("gestionperfiles._crear", "Crear");
 
-            btnModificar.Text = _editandoModo ? ObtenerTexto("gestionperfiles._finalizar", "✔ Finalizar Edición") : ObtenerTexto("gestionperfiles._modificar", "Modificar");
+       
+            btnCrear.Text = _editandoModo
+                ? ObtenerTexto("gestionperfiles._finalizar", "✔ Finalizar")
+                : ObtenerTexto("gestionperfiles._crear", "Crear");
+
+            btnModificar.Text = _editandoModo
+                ? ObtenerTexto("gestionperfiles._finalizar", "✔ Finalizar")
+                : ObtenerTexto("gestionperfiles._modificar", "Modificar");
         }
 
 
@@ -97,7 +105,8 @@ namespace Proyecto_IngSoftware
                 foreach (var rol in _bll.ListarTodosLosRoles_43BO())
                 {
                     _bll.HidratarRolCompleto_43BO(rol);
-                    TreeNode nodoRol = new TreeNode(rol.Nombre_43BO) { Tag = rol };
+                  
+                    TreeNode nodoRol = new TreeNode((rol is Familia_43BO ? "📁 " : "🔑 ") + rol.Nombre_43BO) { Tag = rol };
                     AgregarHijosAlArbol(nodoRol, rol);
                     treeView1.Nodes.Add(nodoRol);
                 }
@@ -107,7 +116,7 @@ namespace Proyecto_IngSoftware
                 foreach (var fam in _bll.ListarTodasLasFamilias_43BO())
                 {
                     _bll.HidratarFamiliaRecursivo_43BO(fam);
-                    TreeNode nodoFam = new TreeNode(fam.Nombre_43BO) { Tag = fam };
+                    TreeNode nodoFam = new TreeNode((fam is Familia_43BO ? "📁 " : "🔑 ") + fam.Nombre_43BO) { Tag = fam };
                     AgregarHijosAlArbol(nodoFam, fam);
                     treeView1.Nodes.Add(nodoFam);
                 }
@@ -126,21 +135,29 @@ namespace Proyecto_IngSoftware
                 return;
             }
 
-          
-            listBox1.DataSource = null; // 1. Rompemos el enlace
-            listBox1.DataSource = _rolActual.ObtenerHijos_43BO(); // 2. Volvemos a enlazar
-            listBox1.DisplayMember = "Nombre_43BO";
- 
-            var catalogoGeneral = _bll.ListarTodasLasFamilias_43BO().Cast<Rol_43BO>()
-                                    .Concat(_bll.ListarTodasLasPatentes_43BO().Cast<Rol_43BO>()).ToList();
+            try
+            {
+              
+                listBox1.DataSource = null;
+                listBox1.DataSource = _rolActual.ObtenerHijos_43BO();
+                listBox1.DisplayMember = "Nombre_43BO";
 
-            var idsAsignados = _rolActual.ObtenerHijos_43BO().Select(x => x.IdRol_43BO).ToList();
+                var catalogoGeneral = _bll.ListarTodasLasFamilias_43BO().Cast<Rol_43BO>()
+                                          .Concat(_bll.ListarTodasLasPatentes_43BO().Cast<Rol_43BO>()).ToList();
 
-            listBox2.DataSource = null; // 1. Rompemos el enlace
-            listBox2.DataSource = catalogoGeneral
-                        .Where(x => !idsAsignados.Contains(x.IdRol_43BO) && x.IdRol_43BO != _rolActual.IdRol_43BO)
-                        .ToList(); // 2. Volvemos a enlazar
-            listBox2.DisplayMember = "Nombre_43BO";
+                var idsAsignados = _rolActual.ObtenerHijos_43BO().Select(x => x.IdRol_43BO).ToList();
+
+                listBox2.DataSource = null;
+                listBox2.DataSource = catalogoGeneral
+                                        .Where(x => !idsAsignados.Contains(x.IdRol_43BO) && x.IdRol_43BO != _rolActual.IdRol_43BO)
+                                        .ToList();
+                listBox2.DisplayMember = "Nombre_43BO";
+            }
+            catch (Exception ex)
+            {
+                _rolActual = null;
+                MessageBox.Show("Error al cargar datos: " + ex.Message);
+            }
         }
 
 
@@ -151,7 +168,8 @@ namespace Proyecto_IngSoftware
             {
                 foreach (var hijo in familia.ObtenerHijos_43BO())
                 {
-                    TreeNode nodoHijo = new TreeNode(hijo.Nombre_43BO) { Tag = hijo };
+                    TreeNode nodoHijo = new TreeNode((hijo is Familia_43BO ? "📁 " : "🔑 ") + hijo.Nombre_43BO) { Tag = hijo };
+
                     if (hijo is Familia_43BO sub) AgregarHijosAlArbol(nodoHijo, sub);
                     nodoVisualPadre.Nodes.Add(nodoHijo);
                 }
@@ -186,9 +204,17 @@ namespace Proyecto_IngSoftware
 
         private void button7_Click(object sender, EventArgs e)
         {
-            if (listBox2.SelectedItem == null)
+            if (_rolActual == null)
             {
-                MessageBox.Show(ObtenerTexto("titulo_atencion", "Atención"));
+                MessageBox.Show(ObtenerTexto("msg_seleccionar_rol", "Por favor, seleccione un rol o familia."),
+                                ObtenerTexto("titulo_atencion", "Atención"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (listBox2.Items.Count == 0 || listBox2.SelectedItem == null)
+            {
+                MessageBox.Show(ObtenerTexto("msg_seleccionar_item_a_agregar", "Debe seleccionar un componente de la lista para poder agregarlo."),
+                                ObtenerTexto("titulo_atencion", "Atención"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -196,123 +222,171 @@ namespace Proyecto_IngSoftware
 
             try
             {
-                
                 _bll.AgregarComponenteHijo_43BO(_rolActual, itemParaAgregar, _modoGestionRoles);
 
-                if (_modoGestionRoles)
-                    _bll.HidratarRolCompleto_43BO(_rolActual);
-                else
-                    _bll.HidratarFamiliaRecursivo_43BO(_rolActual);
+               
+                if (_modoGestionRoles) _bll.HidratarRolCompleto_43BO(_rolActual);
+                else _bll.HidratarFamiliaRecursivo_43BO(_rolActual);
 
                 RefrescarListas();
             }
             catch (Exception ex)
             {
-           
-                MessageBox.Show(ex.Message,
-                                ObtenerTexto("titulo_error", "Error"),
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Error);
+                //MessageBox.Show(ex.ToString(), "Detalle del Error Real");
+
+                string mensajeTraducido = ObtenerTexto(ex.Message, "Error en la estructura: " + ex.Message);
+                MessageBox.Show(mensajeTraducido, ObtenerTexto("titulo_error", "Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                CargarDatos_43BO();
             }
         }
 
         private void button8_Click(object sender, EventArgs e)
         {
-            if (_rolActual == null || listBox1.SelectedItem == null)
+            if (_rolActual == null) return;
+            if (listBox1.SelectedItem == null)
             {
-                MessageBox.Show(ObtenerTexto("titulo_atencion", "Atención"));
+                MessageBox.Show(ObtenerTexto("msg_seleccionar_item_a_quitar", "Debe seleccionar un componente de la lista para poder quitarlo."),
+                                ObtenerTexto("titulo_atencion", "Atención"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-
             var itemParaQuitar = (Rol_43BO)listBox1.SelectedItem;
 
-         
-            _bll.QuitarComponenteHijo_43BO(_rolActual, itemParaQuitar, _modoGestionRoles);
+            try
+            {
+                _bll.QuitarComponenteHijo_43BO(_rolActual, itemParaQuitar, _modoGestionRoles);
+                if (_modoGestionRoles) _bll.HidratarRolCompleto_43BO(_rolActual);
+                else _bll.HidratarFamiliaRecursivo_43BO(_rolActual);
 
-            
-            if (_modoGestionRoles)
-                _bll.HidratarRolCompleto_43BO(_rolActual);
-            else
-                _bll.HidratarFamiliaRecursivo_43BO(_rolActual);
-
-
-            RefrescarListas();
+                RefrescarListas();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, ObtenerTexto("titulo_error", "Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnCrear_Click(object sender, EventArgs e)
         {
-            string titulo = _modoGestionRoles ? ObtenerTexto("gestionperfiles_nuevo_rol", "Nuevo Rol") : ObtenerTexto("gestionperfiles_nueva_familia", "Nueva Familia");
-            string prompt = ObtenerTexto("gestionperfiles_msg_ingrese_nombre", "Ingrese el nombre:");
-
-            string nombre = Interaction.InputBox(prompt, titulo, "");
-
-            if (string.IsNullOrWhiteSpace(nombre)) return;
-
             try
             {
-                if (_modoGestionRoles) _bll.RegistrarRol_43BO(nombre);
-                else _bll.RegistrarFamilia_43BO(nombre);
-                CargarDatos_43BO();
+                if (!_editandoModo)
+                {
+                    string titulo = ObtenerTexto("msg_inputbox_titulo", "Nuevo Componente");
+                    string prompt = ObtenerTexto("msg_inputbox_prompt", "Ingrese el nombre:");
+                    string nombre = Interaction.InputBox(prompt, titulo, "");
+
+                    if (string.IsNullOrWhiteSpace(nombre)) return;
+
+                    int nuevoId = _modoGestionRoles ? _bll.RegistrarRol_43BO(nombre) : _bll.RegistrarFamilia_43BO(nombre);
+                    _rolActual = new Familia_43BO { IdRol_43BO = nuevoId, Nombre_43BO = nombre };
+
+                    _editandoModo = true;
+                    _modoActual = "CREAR";
+                    RefrescarListas();
+                    btnCrear.Text = ObtenerTexto("gestionperfiles._finalizar", "✔ Finalizar");
+                }
+                else if (_modoActual == "CREAR")
+                {
+                    if (_rolActual == null || _rolActual.ObtenerHijos_43BO().Count == 0)
+                    {
+                        MessageBox.Show(ObtenerTexto("msg_error_perfil_vacio", "No se puede finalizar la creación. Debe asignar al menos una patente o familia al perfil."),
+                                        ObtenerTexto("titulo_atencion", "Atención"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+               
+
+                    _editandoModo = false;
+                    _modoActual = "";
+                    _rolActual = null;
+
+                    btnCrear.Text = ObtenerTexto("gestionperfiles._crear", "Crear");
+                    CargarDatos_43BO();
+                }
+                ControlarEstadoControles();
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ObtenerTexto("msg_error_operacion", "Error al crear: ") + ex.Message, ObtenerTexto("titulo_error", "Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ObtenerTexto(ex.Message, ex.Message), ObtenerTexto("titulo_error", "Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
             if (_rolActual == null)
             {
-                MessageBox.Show(ObtenerTexto("titulo_atencion", "Atención"));
+                MessageBox.Show(ObtenerTexto("msg_seleccionar_rol", "Por favor, seleccione un rol o familia."));
                 return;
             }
 
-            if (!_editandoModo)
+            try
             {
-               
-                string titulo = _modoGestionRoles
-                    ? ObtenerTexto("gestionperfiles_modificar_rol", "Modify Role")
-                    : ObtenerTexto("gestionperfiles_modificar_familia", "Modify Family");
-
-                string mensajeInput = ObtenerTexto("gestionperfiles_msg_ingrese_nuevo_nombre", "Enter new name:");
-
-                string nuevoNombre = Interaction.InputBox(mensajeInput, titulo, _rolActual.Nombre_43BO);
-
-                // Si el usuario cancela o deja vacío, no hacemos nada
-                if (string.IsNullOrWhiteSpace(nuevoNombre)) return;
-
-                try
+                if (!_editandoModo)
                 {
+                    string titulo = _modoGestionRoles
+                        ? ObtenerTexto("gestionperfiles_modificar_rol", "Modify Role")
+                        : ObtenerTexto("gestionperfiles_modificar_familia", "Modify Family");
+
+                    string mensajeInput = ObtenerTexto("gestionperfiles_msg_ingrese_nuevo_nombre", "Enter new name:");
+                    string nuevoNombre = Interaction.InputBox(mensajeInput, titulo, _rolActual.Nombre_43BO);
+                    if (string.IsNullOrWhiteSpace(nuevoNombre)) return;
                     _bll.ModificarNombreComponente_43BO(_rolActual.IdRol_43BO, nuevoNombre, _modoGestionRoles);
                     _rolActual.Nombre_43BO = nuevoNombre;
-
-                    // --- SOLO SI SALIÓ BIEN, ACTIVAMOS EL MODO EDICIÓN ---
                     _editandoModo = true;
+                    _modoActual = "MODIFICAR";
+                    btnModificar.Text = ObtenerTexto("gestionperfiles._finalizar", "✔ Finalizar");
                 }
-                catch (Exception ex)
+                else if (_modoActual == "MODIFICAR")
                 {
-                    MessageBox.Show(ObtenerTexto("msg_error_operacion", "Error al modificar: ") + ex.Message, ObtenerTexto("titulo_error", "Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-            else
-            {
-                _editandoModo = false;
-                CargarDatos_43BO(); // Recargamos para salir del modo edición limpiamente
-            }
+                   
+                    if (_rolActual == null || _rolActual.ObtenerHijos_43BO().Count == 0)
+                    {
+                        MessageBox.Show(ObtenerTexto("msg_error_perfil_vacio", "No se puede finalizar la modificación. El perfil no puede quedar vacío, debe tener al menos una patente o familia."),
+                                        ObtenerTexto("titulo_atencion", "Atención"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return; 
+                    }
+            
 
-            AplicarTextosEstaticos();
-            ControlarEstadoControles();
+                    _editandoModo = false;
+                    _modoActual = "";
+                    CargarDatos_43BO();
+                    btnModificar.Text = ObtenerTexto("gestionperfiles._modificar", "Modificar");
+                }
+
+                AplicarTextosEstaticos();
+                ControlarEstadoControles();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ObtenerTexto(ex.Message, ex.Message),
+                                ObtenerTexto("titulo_error", "Error"),
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
+            }
+           
         }
+        
 
         private void btnEliminarRol_Click(object sender, EventArgs e)
         {
             if (_rolActual == null) return;
-            if (_modoGestionRoles) _bll.EliminarRol_43BO(_rolActual.IdRol_43BO);
-            else _bll.EliminarFamilia_43BO(_rolActual.IdRol_43BO);
-            _rolActual = null;
-            CargarDatos_43BO();
+
+            try
+            {
+                if (_modoGestionRoles)
+                    _bll.EliminarRol_43BO(_rolActual.IdRol_43BO);
+                else
+                    _bll.EliminarFamilia_43BO(_rolActual.IdRol_43BO);
+
+                _rolActual = null;
+                CargarDatos_43BO();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ObtenerTexto(ex.Message, ex.Message),
+                                ObtenerTexto("titulo_error", "Error"),
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
+            }
         }
 
 
@@ -323,8 +397,20 @@ namespace Proyecto_IngSoftware
             listBox2.Enabled = tieneSeleccion && _editandoModo;
             button7.Enabled = tieneSeleccion && _editandoModo;
             button8.Enabled = tieneSeleccion && _editandoModo;
-            btnModificar.Enabled = tieneSeleccion;
-            btnCrear.Enabled = !_editandoModo;
+
+            if (_editandoModo)
+            {
+                //si edito, esto hace que solo se pueda hacer una accion a la vez, o sea crear o modificar
+                btnCrear.Enabled = (_modoActual == "CREAR");
+                btnModificar.Enabled = (_modoActual == "MODIFICAR");
+            }
+            else
+            {
+                // y aca si no estoy editando, habilito los botones de crear y modificar si hay seleccion
+                btnModificar.Enabled = tieneSeleccion;
+                btnCrear.Enabled = true;
+            }
+
             btnEliminarRol.Enabled = tieneSeleccion && !_editandoModo;
             btnCambiarVista.Enabled = !_editandoModo;
             treeView1.Enabled = !_editandoModo;

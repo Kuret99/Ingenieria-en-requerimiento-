@@ -28,40 +28,33 @@ public class DALBitacora_43BO
         acceso.Escribir_43BO(query, parametros);
     }
 
-    public DataTable ListarBitacora_43BO(DateTime fInicio, DateTime fFin, string modulo) 
+    public DataTable ListarBitacora_43BO(DateTime fInicio, DateTime fFin, string modulo, string evento, string criticidad)
     {
-
-      //  List<Bitacora_43BO> lista = new List<Bitacora_43BO>();
-
-
-
         string query = @"SELECT B.IdEvento_43BO AS [ID], 
-                B.Fecha_43BO AS [Fecha y Hora], 
-                B.Modulo_43BO AS [Módulo], 
-                B.Evento_43BO AS [Evento Realizado], 
-                B.Criticidad_43BO AS [Criticidad], 
-                B.DNIuser_43BO AS [DNI], 
-                U.Nombre_43BO AS [Nombre], 
-                U.Apellido_43BO AS [Apellido],
-                (CAST(B.DNIuser_43BO AS VARCHAR) + U.Nombre_43BO) AS [Username] 
-                FROM Bitacora_43BO B 
-                INNER JOIN Usuarios_43BO U ON B.DNIuser_43BO = U.DNI_43BO 
-                WHERE B.Fecha_43BO BETWEEN @fInicio AND @fFin AND B.Modulo_43BO = @modulo";
+                            B.Fecha_43BO AS [Fecha y Hora], 
+                            B.Modulo_43BO AS [Módulo], 
+                            B.Evento_43BO AS [Evento Realizado], 
+                            B.Criticidad_43BO AS [Criticidad], 
+                            B.DNIuser_43BO AS [DNI], 
+                            ISNULL(U.Nombre_43BO, 'N/A') AS [Nombre], 
+                            ISNULL(U.Apellido_43BO, 'N/A') AS [Apellido],
+                            (CAST(B.DNIuser_43BO AS VARCHAR) + ' ' + ISNULL(U.Nombre_43BO, '')) AS [Username] 
+                     FROM Bitacora_43BO B 
+                     LEFT JOIN Usuarios_43BO U ON B.DNIuser_43BO = U.DNI_43BO 
+                     WHERE B.Fecha_43BO BETWEEN @fInicio AND @fFin 
+                     AND (@modulo = '' OR LTRIM(RTRIM(B.Modulo_43BO)) = @modulo)
+                     AND (@evento = '' OR LTRIM(RTRIM(B.Evento_43BO)) = @evento)
+                     AND (@criticidad = '' OR CAST(B.Criticidad_43BO AS VARCHAR) = @criticidad)";
 
         SqlParameter[] parametros = {
-        new SqlParameter("@fInicio", fInicio.Date),
-        new SqlParameter("@fFin", fFin.Date.AddDays(1).AddTicks(-1)),
-        new SqlParameter("@modulo", modulo)
-    };
+            new SqlParameter("@fInicio", fInicio.Date),
+            new SqlParameter("@fFin", fFin.Date.AddDays(1).AddTicks(-1)),
+            new SqlParameter("@modulo", (object)modulo ?? ""),
+            new SqlParameter("@evento", (object)evento ?? ""),
+            new SqlParameter("@criticidad", (object)criticidad ?? "")
+        };
 
-        // Obtenemos la tabla directo de la base de datos
-        DataTable tabla = acceso.Leer_43BO(query, parametros);
-
-        // Devolvemos la tabla de una, sin mapear nada
-        return tabla;
-
-        
+        return acceso.Leer_43BO(query, parametros);
     }
-
 
 }

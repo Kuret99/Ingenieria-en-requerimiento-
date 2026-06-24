@@ -205,16 +205,16 @@ namespace Proyecto_IngSoftware
             {
                 string mensajeError = ex.Message;
 
-                // Si el mensaje tiene un "|" significa que trae parámetros (como los intentos restantes)
+                // Si el mensaje tiene un "|" significa que trae parametros
                 if (mensajeError.Contains("|"))
                 {
                     string[] partes = mensajeError.Split('|');
-                    // Traducimos la llave (ej: "error_intentos_restantes") y reemplazamos el {0}
+                    //se traduce la llave
                     mensajeError = string.Format(ObtenerTexto(partes[0], partes[0]), partes[1]);
                 }
                 else
                 {
-                    // Traducimos el error común usando tu gestor
+                    // Traducimos el error comun
                     mensajeError = ObtenerTexto(mensajeError, mensajeError);
                 }
 

@@ -17,13 +17,18 @@ namespace Proyecto_IngSoftware
         private GestionPerfiles Gperfiles;
         private Dictionary<string, string> _dic;
 
+        // 1. Agregamos los submenús al diccionario mapeador de patentes
         private readonly Dictionary<string, Permisos_43BO> _mapaMenu = new Dictionary<string, Permisos_43BO>
         {
             { "AdminToolStripMenuItem", Permisos_43BO.Menu_SeccionAdmin },
             { "masterToolStripMenuItem", Permisos_43BO.Menu_SeccionMaster },
             { "ventaToolStripMenuItem", Permisos_43BO.Menu_SeccionVenta },
             { "CompraToolStripMenuItem", Permisos_43BO.Menu_SeccionCompra },
-            { "reporteToolStripMenuItem", Permisos_43BO.Menu_SeccionReporte }
+            { "reporteToolStripMenuItem", Permisos_43BO.Menu_SeccionReporte },
+            
+            // Reemplazá acá por el "Name" exacto que tengan tus ToolStripMenuItems en el diseñador:
+            { "cambiarContraseñaToolStripMenuItem", Permisos_43BO.Usuario_CambioContraseña },
+            { "cambiarIdiomaToolStripMenuItem", Permisos_43BO.Usuario_CambioIdioma }
         };
 
         public Menu()
@@ -48,6 +53,7 @@ namespace Proyecto_IngSoftware
                     }
                     else
                     {
+                        // Esto ocultará o deshabilitará automáticamente los botones mapeados si no tienen la patente
                         AsignadorPermisos_43BO.AplicarMenu(this.menuStrip1, _mapaMenu);
                     }
                 }
@@ -58,20 +64,11 @@ namespace Proyecto_IngSoftware
             }
         }
 
-        // 1. TRADUCE LA BARRA DE ARRIBA Y SUBMENÚS (Se corrigió la clave para que machee "menu.admin", "menu.usuario", etc.)
         private void TraducirMenu(ToolStripItemCollection items)
         {
             foreach (ToolStripItem item in items)
             {
-
                 string clave = "menu." + item.Name.ToLower().Replace("toolstripmenuitem", "");
-
-                // --- COPIA ESTA LÍNEA PARA VER LA VERDAD ---
-                System.Diagnostics.Debug.WriteLine("Control: " + item.Name + " | Llave generada por el sistema: " + clave);
-                // -------------------------------------------
-
-
-                //string clave = "menu." + item.Name.ToLower().Replace("toolstripmenuitem", "");
 
                 if (_dic != null && _dic.ContainsKey(clave))
                 {
@@ -85,12 +82,10 @@ namespace Proyecto_IngSoftware
             }
         }
 
-        // 2. NUEVA FUNCIÓN GLOBAL: TRADUCE TEXTBOXES, LABELS, BOTONES Y DATAGRIDVIEWS DE CUALQUIER FORMhijo
         public void TraducirFormulario(Form formulario)
         {
             if (_dic == null) return;
 
-            // Traducir el título de la ventana del formulario
             if (_dic.ContainsKey(formulario.Name.ToLower() + "_titulo"))
             {
                 formulario.Text = _dic[formulario.Name.ToLower() + "_titulo"];
@@ -103,14 +98,12 @@ namespace Proyecto_IngSoftware
         {
             foreach (Control c in controles)
             {
-                // Buscar clave directa basada en el nombre del control (ej: "lbl_dni", "btn_apply")
                 string clave = c.Name.ToLower();
                 if (_dic.ContainsKey(clave))
                 {
                     c.Text = _dic[clave];
                 }
 
-                // Si es un DataGridView, traduce los headers de las columnas
                 if (c is DataGridView dgv)
                 {
                     foreach (DataGridViewColumn col in dgv.Columns)
@@ -123,7 +116,6 @@ namespace Proyecto_IngSoftware
                     }
                 }
 
-                // Recursividad por si los controles están adentro de Paneles, GroupBox, etc.
                 if (c.Controls.Count > 0)
                 {
                     TraducirControlesInternos(c.Controls);
@@ -141,7 +133,7 @@ namespace Proyecto_IngSoftware
             Gu_43BO = new GestionUs();
             Gu_43BO.MdiParent = this;
             Gu_43BO.Show();
-            TraducirFormulario(Gu_43BO); // <--- Aplica la traducción completa al abrir
+            TraducirFormulario(Gu_43BO);
         }
 
         private void bitacoraToolStripMenuItem_Click(object sender, EventArgs e)
@@ -154,7 +146,7 @@ namespace Proyecto_IngSoftware
             Aud_43BO = new Auditoria();
             Aud_43BO.MdiParent = this;
             Aud_43BO.Show();
-            TraducirFormulario(Aud_43BO); // <--- Aplica la traducción completa al abrir
+            TraducirFormulario(Aud_43BO);
         }
 
         private void gestionPerfilesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -167,7 +159,7 @@ namespace Proyecto_IngSoftware
             Gperfiles = new GestionPerfiles();
             Gperfiles.MdiParent = this;
             Gperfiles.Show();
-            TraducirFormulario(Gperfiles); // <--- Aplica la traducción completa al abrir
+            TraducirFormulario(Gperfiles);
         }
 
         public void ActualizarIdioma_43BO(Dictionary<string, string> dic)
@@ -175,7 +167,6 @@ namespace Proyecto_IngSoftware
             _dic = dic;
             TraducirMenu(menuStrip1.Items);
 
-            // Si hay ventanas hijas abiertas cuando cambian el idioma, las vuelve a traducir en caliente
             foreach (Form hijo in this.MdiChildren)
             {
                 TraducirFormulario(hijo);
@@ -194,12 +185,31 @@ namespace Proyecto_IngSoftware
             }
         }
 
+        // 2. Controlamos por seguridad el clic de Cambio de Contraseña
         private void cambiarContraseñaToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (!SessionManager_43BO.Instancia.Permisos.Contains("Usuario_CambioContraseña"))
+            {
+                MessageBox.Show(GetTexto("menu.msg_acceso_denegado"), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             CC_43BO = new CambioContraseña();
             CC_43BO.MdiParent = this;
             CC_43BO.Show();
             TraducirFormulario(CC_43BO);
+        }
+
+        // 3. Controlamos por seguridad el clic de Cambio de Idioma
+        private void cambiarIdiomaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!SessionManager_43BO.Instancia.Permisos.Contains("Usuario_CambioIdioma"))
+            {
+                MessageBox.Show(GetTexto("menu.msg_acceso_denegado"), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            new CambiarIdioma().ShowDialog(this);
         }
 
         private void reLoginToolStripMenuItem_Click(object sender, EventArgs e)
@@ -225,16 +235,12 @@ namespace Proyecto_IngSoftware
                         }
                         else
                         {
+                            // Volvemos a evaluar el menú completo con las patentes del nuevo usuario logueado
                             AsignadorPermisos_43BO.AplicarMenu(this.menuStrip1, _mapaMenu);
                         }
                     }
                 }
             }
-        }
-
-        private void cambiarIdiomaToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            new CambiarIdioma().ShowDialog(this);
         }
     }
 }

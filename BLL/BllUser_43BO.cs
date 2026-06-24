@@ -11,7 +11,7 @@ namespace BLL
     {
         private DALUser_43BO DALuser = new DALUser_43BO();
         private BLLBitacora_43BO bllBi = new BLLBitacora_43BO();
-        private DALpatente_43BO dalPatente = new DALpatente_43BO();
+        private BLLpatente_43BO bllPatente = new BLLpatente_43BO();
 
         // cf de contador de fallos y ultIntentos para poder reiniciar el contador deepues de X contador de tiempo 
         private static Dictionary<string, int> cf = new Dictionary<string, int>();
@@ -74,12 +74,13 @@ namespace BLL
             if (usaurio.Hash_43BO == contra)
             {
                 ReiniciarIn_43BO(UserName);
-                bllBi.GuardarLog_43BO(usaurio, Modulo_43BO.Usuario, Evento_43BO.Login, 1);
+            
 
-                List<string> permisosDelUsuario = ObtenerPermisos_43BO(usaurio);
+                List<string> permisosDelUsuario = ObtenerPermisosDeRol_43BO(usaurio);
 
                 SessionManager_43BO.IniciarSesion_43BO(usaurio, permisosDelUsuario, usaurio.Idioma_43BO);
                 GestorIdioma_43BO.Instancia.CargarIdioma_43BO(usaurio.Idioma_43BO);
+                bllBi.GuardarLog_43BO(Modulo_43BO.Usuario, Evento_43BO.Login, 1);
 
                 return true;
             }
@@ -109,7 +110,7 @@ namespace BLL
             {
                 DALuser.BloquearUser_43BO(username);
 
-                bllBi.GuardarLog_43BO(us, Modulo_43BO.Usuario, Evento_43BO.Bloqueo, 3); // Log de bloqueo por intentos fallidos
+                bllBi.GuardarLog_43BO( Modulo_43BO.Usuario, Evento_43BO.Bloqueo, 3); // Log de bloqueo por intentos fallidos
 
                 ReiniciarIn_43BO(username);// Bloqueamos al usuario después de 2 intentos fallidos
 
@@ -128,13 +129,10 @@ namespace BLL
 
         public void CerrarSesion_43BO()
         {
-            var user = SessionManager_43BO.Instancia.Usuario;
+           
 
-            if (user != null)
-            {
-                bllBi.GuardarLog_43BO(user, Modulo_43BO.Usuario, Evento_43BO.Logout, 1);
-            }
-
+                bllBi.GuardarLog_43BO(Modulo_43BO.Usuario, Evento_43BO.Logout, 1);
+            
             SessionManager_43BO.CerrarSesion_43BO();
         }
 
@@ -199,8 +197,8 @@ namespace BLL
 
                 DALuser.DesbloquearUser_43BO(dni, contraReset);
 
-                User_43BO admin = SessionManager_43BO.Instancia.Usuario ?? usaurio;
-                bllBi.GuardarLog_43BO(admin, Modulo_43BO.Usuario, Evento_43BO.Desbloqueo, 2);
+             
+                bllBi.GuardarLog_43BO( Modulo_43BO.Usuario, Evento_43BO.Desbloqueo, 2);
             }
         }
 
@@ -215,34 +213,30 @@ namespace BLL
             return usuario.Hash_43BO == contraFabricaHash;
         }
 
-        public List<string> ObtenerPermisos_43BO(User_43BO usuario)
+        public List<string> ObtenerPermisosDeRol_43BO(User_43BO usuario)
         {
             if (usuario == null || usuario.Rol == null) return new List<string>();
 
-            List<int> idsPermisos = dalPatente.ObtenerPermisos_43BO(usuario.Rol.IdRol_43BO);
-
-            List<string> nombresPermisos = new List<string>();
-
-            foreach (int id in idsPermisos)
-            {
-                string nombre = Enum.GetName(typeof(Servicios.Permisos_43BO), id);
-
-                if (nombre != null)
-                {
-                    nombresPermisos.Add(nombre);
-                }
-            }
-            return nombresPermisos;
+            // delegue la responsabilidad a la clase que realmente sabe de patentes/permisos
+            return bllPatente.ObtenerPermisosDeRol_43BO(usuario.Rol.IdRol_43BO);
         }
 
         public void CambiarIdiomaUsuario_43BO(int dni_43BO, string nuevoIdioma_43BO)
         {
-            DALuser.ActualizarIdioma_43BO(dni_43BO, nuevoIdioma_43BO);
+            DALuser.CambiarIdiomaUsuario_43BO(dni_43BO, nuevoIdioma_43BO);
 
+          
             if (SessionManager_43BO.Instancia.Usuario != null && SessionManager_43BO.Instancia.Usuario.DNI_43BO == dni_43BO)
             {
-                SessionManager_43BO.Instancia.Usuario.Idioma_43BO = nuevoIdioma_43BO;
+                SessionManager_43BO.Instancia.ActualizarIdioma(nuevoIdioma_43BO);
             }
+
+         
+            string json = GestorArchivosIdioma_43BO.ObtenerContenidoJson_43BO(nuevoIdioma_43BO);
+            var nuevoDiccionario = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
+
+            // Notificar al gestor para que actualice la UI
+            GestorIdioma_43BO.Instancia.Notificar_43BO(nuevoDiccionario);
         }
 
 

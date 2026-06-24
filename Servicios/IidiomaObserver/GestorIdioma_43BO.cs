@@ -10,7 +10,6 @@ public class GestorIdioma_43BO
     //almcenar el estado para que no sea null
     private Dictionary<string, string> _diccionarioActual;
 
-    // Agregá esta propiedad
     public bool IdiomAnterior => _diccionarioActual != null;
 
     public static GestorIdioma_43BO Instancia

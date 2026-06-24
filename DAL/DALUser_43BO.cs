@@ -178,18 +178,17 @@ namespace DAL
 
         public int DesbloquearUser_43BO(int dni, string contraReset)
         {
-            
+
             string query = "UPDATE Usuarios_43BO SET Bloqueado_43BO = 0, Hash_43BO = @hash WHERE DNI_43BO = @dni";
 
             SqlParameter[] parametros = {
         new SqlParameter("@dni", dni),
-        new SqlParameter("@hash", contraReset)
-    };
+        new SqlParameter("@hash", contraReset) };
 
             return acceso.Escribir_43BO(query, parametros);
         }
 
-        public int ActualizarIdioma_43BO(int dni, string idioma)
+        public int CambiarIdiomaUsuario_43BO(int dni, string idioma)
         {
             string query = "UPDATE Usuarios_43BO SET Idioma_43BO = @idioma WHERE DNI_43BO = @dni";
             SqlParameter[] parametros = {

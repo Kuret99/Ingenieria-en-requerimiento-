@@ -78,6 +78,6 @@ namespace Servicios
         }
 
         public void LimpiarHijos_43BO() => this._hijos.Clear();
-        public void AgregarHijo_43BO(Rol_43BO hijo) => this._hijos.Add(hijo);
+        private void AgregarHijo_43BO(Rol_43BO hijo) => this._hijos.Add(hijo);
     }
 }

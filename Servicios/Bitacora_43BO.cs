@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 namespace Servicios
 {
     public enum Modulo_43BO { Usuario, Ventas, Compras, Maestro, Perfiles } //
-    public enum Evento_43BO { Login, Logout, Crear, Desactivar,modificar, Bloqueo,Desbloqueo}
+    public enum Evento_43BO { Login, Logout, Crear, Desactivar,modificar, Bloqueo,Desbloqueo, CrearRol, ModificarRol, EliminarRol,
+        CrearFamilia, ModificarFamilia, EliminarFamilia, AsignarRol, AsignarFamilia, QuitarRol, QuitarFamilia}
     public  class Bitacora_43BO
     {
 		private User_43BO _user;
