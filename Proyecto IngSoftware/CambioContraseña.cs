@@ -27,10 +27,10 @@ namespace Proyecto_IngSoftware
             AplicarTextosEstaticos();
         }
 
-        private string ObtenerTexto(string clave, string porDefecto)
+        private string ObtenerTexto(string clave, string porDefecto = null)
         {
-            // funcion utilitaria
-            return _diccionario != null && _diccionario.ContainsKey(clave) ? _diccionario[clave] : porDefecto;
+            // unico punto de traduccion: todo pasa por el gestor
+            return GestorIdioma_43BO.Instancia.ObtenerTexto_43BO(clave, porDefecto ?? clave);
         }
 
         private void AplicarTextosEstaticos()
@@ -56,7 +56,7 @@ namespace Proyecto_IngSoftware
                 string.IsNullOrEmpty(txtConNueva.Text) || string.IsNullOrEmpty(txtConfirmar.Text))
             {
                 MessageBox.Show(ObtenerTexto("msg_campos_vacios", "Por favor, complete todos los campos obligatorios."),
-                                "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                ObtenerTexto("titulo_atencion", "Atención"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -66,7 +66,7 @@ namespace Proyecto_IngSoftware
                 bll.CambiarContraseña_43BO(txtUser.Text, txtConAct.Text, txtConNueva.Text, txtConfirmar.Text);
 
                 MessageBox.Show(ObtenerTexto("cambiocontraseña_msg_exito", "Contraseña cambiada exitosamente. La sesión se cerrará."),
-                                "Excelente", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                ObtenerTexto("titulo_excelente", "Éxito"), MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 bll.CerrarSesion_43BO();
 
@@ -99,7 +99,7 @@ namespace Proyecto_IngSoftware
                 }
 
                 // Mostramos el mensaje ya traducido
-                MessageBox.Show(mensajeFinal, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(mensajeFinal, ObtenerTexto("titulo_error", "Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

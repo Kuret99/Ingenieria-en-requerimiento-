@@ -36,7 +36,19 @@ namespace Proyecto_IngSoftware
             ActualizarDGV_43BO();
             ConfigurarComboBoxRoles_43BO();
 
+            // los campos arrancan bloqueados hasta que se toque crear o modificar
+            LimpiarYBloquearCampos_43BO();
+
             AsignadorPermisos_43BO.Aplicar(this, _mapaGestionUsuarios);
+        }
+
+        // limpia y bloquea todos los campos, se usa al abrir y despues de cada accion
+        private void LimpiarYBloquearCampos_43BO()
+        {
+            txtDNI.Clear(); txtNom.Clear(); txtApe.Clear(); txtEmail.Clear();
+            cmbRol.SelectedIndex = -1;
+            txtDNI.Enabled = false; txtNom.Enabled = false; txtApe.Enabled = false;
+            txtEmail.Enabled = false; cmbRol.Enabled = false;
         }
 
         public void ActualizarIdioma_43BO(Dictionary<string, string> dic)
@@ -71,9 +83,10 @@ namespace Proyecto_IngSoftware
             FormatoDgv_43BO();
         }
 
-        private string ObtenerTexto(string clave, string porDefecto)
+        private string ObtenerTexto(string clave, string porDefecto = null)
         {
-            return _diccionario != null && _diccionario.ContainsKey(clave) ? _diccionario[clave] : porDefecto;
+            // unico punto de traduccion: todo pasa por el gestor
+            return GestorIdioma_43BO.Instancia.ObtenerTexto_43BO(clave, porDefecto ?? clave);
         }
 
         private void ConfigurarComboBoxRoles_43BO()
@@ -88,7 +101,7 @@ namespace Proyecto_IngSoftware
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ObtenerTexto("gestionus_error_al_cargar_los_roles_desde_la_bd", "Error al cargar los roles desde la BD: ") + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ObtenerTexto("gestionus_error_al_cargar_los_roles_desde_la_bd", "Error al cargar los roles desde la BD: ") + ObtenerTexto(ex.Message, ex.Message), ObtenerTexto("titulo_error", "Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -151,7 +164,7 @@ namespace Proyecto_IngSoftware
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ObtenerTexto("msg_error_general", "Error: ") + ex.Message, ObtenerTexto("titulo_error", "Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ObtenerTexto("msg_error_general", "Error: ") + ObtenerTexto(ex.Message, ex.Message), ObtenerTexto("titulo_error", "Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -174,6 +187,8 @@ namespace Proyecto_IngSoftware
 
         private void btnCrear_Click_1(object sender, EventArgs e)
         {
+            // arranco con los campos limpios para el alta
+            LimpiarYBloquearCampos_43BO();
             btnApli.Enabled = true; txtDNI.Enabled = true; txtNom.Enabled = true;
             txtApe.Enabled = true; cmbRol.Enabled = true; txtEmail.Enabled = true;
             Modificar_43BO = false;
@@ -190,14 +205,47 @@ namespace Proyecto_IngSoftware
         {
             try
             {
+                // valido los campos antes de tocar la bd
+                bool camposVacios = Modificar_43BO
+                    ? (string.IsNullOrWhiteSpace(txtEmail.Text) || cmbRol.SelectedItem == null)
+                    : (string.IsNullOrWhiteSpace(txtDNI.Text) || string.IsNullOrWhiteSpace(txtNom.Text) ||
+                       string.IsNullOrWhiteSpace(txtApe.Text) || string.IsNullOrWhiteSpace(txtEmail.Text) ||
+                       cmbRol.SelectedItem == null);
+
+                if (camposVacios)
+                {
+                    MessageBox.Show(ObtenerTexto("msg_campos_vacios", "Por favor, complete todos los campos obligatorios."),
+                                    ObtenerTexto("titulo_atencion", "Atención"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                // el dni tiene que ser un numero sino el parse revienta con un error feo
+                int dniIngresado;
+                if (!int.TryParse(txtDNI.Text, out dniIngresado))
+                {
+                    MessageBox.Show(ObtenerTexto("gestionus_error_dni_numerico", "El DNI debe ser un número válido."),
+                                    ObtenerTexto("titulo_atencion", "Atención"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                // chequeo basico del formato del mail
+                if (!txtEmail.Text.Contains("@") || !txtEmail.Text.Contains("."))
+                {
+                    MessageBox.Show(ObtenerTexto("gestionus_error_email_invalido", "El email ingresado no tiene un formato válido."),
+                                    ObtenerTexto("titulo_atencion", "Atención"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
                 Rol_43BO rol = (Rol_43BO)cmbRol.SelectedItem;
                 if (Modificar_43BO)
-                    blluser.ModificarUser_43BO(int.Parse(txtDNI.Text), rol, txtEmail.Text);
+                    blluser.ModificarUser_43BO(dniIngresado, rol, txtEmail.Text);
                 else
-                    blluser.InsertarUser_43BO(int.Parse(txtDNI.Text), txtNom.Text, txtApe.Text, rol, txtEmail.Text);
+                    blluser.InsertarUser_43BO(dniIngresado, txtNom.Text, txtApe.Text, rol, txtEmail.Text);
 
                 MessageBox.Show(ObtenerTexto("gestion_usuarios_msg_exito", "Operación exitosa."), ObtenerTexto("titulo_excelente", "Éxito"), MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Modificar_43BO = false;
                 ActualizarDGV_43BO();
+                LimpiarYBloquearCampos_43BO();
                 Btns_43BO();
                 AsignadorPermisos_43BO.Aplicar(this, _mapaGestionUsuarios);
             }
@@ -219,7 +267,7 @@ namespace Proyecto_IngSoftware
                 }
 
                 MessageBox.Show(ObtenerTexto("msg_error_general", "Se produjo un error: ") + mensajeError,
-                                ObtenerTexto("msg_titulo_error", "Error"),
+                                ObtenerTexto("titulo_error", "Error"),
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Error);
             }
@@ -228,8 +276,7 @@ namespace Proyecto_IngSoftware
         private void btnCanc_Click(object sender, EventArgs e)
         {
             Modificar_43BO = false; btnApli.Enabled = false; btnCrear.Enabled = true;
-            txtDNI.Clear(); txtNom.Clear(); txtApe.Clear(); txtEmail.Clear();
-            cmbRol.SelectedIndex = -1;
+            LimpiarYBloquearCampos_43BO();
             Btns_43BO();
             AsignadorPermisos_43BO.Aplicar(this, _mapaGestionUsuarios);
         }
@@ -238,16 +285,25 @@ namespace Proyecto_IngSoftware
         {
             try
             {
+                // sin registro seleccionado no hay nada que activar/desactivar
+                if (dgvUsaurio.CurrentRow == null || string.IsNullOrWhiteSpace(txtDNI.Text))
+                {
+                    MessageBox.Show(ObtenerTexto("gestionus_msg_seleccione_registro", "Seleccione un usuario de la lista primero."),
+                                    ObtenerTexto("titulo_atencion", "Atención"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
                 int dni = int.Parse(txtDNI.Text);
                 bool act = (bool)dgvUsaurio.CurrentRow.Cells["Activo_43BO"].Value;
                 blluser.Eliminar_43BO(dni, !act);
                 ActualizarDGV_43BO();
+                LimpiarYBloquearCampos_43BO();
                 Btns_43BO();
                 AsignadorPermisos_43BO.Aplicar(this, _mapaGestionUsuarios);
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ObtenerTexto("msg_error_general", "Error: ") + ex.Message, ObtenerTexto("titulo_error", "Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ObtenerTexto("msg_error_general", "Error: ") + ObtenerTexto(ex.Message, ex.Message), ObtenerTexto("titulo_error", "Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -255,14 +311,37 @@ namespace Proyecto_IngSoftware
         {
             try
             {
+                // sin registro seleccionado no se puede desbloquear nada
+                if (dgvUsaurio.CurrentRow == null || string.IsNullOrWhiteSpace(txtDNI.Text))
+                {
+                    MessageBox.Show(ObtenerTexto("gestionus_msg_seleccione_registro", "Seleccione un usuario de la lista primero."),
+                                    ObtenerTexto("titulo_atencion", "Atención"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                // si la cuenta no esta bloqueada aviso en vez de no hacer nada en silencio
+                bool bloqueado = Convert.ToBoolean(dgvUsaurio.CurrentRow.Cells["Bloqueado_43BO"].Value);
+                if (!bloqueado)
+                {
+                    MessageBox.Show(ObtenerTexto("gestionus_msg_no_bloqueado", "La cuenta seleccionada no está bloqueada."),
+                                    ObtenerTexto("titulo_atencion", "Atención"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
                 blluser.DesbloquearUser_43BO(int.Parse(txtDNI.Text));
+
+                // aviso que se desbloqueo y quedo con la contraseña de fabrica
+                MessageBox.Show(ObtenerTexto("gestionus_msg_desbloqueado", "Usuario desbloqueado. Su contraseña fue reseteada a la de fábrica."),
+                                ObtenerTexto("titulo_excelente", "Éxito"), MessageBoxButtons.OK, MessageBoxIcon.Information);
+
                 ActualizarDGV_43BO();
+                LimpiarYBloquearCampos_43BO();
                 Btns_43BO();
                 AsignadorPermisos_43BO.Aplicar(this, _mapaGestionUsuarios);
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ObtenerTexto("msg_error_general", "Error: ") + ex.Message, ObtenerTexto("titulo_error", "Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ObtenerTexto("msg_error_general", "Error: ") + ObtenerTexto(ex.Message, ex.Message), ObtenerTexto("titulo_error", "Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

@@ -230,6 +230,26 @@ namespace BLL
                 throw new Exception("error_familia_en_uso");
             }
 
+            // si la familia esta metida adentro de algun rol tampoco se puede borrar
+            foreach (var rol in ListarTodosLosRoles_43BO())
+            {
+                if (_dal.ObtenerFamiliasRol_43BO(rol.IdRol_43BO).Any(f => f.IdRol_43BO == idFamilia))
+                {
+                    throw new Exception("error_familia_asignada_rol");
+                }
+            }
+
+            // y si esta adentro de otra familia tampoco (basta mirar los hijos directos de cada una)
+            foreach (var fam in ListarTodasLasFamilias_43BO())
+            {
+                if (fam.IdRol_43BO == idFamilia) continue;
+
+                if (_dal.ObtenerFamiliasHijas_43BO(fam.IdRol_43BO).Any(f => f.IdRol_43BO == idFamilia))
+                {
+                    throw new Exception("error_familia_asignada_familia");
+                }
+            }
+
             _dal.EliminarFamilia_43BO(idFamilia);
             _bllBitacora.GuardarLog_43BO(Modulo_43BO.Perfiles, Evento_43BO.EliminarFamilia, 3);
         }

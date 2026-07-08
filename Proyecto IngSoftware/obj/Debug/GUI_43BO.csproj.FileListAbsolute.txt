@@ -33,3 +33,38 @@ C:\Users\Juanpy\Documents\Ing. Software\Ingenieria-en-requerimiento-\Proyecto In
 C:\Users\Juanpy\Documents\Ing. Software\Ingenieria-en-requerimiento-\Proyecto IngSoftware\bin\Debug\Idiomas\pr.json
 C:\Users\Juanpy\Documents\Ing. Software\Ingenieria-en-requerimiento-\Proyecto IngSoftware\bin\Debug\Idiomas\en.json
 C:\Users\Juanpy\Documents\Ing. Software\Ingenieria-en-requerimiento-\Proyecto IngSoftware\obj\Debug\Proyecto IngSoftware.exe.config
+C:\Users\ariel\OneDrive\Documentos\PoryectoSoftware\Ingenieria-en-requerimiento-\Proyecto IngSoftware\bin\Debug\Idiomas\es.json
+C:\Users\ariel\OneDrive\Documentos\PoryectoSoftware\Ingenieria-en-requerimiento-\Proyecto IngSoftware\bin\Debug\EsquemaCompleto_43BO.sql
+C:\Users\ariel\OneDrive\Documentos\PoryectoSoftware\Ingenieria-en-requerimiento-\Proyecto IngSoftware\bin\Debug\Idiomas\pr.json
+C:\Users\ariel\OneDrive\Documentos\PoryectoSoftware\Ingenieria-en-requerimiento-\Proyecto IngSoftware\bin\Debug\Idiomas\en.json
+C:\Users\ariel\OneDrive\Documentos\PoryectoSoftware\Ingenieria-en-requerimiento-\Proyecto IngSoftware\bin\Debug\Proyecto IngSoftware.exe.config
+C:\Users\ariel\OneDrive\Documentos\PoryectoSoftware\Ingenieria-en-requerimiento-\Proyecto IngSoftware\bin\Debug\Proyecto IngSoftware.exe
+C:\Users\ariel\OneDrive\Documentos\PoryectoSoftware\Ingenieria-en-requerimiento-\Proyecto IngSoftware\bin\Debug\Proyecto IngSoftware.pdb
+C:\Users\ariel\OneDrive\Documentos\PoryectoSoftware\Ingenieria-en-requerimiento-\Proyecto IngSoftware\bin\Debug\BE.dll
+C:\Users\ariel\OneDrive\Documentos\PoryectoSoftware\Ingenieria-en-requerimiento-\Proyecto IngSoftware\bin\Debug\BLL.dll
+C:\Users\ariel\OneDrive\Documentos\PoryectoSoftware\Ingenieria-en-requerimiento-\Proyecto IngSoftware\bin\Debug\BouncyCastle.Cryptography.dll
+C:\Users\ariel\OneDrive\Documentos\PoryectoSoftware\Ingenieria-en-requerimiento-\Proyecto IngSoftware\bin\Debug\itextsharp.dll
+C:\Users\ariel\OneDrive\Documentos\PoryectoSoftware\Ingenieria-en-requerimiento-\Proyecto IngSoftware\bin\Debug\Newtonsoft.Json.dll
+C:\Users\ariel\OneDrive\Documentos\PoryectoSoftware\Ingenieria-en-requerimiento-\Proyecto IngSoftware\bin\Debug\Servicios.dll
+C:\Users\ariel\OneDrive\Documentos\PoryectoSoftware\Ingenieria-en-requerimiento-\Proyecto IngSoftware\bin\Debug\DAL.dll
+C:\Users\ariel\OneDrive\Documentos\PoryectoSoftware\Ingenieria-en-requerimiento-\Proyecto IngSoftware\bin\Debug\BE.pdb
+C:\Users\ariel\OneDrive\Documentos\PoryectoSoftware\Ingenieria-en-requerimiento-\Proyecto IngSoftware\bin\Debug\BLL.pdb
+C:\Users\ariel\OneDrive\Documentos\PoryectoSoftware\Ingenieria-en-requerimiento-\Proyecto IngSoftware\bin\Debug\Servicios.pdb
+C:\Users\ariel\OneDrive\Documentos\PoryectoSoftware\Ingenieria-en-requerimiento-\Proyecto IngSoftware\bin\Debug\BouncyCastle.Cryptography.xml
+C:\Users\ariel\OneDrive\Documentos\PoryectoSoftware\Ingenieria-en-requerimiento-\Proyecto IngSoftware\bin\Debug\itextsharp.xml
+C:\Users\ariel\OneDrive\Documentos\PoryectoSoftware\Ingenieria-en-requerimiento-\Proyecto IngSoftware\bin\Debug\Newtonsoft.Json.xml
+C:\Users\ariel\OneDrive\Documentos\PoryectoSoftware\Ingenieria-en-requerimiento-\Proyecto IngSoftware\bin\Debug\DAL.pdb
+C:\Users\ariel\OneDrive\Documentos\PoryectoSoftware\Ingenieria-en-requerimiento-\Proyecto IngSoftware\obj\Debug\GUI_43BO.csproj.AssemblyReference.cache
+C:\Users\ariel\OneDrive\Documentos\PoryectoSoftware\Ingenieria-en-requerimiento-\Proyecto IngSoftware\obj\Debug\Proyecto_IngSoftware.Auditoria.resources
+C:\Users\ariel\OneDrive\Documentos\PoryectoSoftware\Ingenieria-en-requerimiento-\Proyecto IngSoftware\obj\Debug\Proyecto_IngSoftware.CambiarIdioma.resources
+C:\Users\ariel\OneDrive\Documentos\PoryectoSoftware\Ingenieria-en-requerimiento-\Proyecto IngSoftware\obj\Debug\Proyecto_IngSoftware.CambioContraseña.resources
+C:\Users\ariel\OneDrive\Documentos\PoryectoSoftware\Ingenieria-en-requerimiento-\Proyecto IngSoftware\obj\Debug\Proyecto_IngSoftware.GestionUs.resources
+C:\Users\ariel\OneDrive\Documentos\PoryectoSoftware\Ingenieria-en-requerimiento-\Proyecto IngSoftware\obj\Debug\Proyecto_IngSoftware.Login.resources
+C:\Users\ariel\OneDrive\Documentos\PoryectoSoftware\Ingenieria-en-requerimiento-\Proyecto IngSoftware\obj\Debug\Proyecto_IngSoftware.Menu.resources
+C:\Users\ariel\OneDrive\Documentos\PoryectoSoftware\Ingenieria-en-requerimiento-\Proyecto IngSoftware\obj\Debug\Proyecto_IngSoftware.GestionPerfiles.resources
+C:\Users\ariel\OneDrive\Documentos\PoryectoSoftware\Ingenieria-en-requerimiento-\Proyecto IngSoftware\obj\Debug\Proyecto_IngSoftware.Properties.Resources.resources
+C:\Users\ariel\OneDrive\Documentos\PoryectoSoftware\Ingenieria-en-requerimiento-\Proyecto IngSoftware\obj\Debug\GUI_43BO.csproj.GenerateResource.cache
+C:\Users\ariel\OneDrive\Documentos\PoryectoSoftware\Ingenieria-en-requerimiento-\Proyecto IngSoftware\obj\Debug\GUI_43BO.csproj.CoreCompileInputs.cache
+C:\Users\ariel\OneDrive\Documentos\PoryectoSoftware\Ingenieria-en-requerimiento-\Proyecto IngSoftware\obj\Debug\GUI_43BO.csproj.Up2Date
+C:\Users\ariel\OneDrive\Documentos\PoryectoSoftware\Ingenieria-en-requerimiento-\Proyecto IngSoftware\obj\Debug\Proyecto IngSoftware.exe
+C:\Users\ariel\OneDrive\Documentos\PoryectoSoftware\Ingenieria-en-requerimiento-\Proyecto IngSoftware\obj\Debug\Proyecto IngSoftware.pdb

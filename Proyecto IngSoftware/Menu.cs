@@ -44,23 +44,27 @@ namespace Proyecto_IngSoftware
                 var usuarioLogueado = SessionManager_43BO.Instancia.Usuario;
                 if (usuarioLogueado != null)
                 {
+                    // el filtro de permisos del menu va SIEMPRE, tenga o no la contra de fabrica
+                    // sino el usuario ve submenus que no le corresponden
+                    AsignadorPermisos_43BO.AplicarMenu(this.menuStrip1, _mapaMenu);
+
                     if (bll.EsContraseñaDeFabrica_43BO(usuarioLogueado))
                     {
-                        MessageBox.Show(GetTexto("menu_msg_cambiar_contra_fabrica"), GetTexto("titulo_atencion"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        CambiarIdioma frmCambio = new CambiarIdioma();
+                        MessageBox.Show(ObtenerTexto("menu_msg_cambiar_contra_fabrica"), ObtenerTexto("titulo_atencion"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                        // abro directo el cambio de contraseña (antes por error se abria el de idioma)
+                        // al abrirlo por codigo no pasa por el permiso del menu, asi que funciona
+                        // aunque el usuario no tenga la patente Usuario_CambioContraseña
+                        CambioContraseña frmCambio = new CambioContraseña();
                         frmCambio.MdiParent = this;
                         frmCambio.Show();
-                    }
-                    else
-                    {
-                        // Esto ocultará o deshabilitará automáticamente los botones mapeados si no tienen la patente
-                        AsignadorPermisos_43BO.AplicarMenu(this.menuStrip1, _mapaMenu);
+                        TraducirFormulario(frmCambio);
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(GetTexto(ex.Message), GetTexto("titulo_error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ObtenerTexto(ex.Message), ObtenerTexto("titulo_error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -127,7 +131,7 @@ namespace Proyecto_IngSoftware
         {
             if (!SessionManager_43BO.Instancia.Permisos.Contains("GestionUsuarios_Acceso"))
             {
-                MessageBox.Show(GetTexto("menu.msg_acceso_denegado"));
+                MessageBox.Show(ObtenerTexto("menu.msg_acceso_denegado"));
                 return;
             }
             Gu_43BO = new GestionUs();
@@ -140,7 +144,7 @@ namespace Proyecto_IngSoftware
         {
             if (!SessionManager_43BO.Instancia.Permisos.Contains("Auditoria_Acceso"))
             {
-                MessageBox.Show(GetTexto("menu.msg_acceso_denegado"));
+                MessageBox.Show(ObtenerTexto("menu.msg_acceso_denegado"));
                 return;
             }
             Aud_43BO = new Auditoria();
@@ -153,13 +157,31 @@ namespace Proyecto_IngSoftware
         {
             if (!SessionManager_43BO.Instancia.Permisos.Contains("GestionPerfiles_Acceso"))
             {
-                MessageBox.Show(GetTexto("menu.msg_acceso_denegado"));
+                MessageBox.Show(ObtenerTexto("menu.msg_acceso_denegado"));
                 return;
             }
             Gperfiles = new GestionPerfiles();
             Gperfiles.MdiParent = this;
             Gperfiles.Show();
             TraducirFormulario(Gperfiles);
+        }
+
+        // backup bd, solo lo puede abrir el admin
+        private void backupBDToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var usuario = SessionManager_43BO.Instancia.Usuario;
+
+            if (usuario == null || usuario.Rol == null || usuario.Rol.Nombre_43BO == null ||
+                !usuario.Rol.Nombre_43BO.Trim().Equals("Administrador", StringComparison.OrdinalIgnoreCase))
+            {
+                MessageBox.Show(ObtenerTexto("menu.msg_acceso_denegado"), ObtenerTexto("titulo_error", "Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            BackupBD_43BO frmBackup = new BackupBD_43BO();
+            frmBackup.MdiParent = this;
+            frmBackup.Show();
+            TraducirFormulario(frmBackup);
         }
 
         public void ActualizarIdioma_43BO(Dictionary<string, string> dic)
@@ -173,11 +195,13 @@ namespace Proyecto_IngSoftware
             }
         }
 
-        private string GetTexto(string key) => (_dic != null && _dic.ContainsKey(key)) ? _dic[key] : key;
+        // unico punto de traduccion: todo pasa por el gestor
+        private string ObtenerTexto(string clave, string porDefecto = null)
+            => GestorIdioma_43BO.Instancia.ObtenerTexto_43BO(clave, porDefecto ?? clave);
 
         private void cerrarSesiobnToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show(GetTexto("menu_msg_confirmar_cerrar_sesion"), "Confirmar", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (MessageBox.Show(ObtenerTexto("menu_msg_confirmar_cerrar_sesion"), ObtenerTexto("titulo_confirmar", "Confirmar"), MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 bll.CerrarSesion_43BO();
                 new Login().Show();
@@ -190,7 +214,7 @@ namespace Proyecto_IngSoftware
         {
             if (!SessionManager_43BO.Instancia.Permisos.Contains("Usuario_CambioContraseña"))
             {
-                MessageBox.Show(GetTexto("menu.msg_acceso_denegado"), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ObtenerTexto("menu.msg_acceso_denegado"), ObtenerTexto("titulo_error", "Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -205,7 +229,7 @@ namespace Proyecto_IngSoftware
         {
             if (!SessionManager_43BO.Instancia.Permisos.Contains("Usuario_CambioIdioma"))
             {
-                MessageBox.Show(GetTexto("menu.msg_acceso_denegado"), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ObtenerTexto("menu.msg_acceso_denegado"), ObtenerTexto("titulo_error", "Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -226,17 +250,18 @@ namespace Proyecto_IngSoftware
 
                     if (usuarioLogueado != null)
                     {
+                        // reevaluo el menu con las patentes del nuevo usuario, siempre
+                        AsignadorPermisos_43BO.AplicarMenu(this.menuStrip1, _mapaMenu);
+
                         if (bll.EsContraseñaDeFabrica_43BO(usuarioLogueado))
                         {
-                            MessageBox.Show(GetTexto("menu_msg_cambiar_contra_fabrica"), GetTexto("titulo_atencion"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            CambiarIdioma frmCambio = new CambiarIdioma();
+                            MessageBox.Show(ObtenerTexto("menu_msg_cambiar_contra_fabrica"), ObtenerTexto("titulo_atencion"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                            // aca tambien va el cambio de contraseña, no el de idioma
+                            CambioContraseña frmCambio = new CambioContraseña();
                             frmCambio.MdiParent = this;
                             frmCambio.Show();
-                        }
-                        else
-                        {
-                            // Volvemos a evaluar el menú completo con las patentes del nuevo usuario logueado
-                            AsignadorPermisos_43BO.AplicarMenu(this.menuStrip1, _mapaMenu);
+                            TraducirFormulario(frmCambio);
                         }
                     }
                 }

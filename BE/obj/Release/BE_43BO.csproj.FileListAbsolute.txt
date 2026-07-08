@@ -1,0 +1,6 @@
+C:\Users\ariel\OneDrive\Documentos\PoryectoSoftware\Ingenieria-en-requerimiento-\BE\bin\Release\BE.dll
+C:\Users\ariel\OneDrive\Documentos\PoryectoSoftware\Ingenieria-en-requerimiento-\BE\bin\Release\BE.pdb
+C:\Users\ariel\OneDrive\Documentos\PoryectoSoftware\Ingenieria-en-requerimiento-\BE\obj\Release\BE_43BO.csproj.AssemblyReference.cache
+C:\Users\ariel\OneDrive\Documentos\PoryectoSoftware\Ingenieria-en-requerimiento-\BE\obj\Release\BE_43BO.csproj.CoreCompileInputs.cache
+C:\Users\ariel\OneDrive\Documentos\PoryectoSoftware\Ingenieria-en-requerimiento-\BE\obj\Release\BE.dll
+C:\Users\ariel\OneDrive\Documentos\PoryectoSoftware\Ingenieria-en-requerimiento-\BE\obj\Release\BE.pdb

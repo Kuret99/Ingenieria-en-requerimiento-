@@ -67,7 +67,9 @@ namespace Proyecto_IngSoftware
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Error al cambiar el idioma: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    // traduzco directo con el gestor porque este form no tiene diccionario propio
+                    MessageBox.Show(GestorIdioma_43BO.Instancia.ObtenerTexto_43BO("cambiaridioma_error_al_cambiar_el_idioma", "Error al cambiar el idioma:") + " " + ex.Message,
+                                    GestorIdioma_43BO.Instancia.ObtenerTexto_43BO("titulo_error", "Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }

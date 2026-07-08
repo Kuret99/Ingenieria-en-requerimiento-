@@ -51,6 +51,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BllBitacora_43bo.cs" />
+    <Compile Include="BLLInstalador_43BO.cs" />
+    <Compile Include="BllDV_43BO.cs" />
     <Compile Include="BllPatente_43BO.cs" />
     <Compile Include="BllUser_43BO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

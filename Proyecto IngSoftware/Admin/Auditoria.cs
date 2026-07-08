@@ -32,6 +32,10 @@ namespace Proyecto_IngSoftware
                 Evento_43BO.AsignarRol, Evento_43BO.QuitarRol, Evento_43BO.CrearFamilia,
                 Evento_43BO.ModificarFamilia, Evento_43BO.EliminarFamilia, Evento_43BO.AsignarFamilia,
                 Evento_43BO.QuitarFamilia
+            }},
+            // modulo Admin: acciones de mantenimiento de la BD
+            { Modulo_43BO.Admin, new List<Evento_43BO> {
+                Evento_43BO.Backup, Evento_43BO.RecalcularDV, Evento_43BO.RestaurarBackup
             }}
         };
 
@@ -88,9 +92,10 @@ namespace Proyecto_IngSoftware
             CargarGrillaFiltrada_43BO();
         }
 
-        private string GetTexto(string key)
+        // unico punto de traduccion: todo pasa por el gestor
+        private string ObtenerTexto(string clave, string porDefecto = null)
         {
-            return (_dic != null && _dic.ContainsKey(key)) ? _dic[key] : key;
+            return GestorIdioma_43BO.Instancia.ObtenerTexto_43BO(clave, porDefecto ?? clave);
         }
 
         private void PoblarComboCriticidad()
@@ -152,12 +157,12 @@ namespace Proyecto_IngSoftware
                 {
                     // Limpiamos la grilla y avisamos
                     dgvAuditoria.DataSource = null;
-                    MessageBox.Show(GetTexto("msg_sin_resultados"), "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(ObtenerTexto("msg_sin_resultados"), ObtenerTexto("titulo_info", "Info"), MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(GetTexto("msg_error_general") + " " + ex.Message);
+                MessageBox.Show(ObtenerTexto("msg_error_general") + " " + ex.Message);
             }
         }
 
@@ -200,7 +205,7 @@ namespace Proyecto_IngSoftware
                 if (_mapaEventosPorModulo.ContainsKey(mod))
                 {
                     var lista = new List<object>();
-                    lista.Add(new { Id = "", Texto = "--- Todos ---" });
+                    lista.Add(new { Id = "", Texto = ObtenerTexto("auditoria_opt_todos", "Todos") });
 
                     foreach (var ev in _mapaEventosPorModulo[mod])
                     {
@@ -215,8 +220,8 @@ namespace Proyecto_IngSoftware
                 }
                 else
                 {
-                    // si el modulo no teine evento comoventa,compra etc mostraria esto 
-                    cmbEvento.DataSource = new List<object> { new { Id = "", Texto = "--- N/A ---" } };
+                    // si el modulo no teine evento comoventa,compra etc mostraria esto
+                    cmbEvento.DataSource = new List<object> { new { Id = "", Texto = ObtenerTexto("auditoria_opt_na", "N/A") } };
                     cmbEvento.Enabled = false;
                 }
             }
@@ -239,7 +244,8 @@ namespace Proyecto_IngSoftware
             //verifico qu haya daos en la grila
             if (dgvAuditoria.DataSource == null || !(dgvAuditoria.DataSource is DataTable dt))
             {
-                MessageBox.Show("No hay datos para imprimir.");
+                MessageBox.Show(ObtenerTexto("auditoria_msg_sin_datos_imprimir", "No hay datos para imprimir."),
+                                ObtenerTexto("titulo_atencion", "Atención"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -260,11 +266,13 @@ namespace Proyecto_IngSoftware
                         //yllamamos al metodo de la bll ychau
                         bllBitacora.Imprimir_43BO(sfd.FileName, dt, criticidad, modulo);
 
-                        MessageBox.Show("PDF generado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show(ObtenerTexto("auditoria_msg_pdf_generado", "PDF generado correctamente."),
+                                        ObtenerTexto("titulo_excelente", "Éxito"), MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("Error al generar el PDF: " + ex.Message);
+                        MessageBox.Show(ObtenerTexto("msg_error_general", "Se produjo un error: ") + ObtenerTexto(ex.Message, ex.Message),
+                                        ObtenerTexto("titulo_error", "Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }
@@ -285,9 +293,9 @@ namespace Proyecto_IngSoftware
                 })
                 .ToList();
 
-            // agrego la opcion todos al principio
+            // agrego la opcion todos al principio (traducida, igual que el combo de criticidad)
             var listaConTodos = new List<object>();
-            listaConTodos.Add(new { Id = "", Texto = "Todos" });
+            listaConTodos.Add(new { Id = "", Texto = ObtenerTexto("auditoria_opt_todos", "Todos") });
             listaConTodos.AddRange(lista);
 
             return listaConTodos;

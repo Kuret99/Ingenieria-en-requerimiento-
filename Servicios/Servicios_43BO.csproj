@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="Bitacora_43BO.cs" />
     <Compile Include="CriptoManager_43BO.cs" />
+    <Compile Include="DV_43BO.cs" />
     <Compile Include="IidiomaObserver\GestorArchivoIdioma_43BO.cs" />
     <Compile Include="IidiomaObserver\GestorIdioma_43BO.cs" />
     <Compile Include="IidiomaObserver\IdiomaObserver_43BO.cs" />

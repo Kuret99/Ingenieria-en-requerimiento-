@@ -63,6 +63,24 @@
       <DependentUpon>Auditoria.cs</DependentUpon>
     </Compile>
     <Compile Include="AsignadorPermisos_43BO.cs" />
+    <Compile Include="Admin\IntegridadDV.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Admin\IntegridadDV.Designer.cs">
+      <DependentUpon>IntegridadDV.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\RestoreBD.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Admin\RestoreBD.Designer.cs">
+      <DependentUpon>RestoreBD.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\BackupBD.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Admin\BackupBD.Designer.cs">
+      <DependentUpon>BackupBD.cs</DependentUpon>
+    </Compile>
     <Compile Include="CambiarIdioma.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -133,6 +151,10 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <None Include="Idiomas\es.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="..\EsquemaCompleto_43BO.sql">
+      <Link>EsquemaCompleto_43BO.sql</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Idiomas\pr.json">

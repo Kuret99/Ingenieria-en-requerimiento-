@@ -33,6 +33,7 @@
             this.gestionUsuarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bitacoraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gestionPerfilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.backupBDToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.UserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cambiarContraseñaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cerrarSesiobnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -68,7 +69,8 @@
             this.AdminToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.gestionUsuarioToolStripMenuItem,
             this.bitacoraToolStripMenuItem,
-            this.gestionPerfilesToolStripMenuItem});
+            this.gestionPerfilesToolStripMenuItem,
+            this.backupBDToolStripMenuItem});
             this.AdminToolStripMenuItem.Name = "AdminToolStripMenuItem";
             this.AdminToolStripMenuItem.Size = new System.Drawing.Size(55, 20);
             this.AdminToolStripMenuItem.Text = "Admin";
@@ -96,7 +98,15 @@
             this.gestionPerfilesToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
             this.gestionPerfilesToolStripMenuItem.Text = "GestionPerfiles";
             this.gestionPerfilesToolStripMenuItem.Click += new System.EventHandler(this.gestionPerfilesToolStripMenuItem_Click);
-            // 
+            //
+            // backupBDToolStripMenuItem
+            //
+            this.backupBDToolStripMenuItem.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.backupBDToolStripMenuItem.Name = "backupBDToolStripMenuItem";
+            this.backupBDToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
+            this.backupBDToolStripMenuItem.Text = "Backup BD";
+            this.backupBDToolStripMenuItem.Click += new System.EventHandler(this.backupBDToolStripMenuItem_Click);
+            //
             // UserToolStripMenuItem
             // 
             this.UserToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -207,5 +217,6 @@
         private System.Windows.Forms.ToolStripMenuItem reporteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ayudaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem gestionPerfilesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem backupBDToolStripMenuItem;
     }
 }

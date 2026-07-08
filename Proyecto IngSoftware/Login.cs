@@ -31,10 +31,10 @@ namespace Proyecto_IngSoftware
             AplicarTextosEstaticos();
         }
 
-        private string ObtenerTexto(string clave, string porDefecto)
+        private string ObtenerTexto(string clave, string porDefecto = null)
         {
-            // funcion para q no explote todo si falta una clave
-            return _diccionario != null && _diccionario.ContainsKey(clave) ? _diccionario[clave] : porDefecto;
+            // unico punto de traduccion: todo pasa por el gestor
+            return GestorIdioma_43BO.Instancia.ObtenerTexto_43BO(clave, porDefecto ?? clave);
         }
 
         private void AplicarTextosEstaticos()
@@ -56,33 +56,64 @@ namespace Proyecto_IngSoftware
                 if (string.IsNullOrEmpty(txtUser.Text) || string.IsNullOrEmpty(txtContra.Text))
                 {
                     MessageBox.Show(ObtenerTexto("login.msg_incompleto", "Por favor, complete todos los campos."),
-                                    ObtenerTexto("msg_titulo_error", "Error"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                    ObtenerTexto("titulo_error", "Error"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
-                if (bll_43BO.ValidarLogin_43BO(txtUser.Text, txtContra.Text))
-                {
-                    // si sale bien
-                    MessageBox.Show(ObtenerTexto("login_msg_exito", "Bienvenido al sistema."),
-                                    "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                // 1) autentico PRIMERO. Si la clave esta mal, VerificarCredenciales tira la
+                //    excepcion de intentos/bloqueo y la muestra el catch. Asi la contraseña
+                //    incorrecta descuenta intentos aunque el DV este inconsistente, en vez de
+                //    tapar todo con el mensaje de "sistema no disponible".
+                User_43BO usuario_43BO = bll_43BO.VerificarCredenciales_43BO(txtUser.Text, txtContra.Text);
 
-                    if (this.Modal)
+                // 2) recien con credenciales validas verifico la integridad de datos (dvh/dvv)
+                BllDV_43BO bllDv_43BO = new BllDV_43BO();
+                List<string> tablasInconsistentes_43BO;
+
+                if (!bllDv_43BO.VerificarDV_43BO(out tablasInconsistentes_43BO))
+                {
+                    // el admin puede reparar; cualquier otro rol solo recibe el aviso y se sale
+                    if (bll_43BO.EsAdmin_43BO(usuario_43BO))
                     {
-                        this.DialogResult = DialogResult.OK;
-                        this.Close();
+                        // le paso el admin autenticado asi el recalculo/restore quedan firmados
+                        // en la bitacora (en este punto todavia no inicie sesion)
+                        using (IntegridadDV_43BO frmDv_43BO = new IntegridadDV_43BO(tablasInconsistentes_43BO, usuario_43BO))
+                        {
+                            frmDv_43BO.ShowDialog(this);
+                        }
+
+                        // limpio la pantalla y se vuelve al login para un nuevo acceso
+                        txtUser.Clear();
+                        txtContra.Clear();
+                        txtUser.Focus();
+                        return;
                     }
-                    else
-                    {
-                        Menu menu_43BO = new Menu();
-                        menu_43BO.Show();
-                        this.Hide();
-                    }
+
+                    // no es admin: aviso generico y se sale del sistema
+                    MessageBox.Show(ObtenerTexto("dv_msg_inconsistencia",
+                                        "El sistema no está disponible en este momento. Contacte con el administrador."),
+                                    ObtenerTexto("titulo_error", "Error"),
+                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Application.Exit();
+                    return;
+                }
+
+                // 3) DV ok -> arranco la sesion del usuario ya autenticado
+                bll_43BO.CompletarLogin_43BO(usuario_43BO);
+
+                MessageBox.Show(ObtenerTexto("login_msg_exito", "Bienvenido al sistema."),
+                                ObtenerTexto("titulo_info", "Info"), MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                if (this.Modal)
+                {
+                    this.DialogResult = DialogResult.OK;
+                    this.Close();
                 }
                 else
                 {
-                    // aca si pusieron mal la clave
-                    MessageBox.Show(ObtenerTexto("login.msg_incorrecto", "Usuario o contraseña incorrectos."),
-                                    ObtenerTexto("msg_titulo_error", "Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Menu menu_43BO = new Menu();
+                    menu_43BO.Show();
+                    this.Hide();
                 }
             }
             catch (Exception ex)
@@ -99,17 +130,22 @@ namespace Proyecto_IngSoftware
                 if (mensajeError.Contains("|"))
                 {
                     string[] partes = mensajeError.Split('|');
-                    // Traducimos la llave (ej: "error_intentos_restantes") y reemplazamos el {0}
-                    mensajeError = string.Format(ObtenerTexto(partes[0], partes[0]), partes[1]);
-                }
-                else
-                {
-                    // Traducimos el error común usando tu gestor
-                    mensajeError = ObtenerTexto(mensajeError, mensajeError);
+                    // Traducimos la llave (ej: "error_intentos_restantes") y reemplazamos el {0}.
+                    // Este caso ya es un mensaje claro ("Contraseña incorrecta. Intentos restantes: n"),
+                    // asi que NO le anteponemos el generico "Se produjo un error:".
+                    string msgIntentos = string.Format(ObtenerTexto(partes[0], partes[0]), partes[1]);
+                    MessageBox.Show(msgIntentos,
+                                    ObtenerTexto("titulo_error", "Error"),
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Error);
+                    return;
                 }
 
+                // Traducimos el error común usando tu gestor
+                mensajeError = ObtenerTexto(mensajeError, mensajeError);
+
                 MessageBox.Show(ObtenerTexto("msg_error_general", "Se produjo un error: ") + mensajeError,
-                                ObtenerTexto("msg_titulo_error", "Error"),
+                                ObtenerTexto("titulo_error", "Error"),
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Error);
             }

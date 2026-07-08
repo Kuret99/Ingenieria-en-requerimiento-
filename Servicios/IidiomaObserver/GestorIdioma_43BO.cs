@@ -41,13 +41,25 @@ public class GestorIdioma_43BO
     }
     public string ObtenerTexto_43BO(string key)
     {
-        //aaca se puede usar el diccionario actual para obtener el texto, si no existe se devuelve la clave para que se note que falta traducción, o se podría devolver un mensaje de error o algo 
+        //aaca se puede usar el diccionario actual para obtener el texto, si no existe se devuelve la clave para que se note que falta traducción, o se podría devolver un mensaje de error o algo
         if (_diccionarioActual != null && _diccionarioActual.ContainsKey(key))
         {
             return _diccionarioActual[key];
         }
 
         return key;
+    }
+
+    // version con texto por defecto: si falta la clave devuelve el default en vez de la clave cruda
+    // la idea es que TODOS los forms traduzcan pasando por aca y no cada uno con su diccionario
+    public string ObtenerTexto_43BO(string key, string porDefecto)
+    {
+        if (_diccionarioActual != null && _diccionarioActual.ContainsKey(key))
+        {
+            return _diccionarioActual[key];
+        }
+
+        return porDefecto;
     }
 
     public void CargarIdioma_43BO(string codigoIdioma)

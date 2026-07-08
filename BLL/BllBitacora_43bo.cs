@@ -17,7 +17,9 @@ namespace BLL
     {
         DALBitacora_43BO dal = new DALBitacora_43BO();
 
-        public void GuardarLog_43BO(Modulo_43BO modulo, Evento_43BO evento, int criticidad)
+        // el usuarioAfectado es opcional, sirve para los casos donde todavia no hay sesion
+        // (ej: el bloqueo por intentos fallidos en el login) asi no explota con null
+        public void GuardarLog_43BO(Modulo_43BO modulo, Evento_43BO evento, int criticidad, User_43BO usuarioAfectado = null)
         {
 
             /// --- Esto queda aca por si ams adelante tengoq ue cambialo -----
@@ -32,20 +34,25 @@ namespace BLL
 
             Bitacora_43BO bi = new Bitacora_43BO();
 
-            if (SessionManager_43BO.Instancia == null) return;
-            var usuarioActual = SessionManager_43BO.Instancia.Usuario;
-            if (usuarioActual != null)
+            if (usuarioAfectado != null)
             {
-                bi.log_43BO = usuarioActual;
+                // me pasaron el usuario directo (no hay sesion todavia)
+                bi.log_43BO = usuarioAfectado;
             }
             else
-            {            
-                bi.log_43BO = null;
+            {
+                if (SessionManager_43BO.Instancia == null) return;
+                var usuarioActual = SessionManager_43BO.Instancia.Usuario;
+
+                // sin usuario no tengo dni para el log, antes esto tiraba NullReference en la dal
+                if (usuarioActual == null) return;
+
+                bi.log_43BO = usuarioActual;
             }
             bi.Modulo = modulo;
             bi.Evento = evento;
             bi.Fecha_43BO = DateTime.Now;
-            bi.Criticidad_43BO = criticidad;    
+            bi.Criticidad_43BO = criticidad;
             dal.GuardarLog_43BO(bi);
         }
 

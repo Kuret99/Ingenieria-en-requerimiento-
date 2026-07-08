@@ -1,0 +1,13 @@
+C:\Users\ariel\OneDrive\Documentos\PoryectoSoftware\Ingenieria-en-requerimiento-\DAL\bin\Release\DAL.dll
+C:\Users\ariel\OneDrive\Documentos\PoryectoSoftware\Ingenieria-en-requerimiento-\DAL\bin\Release\DAL.pdb
+C:\Users\ariel\OneDrive\Documentos\PoryectoSoftware\Ingenieria-en-requerimiento-\DAL\bin\Release\BE.dll
+C:\Users\ariel\OneDrive\Documentos\PoryectoSoftware\Ingenieria-en-requerimiento-\DAL\bin\Release\Servicios.dll
+C:\Users\ariel\OneDrive\Documentos\PoryectoSoftware\Ingenieria-en-requerimiento-\DAL\bin\Release\Newtonsoft.Json.dll
+C:\Users\ariel\OneDrive\Documentos\PoryectoSoftware\Ingenieria-en-requerimiento-\DAL\bin\Release\BE.pdb
+C:\Users\ariel\OneDrive\Documentos\PoryectoSoftware\Ingenieria-en-requerimiento-\DAL\bin\Release\Servicios.pdb
+C:\Users\ariel\OneDrive\Documentos\PoryectoSoftware\Ingenieria-en-requerimiento-\DAL\bin\Release\Newtonsoft.Json.xml
+C:\Users\ariel\OneDrive\Documentos\PoryectoSoftware\Ingenieria-en-requerimiento-\DAL\obj\Release\DAL_43BO.csproj.AssemblyReference.cache
+C:\Users\ariel\OneDrive\Documentos\PoryectoSoftware\Ingenieria-en-requerimiento-\DAL\obj\Release\DAL_43BO.csproj.CoreCompileInputs.cache
+C:\Users\ariel\OneDrive\Documentos\PoryectoSoftware\Ingenieria-en-requerimiento-\DAL\obj\Release\DAL_43BO.csproj.Up2Date
+C:\Users\ariel\OneDrive\Documentos\PoryectoSoftware\Ingenieria-en-requerimiento-\DAL\obj\Release\DAL.dll
+C:\Users\ariel\OneDrive\Documentos\PoryectoSoftware\Ingenieria-en-requerimiento-\DAL\obj\Release\DAL.pdb

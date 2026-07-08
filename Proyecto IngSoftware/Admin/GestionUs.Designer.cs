@@ -54,9 +54,10 @@
             // 
             // btnCrear
             // 
-            this.btnCrear.Location = new System.Drawing.Point(690, 36);
+            this.btnCrear.Location = new System.Drawing.Point(920, 44);
+            this.btnCrear.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnCrear.Name = "btnCrear";
-            this.btnCrear.Size = new System.Drawing.Size(86, 33);
+            this.btnCrear.Size = new System.Drawing.Size(115, 41);
             this.btnCrear.TabIndex = 0;
             this.btnCrear.Text = "Crear";
             this.btnCrear.UseVisualStyleBackColor = true;
@@ -64,9 +65,10 @@
             // 
             // btnDes
             // 
-            this.btnDes.Location = new System.Drawing.Point(690, 95);
+            this.btnDes.Location = new System.Drawing.Point(920, 117);
+            this.btnDes.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnDes.Name = "btnDes";
-            this.btnDes.Size = new System.Drawing.Size(86, 33);
+            this.btnDes.Size = new System.Drawing.Size(115, 41);
             this.btnDes.TabIndex = 1;
             this.btnDes.Text = "Desbloquear";
             this.btnDes.UseVisualStyleBackColor = true;
@@ -74,9 +76,10 @@
             // 
             // btnModi
             // 
-            this.btnModi.Location = new System.Drawing.Point(690, 157);
+            this.btnModi.Location = new System.Drawing.Point(920, 193);
+            this.btnModi.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnModi.Name = "btnModi";
-            this.btnModi.Size = new System.Drawing.Size(86, 33);
+            this.btnModi.Size = new System.Drawing.Size(115, 41);
             this.btnModi.TabIndex = 2;
             this.btnModi.Text = "Modificar";
             this.btnModi.UseVisualStyleBackColor = true;
@@ -84,9 +87,10 @@
             // 
             // btnAct
             // 
-            this.btnAct.Location = new System.Drawing.Point(690, 219);
+            this.btnAct.Location = new System.Drawing.Point(920, 270);
+            this.btnAct.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnAct.Name = "btnAct";
-            this.btnAct.Size = new System.Drawing.Size(86, 33);
+            this.btnAct.Size = new System.Drawing.Size(115, 41);
             this.btnAct.TabIndex = 3;
             this.btnAct.Text = "Act / Desact";
             this.btnAct.UseVisualStyleBackColor = true;
@@ -94,9 +98,10 @@
             // 
             // btnApli
             // 
-            this.btnApli.Location = new System.Drawing.Point(472, 273);
+            this.btnApli.Location = new System.Drawing.Point(629, 336);
+            this.btnApli.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnApli.Name = "btnApli";
-            this.btnApli.Size = new System.Drawing.Size(86, 33);
+            this.btnApli.Size = new System.Drawing.Size(115, 41);
             this.btnApli.TabIndex = 4;
             this.btnApli.Text = "Aplicar";
             this.btnApli.UseVisualStyleBackColor = true;
@@ -104,9 +109,10 @@
             // 
             // btnCanc
             // 
-            this.btnCanc.Location = new System.Drawing.Point(582, 273);
+            this.btnCanc.Location = new System.Drawing.Point(776, 336);
+            this.btnCanc.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnCanc.Name = "btnCanc";
-            this.btnCanc.Size = new System.Drawing.Size(86, 33);
+            this.btnCanc.Size = new System.Drawing.Size(115, 41);
             this.btnCanc.TabIndex = 5;
             this.btnCanc.Text = "Cancelar";
             this.btnCanc.UseVisualStyleBackColor = true;
@@ -115,9 +121,10 @@
             // rbActivos
             // 
             this.rbActivos.AutoSize = true;
-            this.rbActivos.Location = new System.Drawing.Point(25, 13);
+            this.rbActivos.Location = new System.Drawing.Point(33, 16);
+            this.rbActivos.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.rbActivos.Name = "rbActivos";
-            this.rbActivos.Size = new System.Drawing.Size(60, 17);
+            this.rbActivos.Size = new System.Drawing.Size(72, 20);
             this.rbActivos.TabIndex = 6;
             this.rbActivos.TabStop = true;
             this.rbActivos.Text = "Activos";
@@ -127,9 +134,10 @@
             // rbTodos
             // 
             this.rbTodos.AutoSize = true;
-            this.rbTodos.Location = new System.Drawing.Point(114, 12);
+            this.rbTodos.Location = new System.Drawing.Point(152, 15);
+            this.rbTodos.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.rbTodos.Name = "rbTodos";
-            this.rbTodos.Size = new System.Drawing.Size(55, 17);
+            this.rbTodos.Size = new System.Drawing.Size(68, 20);
             this.rbTodos.TabIndex = 7;
             this.rbTodos.TabStop = true;
             this.rbTodos.Text = "Todos";
@@ -139,18 +147,21 @@
             // dgvUsaurio
             // 
             this.dgvUsaurio.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvUsaurio.Location = new System.Drawing.Point(12, 36);
+            this.dgvUsaurio.Location = new System.Drawing.Point(16, 44);
+            this.dgvUsaurio.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dgvUsaurio.Name = "dgvUsaurio";
-            this.dgvUsaurio.Size = new System.Drawing.Size(656, 216);
+            this.dgvUsaurio.RowHeadersWidth = 51;
+            this.dgvUsaurio.Size = new System.Drawing.Size(875, 266);
             this.dgvUsaurio.TabIndex = 8;
             this.dgvUsaurio.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvUsaurio_CellClick_43BO);
             // 
             // rbBloqueados
             // 
             this.rbBloqueados.AutoSize = true;
-            this.rbBloqueados.Location = new System.Drawing.Point(203, 13);
+            this.rbBloqueados.Location = new System.Drawing.Point(271, 16);
+            this.rbBloqueados.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.rbBloqueados.Name = "rbBloqueados";
-            this.rbBloqueados.Size = new System.Drawing.Size(81, 17);
+            this.rbBloqueados.Size = new System.Drawing.Size(102, 20);
             this.rbBloqueados.TabIndex = 9;
             this.rbBloqueados.TabStop = true;
             this.rbBloqueados.Text = "Bloqueados";
@@ -159,9 +170,10 @@
             // 
             // btnSalir
             // 
-            this.btnSalir.Location = new System.Drawing.Point(667, 348);
+            this.btnSalir.Location = new System.Drawing.Point(889, 428);
+            this.btnSalir.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnSalir.Name = "btnSalir";
-            this.btnSalir.Size = new System.Drawing.Size(101, 33);
+            this.btnSalir.Size = new System.Drawing.Size(135, 41);
             this.btnSalir.TabIndex = 10;
             this.btnSalir.Text = "Salir";
             this.btnSalir.UseVisualStyleBackColor = true;
@@ -170,90 +182,100 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 265);
+            this.label1.Location = new System.Drawing.Point(16, 326);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(26, 13);
+            this.label1.Size = new System.Drawing.Size(30, 16);
             this.label1.TabIndex = 11;
             this.label1.Text = "DNI";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 293);
+            this.label2.Location = new System.Drawing.Point(16, 361);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(44, 13);
+            this.label2.Size = new System.Drawing.Size(56, 16);
             this.label2.TabIndex = 12;
             this.label2.Text = "Nombre";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 317);
+            this.label3.Location = new System.Drawing.Point(16, 390);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(44, 13);
+            this.label3.Size = new System.Drawing.Size(57, 16);
             this.label3.TabIndex = 13;
             this.label3.Text = "Apellido";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(15, 343);
+            this.label4.Location = new System.Drawing.Point(20, 422);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(23, 13);
+            this.label4.Size = new System.Drawing.Size(28, 16);
             this.label4.TabIndex = 14;
             this.label4.Text = "Rol";
             // 
             // txtDNI
             // 
-            this.txtDNI.Location = new System.Drawing.Point(69, 258);
+            this.txtDNI.Location = new System.Drawing.Point(92, 318);
+            this.txtDNI.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtDNI.Name = "txtDNI";
-            this.txtDNI.Size = new System.Drawing.Size(100, 20);
+            this.txtDNI.Size = new System.Drawing.Size(132, 22);
             this.txtDNI.TabIndex = 15;
             // 
             // txtNom
             // 
-            this.txtNom.Location = new System.Drawing.Point(69, 284);
+            this.txtNom.Location = new System.Drawing.Point(92, 350);
+            this.txtNom.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtNom.Name = "txtNom";
-            this.txtNom.Size = new System.Drawing.Size(100, 20);
+            this.txtNom.Size = new System.Drawing.Size(132, 22);
             this.txtNom.TabIndex = 16;
             // 
             // txtApe
             // 
-            this.txtApe.Location = new System.Drawing.Point(69, 310);
+            this.txtApe.Location = new System.Drawing.Point(92, 382);
+            this.txtApe.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtApe.Name = "txtApe";
-            this.txtApe.Size = new System.Drawing.Size(100, 20);
+            this.txtApe.Size = new System.Drawing.Size(132, 22);
             this.txtApe.TabIndex = 17;
             // 
             // txtEmail
             // 
-            this.txtEmail.Location = new System.Drawing.Point(69, 361);
+            this.txtEmail.Location = new System.Drawing.Point(92, 444);
+            this.txtEmail.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(100, 20);
+            this.txtEmail.Size = new System.Drawing.Size(132, 22);
             this.txtEmail.TabIndex = 19;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(15, 368);
+            this.label5.Location = new System.Drawing.Point(20, 453);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(32, 13);
+            this.label5.Size = new System.Drawing.Size(41, 16);
             this.label5.TabIndex = 20;
             this.label5.Text = "Email";
             // 
             // cmbRol
             // 
             this.cmbRol.FormattingEnabled = true;
-            this.cmbRol.Location = new System.Drawing.Point(69, 334);
+            this.cmbRol.Location = new System.Drawing.Point(92, 411);
+            this.cmbRol.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cmbRol.Name = "cmbRol";
-            this.cmbRol.Size = new System.Drawing.Size(100, 21);
+            this.cmbRol.Size = new System.Drawing.Size(132, 24);
             this.cmbRol.TabIndex = 21;
             // 
             // GestionUs
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.ClientSize = new System.Drawing.Size(780, 388);
+            this.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.ClientSize = new System.Drawing.Size(1040, 478);
             this.Controls.Add(this.cmbRol);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.txtEmail);
@@ -275,6 +297,7 @@
             this.Controls.Add(this.btnModi);
             this.Controls.Add(this.btnDes);
             this.Controls.Add(this.btnCrear);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "GestionUs";
             this.Text = "GestionUs";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;

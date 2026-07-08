@@ -46,9 +46,10 @@ namespace Proyecto_IngSoftware
             AplicarTextosEstaticos();
         }
 
-        private string ObtenerTexto(string clave, string porDefecto)
+        private string ObtenerTexto(string clave, string porDefecto = null)
         {
-            return _diccionario != null && _diccionario.ContainsKey(clave) ? _diccionario[clave] : porDefecto;
+            // unico punto de traduccion: todo pasa por el gestor
+            return GestorIdioma_43BO.Instancia.ObtenerTexto_43BO(clave, porDefecto ?? clave);
         }
 
         private void AplicarTextosEstaticos()
@@ -88,7 +89,7 @@ namespace Proyecto_IngSoftware
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ObtenerTexto("msg_error_general", "Error al cargar datos: ") + ex.Message, ObtenerTexto("titulo_error", "Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ObtenerTexto("msg_error_general", "Error al cargar datos: ") + ObtenerTexto(ex.Message, ex.Message), ObtenerTexto("titulo_error", "Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -156,7 +157,8 @@ namespace Proyecto_IngSoftware
             catch (Exception ex)
             {
                 _rolActual = null;
-                MessageBox.Show("Error al cargar datos: " + ex.Message);
+                MessageBox.Show(ObtenerTexto("msg_error_general", "Error al cargar datos: ") + ObtenerTexto(ex.Message, ex.Message),
+                                ObtenerTexto("titulo_error", "Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -261,7 +263,8 @@ namespace Proyecto_IngSoftware
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, ObtenerTexto("titulo_error", "Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                // traduzco la clave sino sale cruda tipo "error_quitar_componente_minimo"
+                MessageBox.Show(ObtenerTexto(ex.Message, ex.Message), ObtenerTexto("titulo_error", "Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

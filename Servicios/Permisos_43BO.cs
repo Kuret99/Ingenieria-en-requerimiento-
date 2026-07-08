@@ -34,6 +34,10 @@ namespace Servicios
         GestionPerfiles_AsignarRelaciones = 16, // Botones <<-- y -->>
         GestionPerfiles_ConfigurarEstructura = 17,
         Usuario_CambioContraseña = 19,
-        Usuario_CambioIdioma = 20
+        Usuario_CambioIdioma = 20,
+
+        Admin_Backup = 21,
+        Admin_RecalcularDV = 22,
+        Admin_Restore = 23
     }
 }
