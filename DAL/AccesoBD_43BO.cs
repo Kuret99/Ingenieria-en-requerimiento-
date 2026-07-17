@@ -10,21 +10,13 @@ namespace DAL
 {
     public class AccesoBD_43BO
     {
-        // cadena elegida en tiempo de ejecucion. La setea el flujo de instalacion
-        // (form de seleccion de instancia / Program.cs) con la instancia que eligio el usuario.
-        // Si queda vacia, se cae al App.config y si tampoco esta, al default local .\SQLEXPRESS.
-        private static string _cadenaOverride;
-
-        // Propiedad seteable desde afuera. Toda la DAL se conecta usando esto.
+        // Cadena de conexion resuelta siempre desde el App.config (con fallback al default
+        // local .\SQLEXPRESS). Toda la DAL se conecta usando esto. Es de solo lectura: no hay
+        // flujo de instalacion con seleccion manual de instancia, el instalador (BLLInstalador_43BO
+        // / InstaladorBD_43BO) usa esta misma cadena tal cual la resuelve el App.config.
         public static string ConnectionString
         {
-            get
-            {
-                return string.IsNullOrWhiteSpace(_cadenaOverride)
-                    ? ObtenerCadenaDeConfig_43BO()
-                    : _cadenaOverride;
-            }
-            set { _cadenaOverride = value; }
+            get { return ObtenerCadenaDeConfig_43BO(); }
         }
 
         // lee la cadena del App.config; si no esta o esta vacia, usa la instancia local por defecto.
